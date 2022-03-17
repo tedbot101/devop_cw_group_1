@@ -1,9 +1,9 @@
-name: Workflow for group 1
+name: A workflow for my Hello World App
 on: push
 
 jobs:
   build:
-    name: Workflow for group 1
+    name: Hello world action
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
@@ -16,8 +16,6 @@ jobs:
 
       - name: Build with Maven
         run: mvn package
-      - name: Build
-        run: docker build -t se_methods .
       - name: Run image
         run: docker run --network se-methods --name semcontainer se_methods
       - name: view logs
