@@ -2,7 +2,7 @@
 Members: <br>
 Thant Aung Khant,<br>
 Hein Htet Naing, <br>
-Arkar Maung,<br>
-Lyan Moe Kyaw<br>
+Arkar Maung - 40501812<br>
+Lyan Moe Kyaw - 40478615<br>
 
 
