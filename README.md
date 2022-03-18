@@ -7,7 +7,7 @@ Lyan Moe Kyaw - 40478615<br>
 
 Code of Conduct Devop Group 1
 
-1. Team members must be on time at the meetings and finish b the time as agreed upon, schedule another meeting if necessary.
+1. The team members must be on time at the meetings and finish b the time as agreed upon, schedule another meeting if necessary.
 
 2. Commit only to what you are going to do and if you commit, do it. If you can't let the people that depend on you know as soon as possible.
 
