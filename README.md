@@ -2,10 +2,10 @@
 Members: <br>
 Thant Aung Khant - 40501823,<br>
 Hein Htet Naing - 40459278 <br>
-Arkar Maung - 40501812<br>
-Lyan Moe Kyaw - 40478615<br>
+Arkar Maung - 40501812 (Scrum Master)<br>
+Lyan Moe Kyaw - 40478615 (Product Owner)<br>
 
-Code of Conduct Devop Group 1
+#Code of Conduct Devop Group 1
 
 1. The team members must be on time at the meetings and finish b the time as agreed upon, schedule another meeting if necessary.
 
