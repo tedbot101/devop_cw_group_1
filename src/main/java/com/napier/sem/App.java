@@ -21,8 +21,7 @@ public class App {
 
     /**
      * Connect to the MySQL database.
-     * @param conString Use db:3306 for docker and localhost:33060 for local or Integration Tests
-     * @param i
+
      */
     public void connect(String conString, int delay) {
         try {
@@ -45,7 +44,6 @@ public class App {
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
                 System.out.println(sqle.getMessage());
             } catch (InterruptedException ie) {
                 System.out.println("Thread interrupted? Should not happen.");
