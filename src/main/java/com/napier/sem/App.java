@@ -1,6 +1,7 @@
 package com.napier.sem;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class App {
 
@@ -9,13 +10,19 @@ public class App {
      */
     private Connection con = null;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // Create new Application
         App a = new App();
 
         // Connect to database
         a.connect("db:3306", 30000);
         // Disconnect from database
+        System.out.println("In main");
+       //ArrayList<Country> contries= a.getCountryPopLargesttoSmallest();
+        //a.display(contries);
+        System.out.println("*****************************************************\nContinent\n");
+        ArrayList<Country> contries2= a.getCountryPopbyContinent("Asia");
+        a.display(contries2);
         a.disconnect();
     }
 
@@ -63,4 +70,40 @@ public class App {
             }
         }
     }
+    public ArrayList<Country> getCountryPopLargesttoSmallest() throws SQLException {
+        String sql ="select Name,Continent,Region, Capital, Population from country order by Population desc";
+        PreparedStatement pstmt =con.prepareStatement(sql);
+        ArrayList<Country> countries = new ArrayList<Country>();
+        ResultSet rset =pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while(rset.next())
+        {Country  c = new Country(rset.getString(1),rset.getString(2),rset.getString(3),rset.getString(4),rset.getFloat(5));
+            countries.add(c);
+        }
+        return countries;
+    }
+
+    public ArrayList<Country> getCountryPopbyContinent(String contn) throws SQLException {
+        String sql ="select Name,Continent,Region, Capital, Population from country where Continent=? order by Population desc";
+        PreparedStatement pstmt =con.prepareStatement(sql);
+        pstmt.setString(1,contn);
+        ArrayList<Country> countries = new ArrayList<Country>();
+        ResultSet rset =pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while(rset.next())
+        {Country  c = new Country(rset.getString(1),rset.getString(2),rset.getString(3),rset.getString(4),rset.getFloat(5));
+            countries.add(c);
+        }
+        return countries;
+    }
+
+    public void display(ArrayList<Country> conts)
+    {
+        for(Country c: conts)
+        {
+            System.out.println(c.getName()+"\t"+c.getContinent()+"\t"+c.getRegion()+"\t"+c.getCapital()+"\t"+c.getPopulation());
+        }
+    }
+
 }
+
