@@ -23,9 +23,12 @@ public class App {
         //System.out.println("*****************************************************\nContinent\n");
         //ArrayList<Country> contries2= a.getCountryPopbyContinent("Asia");
         //a.display(contries2);
+        //System.out.println("*****************************************************\nContinent\n");
+        //ArrayList<Country> contries3= a.getCountryPopbyRegion("Caribbean");
+        //a.display(contries3);
         System.out.println("*****************************************************\nContinent\n");
-        ArrayList<Country> contries3= a.getCountryPopbyRegion("Caribbean");
-        a.display(contries3);
+        ArrayList<City> city1= a.getCityPopLargesttoSmallest();
+        a.display(city1);
         a.disconnect();
     }
 
@@ -114,11 +117,31 @@ public class App {
         return countries;
     }
 
-    public void display(ArrayList<Country> conts)
+    public ArrayList<City> getCityPopLargesttoSmallest() throws SQLException {
+        String sql ="select ID,Name,CountryCode, District, Population from city order by Population desc";
+        PreparedStatement pstmt =con.prepareStatement(sql);
+        ArrayList<City> cities = new ArrayList<City>();
+        ResultSet rset =pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while(rset.next())
+        {City  c = new City(rset.getInt(1),rset.getString(2),rset.getString(3),rset.getString(4),rset.getFloat(5));
+            cities.add(c);
+        }
+        return cities;
+    }
+
+   /* public void display(ArrayList<Country> conts)
     {
         for(Country c: conts)
         {
             System.out.println(c.getName()+"\t"+c.getContinent()+"\t"+c.getRegion()+"\t"+c.getCapital()+"\t"+c.getPopulation());
+        }
+    }*/
+    public void display(ArrayList<City> conts)
+    {
+        for(City c: conts)
+        {
+            System.out.println(c.getID()+"\t"+c.getName()+"\t"+c.getCountryCode()+"\t"+c.getDistrict()+"\t"+c.getPopulation());
         }
     }
 
