@@ -18,12 +18,13 @@ public class App {
         a.connect("db:3306", 30000);
         // Disconnect from database
         System.out.println("In main");
-       //ArrayList<Country> contries= a.getCountryPopLargesttoSmallest();
-        //a.display(contries);
-        //System.out.println("*****************************************************\nContinent\n");
-        //ArrayList<Country> contries2= a.getCountryPopbyContinent("Asia");
-        //a.display(contries2);
-        System.out.println("*****************************************************\nContinent\n");
+        System.out.println("*****************************************************\n All the countries in the world organised by largest population to smallest.\n");
+       ArrayList<Country> contries= a.getCountryPopLargesttoSmallest();
+        a.display(contries);
+        System.out.println("*****************************************************\nAll the countries in a continent organised by largest population to smallest.\n");
+        ArrayList<Country> contries2= a.getCountryPopbyContinent("Asia");
+        a.display(contries2);
+        System.out.println("*****************************************************\nAll the countries in a continent organised by largest population to smallest.\n");
         ArrayList<Country> contries3= a.getCountryPopbyRegion("Caribbean");
         a.display(contries3);
         a.disconnect();
