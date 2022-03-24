@@ -23,9 +23,14 @@ public class App {
         //ArrayList<City> city1= a.getCityPopLargesttoSmallest();
         //a.display(city1);
 
-        System.out.println("*******************************\nAll the cities in the continent organised by largest population to smallest.\n");
-        ArrayList<City> city2= a.getCityContinentPopLargesttoSmallest("Africa");
-        a.display(city2);
+        //System.out.println("*******************************\nAll the cities in the continent organised by largest population to smallest.\n");
+        //ArrayList<City> city2= a.getCityContinentPopLargesttoSmallest("Africa");
+        //a.display(city2);
+
+        System.out.println("*******************************\nAll the cities in the region organised by largest population to smallest.\n");
+        ArrayList<City> city3= a.getCityRegionPopLargesttoSmallest("South America");
+        a.display(city3);
+
         a.disconnect();
     }
 
@@ -91,6 +96,21 @@ public class App {
         String sql ="select city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Code, country.Region from city, country where city.CountryCode = country.Code And country.Continent = ? order by city.Population desc ";
         PreparedStatement pstmt =con.prepareStatement(sql);
         pstmt.setString(1,contn);
+        ArrayList<City> cities = new ArrayList<City>();
+        ResultSet rset =pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while(rset.next())
+        {City  c = new City(rset.getInt(1),rset.getString(2),rset.getString(3),rset.getString(4),rset.getFloat(5));
+            cities.add(c);
+        }
+        return cities;
+    }
+
+    // City in the region
+    public ArrayList<City>getCityRegionPopLargesttoSmallest(String reg) throws SQLException {
+        String sql ="select city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Code, country.Region from city, country where city.CountryCode = country.Code And country.Region = ? order by city.Population desc ";
+        PreparedStatement pstmt =con.prepareStatement(sql);
+        pstmt.setString(1,reg);
         ArrayList<City> cities = new ArrayList<City>();
         ResultSet rset =pstmt.executeQuery();
         //String name, String continent, String region, String capital, float population
