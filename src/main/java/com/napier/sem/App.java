@@ -20,23 +20,28 @@ public class App {
 
         System.out.println("In main");
         System.out.println("*******************************\nAll the cities in the world organised by largest population to smallest.\n");
+        System.out.println("*******************************\n");
         ArrayList<City> city1= a.getCityPopLargesttoSmallest();
         a.display(city1);
 
         System.out.println("*******************************\nAll the cities in the continent organised by largest population to smallest.\n");
+        System.out.println("*******************************\n");
         ArrayList<City> city2= a.getCityContinentPopLargesttoSmallest("Africa");
         a.display(city2);
 
         System.out.println("*******************************\nAll the cities in the region organised by largest population to smallest.\n");
+        System.out.println("*******************************\n");
         ArrayList<City> city3= a.getCityRegionPopLargesttoSmallest("South America");
         a.display(city3);
 
         System.out.println("*******************************\nAll the cities in a country organised by largest population to smallest.\n");
+        System.out.println("*******************************\n");
         ArrayList<City> city4= a.getCityCountryPopLargesttoSmallest("Japan");
         a.display(city4);
 
         System.out.println("*******************************\nAll the cities in the district organised by largest population to smallest.\n");
-         ArrayList<City> city5= a.getCityDistrictPopLargesttoSmallest("Noord-Brabant");
+        System.out.println("*******************************\n");
+        ArrayList<City> city5= a.getCityDistrictPopLargesttoSmallest("Noord-Brabant");
          a.display(city5);
 
         a.disconnect();
