@@ -47,7 +47,7 @@ public class App {
 
         // All the cities in a district organised by largest population to smallest.
         System.out.println("*******************************\nAll the cities in a district organised by largest population to smallest.\n");
-        System.out.println("*******************************\n");
+        System.out.println("*******************************\n\n");
         ArrayList<City> city5 = a.getCityDistrictPopLargesttoSmallest("Noord-Brabant");
         a.display(city5);
 
