@@ -234,13 +234,13 @@ public class App {
 
     public void display_1(ArrayList<Country> conts) {
         // Print header
-        System.out.println(String.format("%-10s %-25s %-25s %-10s", "Name", "Continent", "Region", "Capital", "Population"));
+        System.out.println(String.format("%-20s %-25s %-25s %-25s %-25s", "Name", "Continent", "Region", "Capital", "Population"));
         // Loop over all city in the list
         for (Country country : conts) {
             if (country == null)
                 continue;
             String cty_string =
-                    String.format("%-20s %-10s %-20s %10s",
+                    String.format("%-20s %-25s %-25s %-25s %-25s",
                             country.getName(), country.getContinent(), country.getRegion(), country.getCapital(), country.getPopulation());
             System.out.println(cty_string);
         }
