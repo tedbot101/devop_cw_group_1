@@ -39,7 +39,7 @@ A report containing the population of the continent.
 
 ## EXTENSIONS
 
-
+None.
 
 ## SUB-VARIATIONS
 

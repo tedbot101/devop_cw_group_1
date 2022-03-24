@@ -48,7 +48,7 @@ A request for report is sent to Database Manager.
 
 ## EXTENSIONS
 
-
+None.
 
 ## SUB-VARIATIONS
 

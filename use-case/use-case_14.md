@@ -45,7 +45,7 @@ A report containing number of people who according the language spoken sorted fr
 
 ## EXTENSIONS
 
-
+None.
 
 ## SUB-VARIATIONS
 
