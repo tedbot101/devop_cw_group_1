@@ -4,11 +4,11 @@
 
 ### Goal in Context
 
-Product Owner wants to produce a report on Countries in the world, continent and region by largest population to smallest.
+Database manager wants to produce a report on Countries in the world, continent and region by largest population to smallest.
 
 ### Scope
 
-Organization.
+Organization
 
 ### Level
 
@@ -28,11 +28,11 @@ No report is produced.
 
 ### Primary Actor
 
-Organisation Product Owner
+Database Manager
 
 ### Trigger
 
-A request for report is sent to Product Ownner.
+A request for report is sent to Database Manager.
 
 ## MAIN SUCCESS SCENARIO
 
