@@ -233,9 +233,16 @@ public class App {
     }
 
     public void display_1(ArrayList<Country> conts) {
-        for (Country c : conts) {
-            System.out.println(String.format("%-10s %-25s %-25s %-10s", "Name", "CountryCode", "District", "Population"));
-
+        // Print header
+        System.out.println(String.format("%-10s %-25s %-25s %-10s", "Name", "Continent", "Region", "Capital", "Population"));
+        // Loop over all city in the list
+        for (Country country : conts) {
+            if (country == null)
+                continue;
+            String cty_string =
+                    String.format("%-20s %-10s %-20s %10s",
+                            country.getName(), country.getContinent(), country.getRegion(), country.getCapital(), country.getPopulation());
+            System.out.println(cty_string);
         }
     }
 
