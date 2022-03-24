@@ -75,7 +75,7 @@ public class App {
         }
     }
     public ArrayList<Country> getCountryPopLargesttoSmallest() throws SQLException {
-        String sql ="select Name,Continent,Region, Capital, Population from Country order by Population desc";
+        String sql ="select Name,Continent,Region, Capital, Population from country order by Population desc";
         PreparedStatement pstmt =con.prepareStatement(sql);
         ArrayList<Country> countries = new ArrayList<Country>();
         ResultSet rset =pstmt.executeQuery();
