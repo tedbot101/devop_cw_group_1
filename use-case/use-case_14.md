@@ -5,7 +5,7 @@
 
 ### Goal in Context
 
-Database manager wants a report of number of people who according the language spoken sorted from greatest to the smallest
+Organization wants a report of number of people who according the language spoken sorted from greatest to the smallest
 ### Scope
 
 Organization
@@ -33,11 +33,11 @@ No report is produced.
 
 ### Primary Actor
 
-Database Manager
+Organization
 
 ### Trigger
 
-A request for report is sent to Database Manager.
+A request for report is sent to Organization.
 
 ## MAIN SUCCESS SCENARIO
 
