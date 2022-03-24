@@ -31,7 +31,7 @@ public class App {
         //ArrayList<City> city3= a.getCityRegionPopLargesttoSmallest("South America");
         //a.display(city3);
 
-        System.out.println("*******************************\nAll the cities in the country organised by largest population to smallest.\n");
+        System.out.println("*******************************\nAll the cities in a country organised by largest population to smallest.\n");
         ArrayList<City> city4= a.getCityCountryPopLargesttoSmallest("Japan");
         a.display(city4);
 
