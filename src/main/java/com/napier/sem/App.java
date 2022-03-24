@@ -17,7 +17,7 @@ public class App {
         // Connect to database
         a.connect("db:3306", 30000);
         // Disconnect from database
-        System.out.println("\n\n*****************************************************\nAll the countries in the world organised by largest population to smallest.\n");
+        System.out.println("\n\n\n*****************************************************\nAll the countries in the world organised by largest population to smallest.\n");
         ArrayList<Country> contries= a.getCountryPopLargesttoSmallest();
         a.display(contries);
         System.out.println("\n\n*****************************************************\nAll the countries in a continent organised by largest population to smallest\n");
