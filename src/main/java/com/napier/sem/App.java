@@ -1,6 +1,7 @@
 package com.napier.sem;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class App {
 
@@ -9,13 +10,18 @@ public class App {
      */
     private Connection con = null;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // Create new Application
         App a = new App();
 
         // Connect to database
         a.connect("db:3306", 30000);
         // Disconnect from database
+
+        System.out.println("In main");
+        System.out.println("*******************************\nAll the cities in the world organised by largest population to smallest.\n");
+        ArrayList<City> city1= a.getCityPopLargesttoSmallest();
+        a.display(city1);
         a.disconnect();
     }
 
@@ -63,4 +69,26 @@ public class App {
             }
         }
     }
+    public ArrayList<City>getCityPopLargesttoSmallest() throws SQLException {
+        String sql ="select ID,Name,CountryCode, District, Population from city order by Population desc";
+        PreparedStatement pstmt =con.prepareStatement(sql);
+        ArrayList<City> cities = new ArrayList<City>();
+        ResultSet rset =pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while(rset.next())
+        {City  c = new City(rset.getInt(1),rset.getString(2),rset.getString(3),rset.getString(4),rset.getFloat(5));
+            cities.add(c);
+        }
+        return cities;
+    }
+
+    public void display(ArrayList<City> conts)
+    {
+        for(City c: conts)
+        {
+            System.out.println(c.getID()+"\t"+c.getName()+"\t"+c.getCountryCode()+"\t"+c.getDistrict()+"\t"+c.getPopulation());
+        }
+    }
+
+
 }
