@@ -22,32 +22,32 @@ public class App {
 
         // city report
         // All the cities in the world organised by largest population to smallest.
-        System.out.println("*******************************\nAll the cities in the world organised by largest population to smallest.\n");
-        System.out.println("*******************************\n");
+        System.out.println("*******************************\n\n\nAll the cities in the world organised by largest population to smallest.\n");
+        System.out.println("*******************************\n\n\n");
         ArrayList<City> city1 = a.getCityPopLargesttoSmallest();
         a.display(city1);
 
         // All the cities in the continent organised by largest population to smallest
-        System.out.println("*******************************\nAll the cities in the continent organised by largest population to smallest.\n");
-        System.out.println("*******************************\n");
+        System.out.println("*******************************\n\n\nAll the cities in the continent organised by largest population to smallest.\n");
+        System.out.println("*******************************\n\n\n");
         ArrayList<City> city2 = a.getCityContinentPopLargesttoSmallest("Africa");
         a.display(city2);
 
         // All the cities in the region organised by largest population to smallest
-        System.out.println("*******************************\nAll the cities in the region organised by largest population to smallest.\n");
-        System.out.println("*******************************\n");
+        System.out.println("*******************************\n\n\nAll the cities in the region organised by largest population to smallest.\n");
+        System.out.println("*******************************\n\n\n");
         ArrayList<City> city3 = a.getCityRegionPopLargesttoSmallest("South America");
         a.display(city3);
 
         // All the cities in a country organised by largest population to smallest
-        System.out.println("*******************************\nAll the cities in a country organised by largest population to smallest.\n");
-        System.out.println("*******************************\n");
+        System.out.println("*******************************\n\n\nAll the cities in a country organised by largest population to smallest.\n");
+        System.out.println("*******************************\n\n\n");
         ArrayList<City> city4 = a.getCityCountryPopLargesttoSmallest("Japan");
         a.display(city4);
 
         // All the cities in a district organised by largest population to smallest.
-        System.out.println("*******************************\nAll the cities in a district organised by largest population to smallest.\n");
-        System.out.println("*******************************\n");
+        System.out.println("*******************************\n\n\nAll the cities in a district organised by largest population to smallest.\n");
+        System.out.println("*******************************\n\n\n");
         ArrayList<City> city5 = a.getCityDistrictPopLargesttoSmallest("Noord-Brabant");
         a.display(city5);
 
@@ -234,22 +234,30 @@ public class App {
 
     public void display_1(ArrayList<Country> conts) {
         // Print header
-        System.out.println(String.format("%-10s %-25s %-25s %-10s", "Name", "Continent", "Region", "Capital", "Population"));
+        System.out.println(String.format("%-20s %-25s %-25s %-25s %-25s", "Name", "Continent", "Region", "Capital", "Population"));
         // Loop over all city in the list
         for (Country country : conts) {
             if (country == null)
                 continue;
             String cty_string =
-                    String.format("%-20s %-10s %-20s %10s",
+                    String.format("%-20s %-25s %-25s %-25s %-25s",
                             country.getName(), country.getContinent(), country.getRegion(), country.getCapital(), country.getPopulation());
             System.out.println(cty_string);
         }
     }
 
     public void display(ArrayList<City> conts) {
+        // Print header
+        System.out.println(String.format("%-20s %-25s %-25s %-25s %-25s", "ID", "Name", "CountryCode", "District", "Population"));
+        // Loop over all city in the list
         for (City c : conts) {
-            System.out.println(c.getID() + "\t" + c.getName() + "\t" + c.getCountryCode() + "\t" + c.getDistrict() + "\t" + c.getPopulation());
-
+            if (c == null)
+                continue;
+            String city_string =
+                    String.format("%-20s %-25s %-25s %-25s %-25s",
+                            c.getID(), c.getName(), c.getCountryCode(), c.getDistrict(), c.getPopulation());
+            System.out.println(city_string);
         }
     }
+
 }
