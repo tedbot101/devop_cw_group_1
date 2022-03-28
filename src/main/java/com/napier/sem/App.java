@@ -68,6 +68,20 @@ public class App {
         a.display_1(contries3);
 
 
+        // CapitalCity report
+        System.out.println("\n\n\n*****************************************************\nAll the Capital City in the world organised by largest population to smallest.\n");
+        ArrayList<CapitalCity> capitalcity = a.getCapitalCityPopLargesttoSmallest();
+        a.display_2(capitalcity);
+
+        System.out.println("\n\n\n*****************************************************\nAll the Capital City in the Continent by largest population to smallest.\n");
+        ArrayList<CapitalCity> capitalcity2 = a.getCapitalCityContinentPopLargesttoSmallest("Asia");
+        a.display_2(capitalcity2);
+
+        System.out.println("\n\n\n*****************************************************\nAll the Capital City in the Region by largest population to smallest.\n");
+        ArrayList<CapitalCity> capitalcity3 = a.getCapitalCityContinentPopLargesttoSmallest("South America");
+        a.display_2(capitalcity3);
+
+
         // Disconnect from database
         a.disconnect();
     }
@@ -232,6 +246,51 @@ public class App {
 
     }
 
+    //Capital City by Population
+    public ArrayList<CapitalCity> getCapitalCityPopLargesttoSmallest() throws SQLException {
+        String sql = "select city.Name, country.Name, country.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID order by city.Population desc";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        ArrayList<CapitalCity> capitalcity = new ArrayList<CapitalCity>();
+        ResultSet rset = pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while (rset.next()) {
+
+            CapitalCity c = new CapitalCity(rset.getString(1), rset.getString(2), rset.getFloat(3));
+            capitalcity.add(c);
+        }
+        return capitalcity;
+    }
+    // Capital City in a continent
+    public ArrayList<CapitalCity> getCapitalCityContinentPopLargesttoSmallest(String contn) throws SQLException {
+        String sql = "select city.Name, country.Name, country.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID and country.Continent = ? order by city.Population desc";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, contn);
+        ArrayList<CapitalCity> capitalcity = new ArrayList<CapitalCity>();
+        ResultSet rset = pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while (rset.next()) {
+
+            CapitalCity c = new CapitalCity(rset.getString(1), rset.getString(2), rset.getFloat(3));
+            capitalcity.add(c);
+        }
+        return capitalcity;
+    }
+
+    public ArrayList<CapitalCity> getCapitalCityRegionPopLargesttoSmallest(String contn) throws SQLException {
+        String sql = "select city.Name, country.Name, country.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID and country.Region = ? order by city.Population desc";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, contn);
+        ArrayList<CapitalCity> capitalcity = new ArrayList<CapitalCity>();
+        ResultSet rset = pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while (rset.next()) {
+
+            CapitalCity c = new CapitalCity(rset.getString(1), rset.getString(2), rset.getFloat(3));
+            capitalcity.add(c);
+        }
+        return capitalcity;
+    }
+
     public void display_1(ArrayList<Country> conts) {
         // Print header
         System.out.println(String.format("%-20s %-25s %-25s %-25s %-25s", "Name", "Continent", "Region", "Capital", "Population"));
@@ -245,6 +304,22 @@ public class App {
             System.out.println(cty_string);
         }
     }
+
+    public void display_2(ArrayList<CapitalCity> conts) {
+        // Print header
+        System.out.println(String.format("%-20s %-25s %-25s", "Name", "Country", "Population"));
+        // Loop over all city in the list
+        for (CapitalCity capitalcity : conts) {
+            if (capitalcity == null)
+                continue;
+            String cty_string =
+                    String.format("%-20s %-25s %-25s",
+                            capitalcity.getName(),  capitalcity.getCountry(), capitalcity.getPopulation());
+            System.out.println(cty_string);
+        }
+    }
+
+
 
     public void display(ArrayList<City> conts) {
         // Print header
