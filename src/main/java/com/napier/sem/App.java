@@ -18,54 +18,41 @@ public class App {
         a.connect("db:3306", 30000);
 
         // Report obj calls
-        System.out.println("In main");
+        System.out.println("[system] In main ");
 
         // city report
         // All the cities in the world organised by largest population to smallest.
-        System.out.println("*******************************\n\n\nAll the cities in the world organised by largest population to smallest.\n");
-        System.out.println("*******************************\n\n\n");
-        ArrayList<City> city1 = a.getCityPopLargesttoSmallest();
-        a.display(city1);
+        System.out.println("\n[*] All the cities in the world organised by largest population to smallest.[*] \n");
+        a.display( a.getCityPopLargesttoSmallest());
 
         // All the cities in the continent organised by largest population to smallest
-        System.out.println("*******************************\n\n\nAll the cities in the continent organised by largest population to smallest.\n");
-        System.out.println("*******************************\n\n\n");
-        ArrayList<City> city2 = a.getCityContinentPopLargesttoSmallest("Africa");
-        a.display(city2);
+        System.out.println("\n[*] All the cities in the continent organised by largest population to smallest.[*] \n");
+        a.display(a.getCityContinentPopLargesttoSmallest("Africa"));
 
         // All the cities in the region organised by largest population to smallest
-        System.out.println("*******************************\n\n\nAll the cities in the region organised by largest population to smallest.\n");
-        System.out.println("*******************************\n\n\n");
-        ArrayList<City> city3 = a.getCityRegionPopLargesttoSmallest("South America");
-        a.display(city3);
+        System.out.println("\n[*] All the cities in the region organised by largest population to smallest.[*]\n");
+        a.display(a.getCityRegionPopLargesttoSmallest("South America"));
 
         // All the cities in a country organised by largest population to smallest
-        System.out.println("*******************************\n\n\nAll the cities in a country organised by largest population to smallest.\n");
-        System.out.println("*******************************\n\n\n");
-        ArrayList<City> city4 = a.getCityCountryPopLargesttoSmallest("Japan");
-        a.display(city4);
+        System.out.println("\n[*] All the cities in a country organised by largest population to smallest. [*]\n");
+        a.display(a.getCityCountryPopLargesttoSmallest("Japan"));
 
         // All the cities in a district organised by largest population to smallest.
-        System.out.println("*******************************\n\n\nAll the cities in a district organised by largest population to smallest.\n");
-        System.out.println("*******************************\n\n\n");
-        ArrayList<City> city5 = a.getCityDistrictPopLargesttoSmallest("Noord-Brabant");
-        a.display(city5);
+        System.out.println("\n[*] All the cities in a district organised by largest population to smallest. [*]\n");
+        a.display(a.getCityDistrictPopLargesttoSmallest("Noord-Brabant"));
 
         // country report
         // the countries in the world organised by largest population to smallest
-        System.out.println("\n\n\n*****************************************************\nAll the countries in the world organised by largest population to smallest.\n");
-        ArrayList<Country> contries = a.getCountryPopLargesttoSmallest();
-        a.display_1(contries);
+        System.out.println("\n[*] All the countries in the world organised by largest population to smallest. [*]\n");
+        a.display_1(a.getCountryPopLargesttoSmallest());
 
         // the countries in a continent organised by largest population to smallest
-        System.out.println("\n\n*****************************************************\nAll the countries in a continent organised by largest population to smallest\n");
-        ArrayList<Country> contries2 = a.getCountryPopbyContinent("Asia");
-        a.display_1(contries2);
+        System.out.println("\n[*] All the countries in a continent organised by largest population to smallest [*]\n");
+        a.display_1(a.getCountryPopbyContinent("Asia"));
 
         // the countries in a region organised by largest population to smallest
-        System.out.println("\n\n*****************************************************\nAll the countries in a region organised by largest population to smallest\n");
-        ArrayList<Country> contries3 = a.getCountryPopbyRegion("Caribbean");
-        a.display_1(contries3);
+        System.out.println("\n[*] All the countries in a region organised by largest population to smallest [*]\n");
+        a.display_1(a.getCountryPopbyRegion("Caribbean"));
 
 
         // Disconnect from database
@@ -80,25 +67,25 @@ public class App {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            System.out.println("Could not load SQL driver");
+            System.out.println("[system] Could not load SQL driver");
             System.exit(-1);
         }
 
         int retries = 10;
         for (int i = 0; i < retries; ++i) {
-            System.out.println("Connecting to database...");
+            System.out.println("[system] Connecting to database...");
             try {
                 // Wait a bit for db to start
                 Thread.sleep(delay);
                 // Connect to database
                 //Added allowPublicKeyRetrieval=true to get Integration Tests to work. Possibly due to accessing from another class?
                 con = DriverManager.getConnection("jdbc:mysql://" + conString + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
-                System.out.println("Successfully connected");
+                System.out.println("[system] Successfully connected");
                 break;
             } catch (SQLException sqle) {
                 System.out.println(sqle.getMessage());
             } catch (InterruptedException ie) {
-                System.out.println("Thread interrupted? Should not happen.");
+                System.out.println("[system] Thread interrupted? Should not happen.");
             }
         }
     }
@@ -112,7 +99,7 @@ public class App {
                 // Close connection
                 con.close();
             } catch (Exception e) {
-                System.out.println("Error closing connection to database");
+                System.out.println("[system] Error closing connection to database");
             }
         }
     }
