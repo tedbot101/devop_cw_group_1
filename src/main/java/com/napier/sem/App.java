@@ -22,7 +22,7 @@ public class App {
 
         // city report
         // All the cities in the world organised by largest population to smallest.
-        System.out.println("*******************************\nAll the cities in the world organised by largest population to smallest.\n");
+        /*System.out.println("*******************************\nAll the cities in the world organised by largest population to smallest.\n");
         System.out.println("*******************************\n");
         ArrayList<City> city1 = a.getCityPopLargesttoSmallest();
         a.display(city1);
@@ -43,7 +43,7 @@ public class App {
         System.out.println("*******************************\nAll the cities in a country organised by largest population to smallest.\n");
         System.out.println("*******************************\n");
         ArrayList<City> city4 = a.getCityCountryPopLargesttoSmallest("Japan");
-        a.display(city4);
+        a.display(city4);*/
 
         // All the cities in a district organised by largest population to smallest.
         System.out.println("*******************************\nAll the cities in a district organised by largest population to smallest.\n");
@@ -53,7 +53,7 @@ public class App {
 
         // country report
         // the countries in the world organised by largest population to smallest
-        System.out.println("\n\n\n*****************************************************\nAll the countries in the world organised by largest population to smallest.\n");
+        /*System.out.println("\n\n\n*****************************************************\nAll the countries in the world organised by largest population to smallest.\n");
         ArrayList<Country> contries = a.getCountryPopLargesttoSmallest();
         a.display_1(contries);
 
@@ -65,7 +65,7 @@ public class App {
         // the countries in a region organised by largest population to smallest
         System.out.println("\n\n*****************************************************\nAll the countries in a region organised by largest population to smallest\n");
         ArrayList<Country> contries3 = a.getCountryPopbyRegion("Caribbean");
-        a.display_1(contries3);
+        a.display_1(contries3);*/
 
 
         // Disconnect from database
@@ -116,7 +116,7 @@ public class App {
             }
         }
     }
-
+    //All the countries in the world organised by largest population to smallest.
     public ArrayList<Country> getCountryPopLargesttoSmallest() throws SQLException {
         String sql = "SELECT Name,Continent,Region, Capital, Population from country order by Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
@@ -129,7 +129,7 @@ public class App {
         }
         return countries;
     }
-
+    //All the countries in a continent organised by largest population to smallest.
     public ArrayList<Country> getCountryPopbyContinent(String contn) throws SQLException {
         String sql = "select Name,Continent,Region, Capital, Population from country where Continent=? order by Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
@@ -144,6 +144,7 @@ public class App {
         return countries;
     }
 
+    //All the countries in a region organised by largest population to smallest.
     public ArrayList<Country> getCountryPopbyRegion(String reg) throws SQLException {
         String sql = "select Name,Continent,Region, Capital, Population from country where Region=? order by Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
@@ -157,6 +158,9 @@ public class App {
         }
         return countries;
     }
+
+    //The top N populated countries in the world where N is provided by the user.
+
 
     public ArrayList<City> getCityPopLargesttoSmallest() throws SQLException {
         String sql = "select ID,Name,CountryCode, District, Population from city order by Population desc";
