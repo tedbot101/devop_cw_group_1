@@ -105,6 +105,15 @@ public class App {
     }
 
     public ArrayList<Country> getCountryPopLargesttoSmallest() throws SQLException {
+
+        //
+        // Description :
+        // report function for countires sorted from largest population to smallest
+        //
+        // Usage:
+        //  object.getCountryPopLargesttoSmallest()
+
+
         String sql = "SELECT Name,Continent,Region, Capital, Population from country order by Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
         ArrayList<Country> countries = new ArrayList<Country>();
@@ -118,6 +127,15 @@ public class App {
     }
 
     public ArrayList<Country> getCountryPopbyContinent(String contn) throws SQLException {
+
+        //
+        // Description :
+        // report function for countires in selected continent sorted from largest population to smallest
+        //
+        // Usage:
+        //  object.getCountryPopLargesttoSmallest("Asia")
+
+
         String sql = "select Name,Continent,Region, Capital, Population from country where Continent=? order by Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
@@ -132,6 +150,15 @@ public class App {
     }
 
     public ArrayList<Country> getCountryPopbyRegion(String reg) throws SQLException {
+
+        //
+        // Description :
+        // report function for countires in selected region sorted from largest population to smallest
+        //
+        // Usage:
+        //  object.getCountryPopbyRegion("region")
+
+
         String sql = "select Name,Continent,Region, Capital, Population from country where Region=? order by Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, reg);
@@ -146,6 +173,15 @@ public class App {
     }
 
     public ArrayList<City> getCityPopLargesttoSmallest() throws SQLException {
+
+        //
+        // Description :
+        // report function for cities from largest population to smallest
+        //
+        // Usage:
+        //  object.getCityPopLargesttoSmallest()
+
+
         String sql = "select ID,Name,CountryCode, District, Population from city order by Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
         ArrayList<City> cities = new ArrayList<City>();
@@ -160,6 +196,15 @@ public class App {
 
     // City in the continent
     public ArrayList<City> getCityContinentPopLargesttoSmallest(String contn) throws SQLException {
+
+        //
+        // Description :
+        // report function for cities in selected continent sorted from largest population to smallest
+        //
+        // Usage:
+        //  object.getCityContinentPopLargesttoSmallest('continent')
+
+
         String sql = "select city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Code, country.Region from city, country where city.CountryCode = country.Code And country.Continent = ? order by city.Population desc ";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
@@ -175,6 +220,15 @@ public class App {
 
     // City in the region
     public ArrayList<City> getCityRegionPopLargesttoSmallest(String reg) throws SQLException {
+
+        //
+        // Description :
+        // report function for cities in selected region sorted from largest population to smallest
+        //
+        // Usage:
+        //  object.getCityRegionPopLargesttoSmallest('region')
+
+
         String sql = "select city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Code, country.Region from city, country where city.CountryCode = country.Code And country.Region = ? order by city.Population desc ";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, reg);
@@ -190,6 +244,15 @@ public class App {
 
     // Cities in a country
     public ArrayList<City> getCityCountryPopLargesttoSmallest(String coun) throws SQLException {
+
+        //
+        // Description :
+        // report function for cities in selected countries sorted from largest population to smallest
+        //
+        // Usage:
+        //  object.getCityCountryPopLargesttoSmallest("country")
+
+
         String sql = "select city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Code, country.Region from city, country where city.CountryCode = country.Code And country.Name = ? order by city.Population desc ";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, coun);
@@ -205,6 +268,15 @@ public class App {
 
     // Cities in District
     public ArrayList<City> getCityDistrictPopLargesttoSmallest(String dist) throws SQLException {
+
+        //
+        // Description :
+        // report function for cities in selected disctrict sorted from largest population to smallest
+        //
+        // Usage:
+        //  object.getCityDistrictPopLargesttoSmallest("district")
+
+
         String sql = "select ID,Name,CountryCode, District, Population from city where District = ? order by Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, dist);
@@ -220,6 +292,15 @@ public class App {
     }
 
     public void display_1(ArrayList<Country> conts) {
+
+
+        //
+        // Description :
+        //  Display function for countires
+        //
+        // Usage:
+        //  object.display_1(Array)
+
         // Print header
         System.out.println(String.format("%-20s %-25s %-25s %-25s %-25s", "Name", "Continent", "Region", "Capital", "Population"));
         // Loop over all city in the list
@@ -234,6 +315,14 @@ public class App {
     }
 
     public void display(ArrayList<City> conts) {
+
+        //
+        // Description :
+        //  Display function for countires
+        //
+        // Usage:
+        //  object.display_1(Array)
+        
         // Print header
         System.out.println(String.format("%-20s %-25s %-25s %-25s %-25s", "ID", "Name", "CountryCode", "District", "Population"));
         // Loop over all city in the list
