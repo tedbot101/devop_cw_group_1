@@ -68,27 +68,27 @@ public class App {
         a.display_1(contries3);*/
 
         //All the top cities in the world organised by largest population to smallest
-        System.out.println("*******************************\n\n\nAll the top cities in the world organised by largest population to smallest.\n");
+        System.out.println("\n[*]All the top cities in the world organised by largest population to smallest.\n");
         ArrayList<City> city6 = a.getTopCityPopLargesttoSmallest(10);
         a.display(city6);
 
         //The top N populated cities in a continent where N is provided by the user
-        System.out.println("*******************************\n\n\nAll The Top City Continent Population Largest to Smallest.\n");
+        System.out.println("\n[*]All The Top City Continent Population Largest to Smallest.\n");
         ArrayList<City> city7 = a.getTopCityContinentPopLargesttoSmallest("Asia", 10);
         a.display(city7);
 
         //The top N populated cities in a region where N is provided by the user
-        System.out.println("*******************************\n\n\nAll The Top City Region Population Largest to Smallest.\n");
+        System.out.println("\n[*]All The Top City Region Population Largest to Smallest.\n");
         ArrayList<City> city8 = a.getTopCityRegionPopLargesttoSmallest("Caribbean", 10);
         a.display(city8);
 
         //The top N populated cities in a country where N is provided by the user.
-        System.out.println("*******************************\n\n\nAll The Top City Country Population Largest to Smallest.\n");
+        System.out.println("\n[*]All The Top City Country Population Largest to Smallest.\n");
         ArrayList<City> city9 = a.getTopCityCountryPopLargesttoSmallest("Japan", 10);
         a.display(city9);
 
         //The top N populated cities in a district where N is provided by the user
-        System.out.println("*******************************\n\n\nAll The Top City District Population Largest to Smallest.\n");
+        System.out.println("\n[*]All The Top City District Population Largest to Smallest.\n");
         ArrayList<City> city10 = a.getTopCityDistrictPopLargesttoSmallest("Noord-Brabant", 10);
         a.display(city10);
 
@@ -259,6 +259,14 @@ public class App {
     }
     //The top N populated cities in the world where N is provided by the user.
     public ArrayList<City> getTopCityPopLargesttoSmallest(int ci) throws SQLException {
+
+        //
+        //Description :
+        //report function for Top N populated according to the cities sorted from largest population to smallest
+        //
+        //Usage :
+        // object.getTopCityPopLargesttoSmallest(
+
         String sql = "select ID,Name,CountryCode, District, Population from city order by Population desc limit ?";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setInt(1, ci);
@@ -275,6 +283,14 @@ public class App {
 
     //The top N populated cities in a continent where N is provided by the user.
     public ArrayList<City> getTopCityContinentPopLargesttoSmallest(String contn, int ci) throws SQLException {
+
+        //
+        //Description :
+        //report function for Top N populated according to the continent sorted from largest population to smallest
+        //
+        //Usage :
+        // object.getTopCityContinentPopLargesttoSmallest(
+
         String sql = "select city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Code, country.Region from city, country where city.CountryCode = country.Code And country.Continent = ? order by city.Population desc limit ?";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
@@ -292,6 +308,14 @@ public class App {
 
     //The top N populated cities in a region where N is provided by the use
     public ArrayList<City> getTopCityRegionPopLargesttoSmallest(String reg, int ci) throws SQLException {
+
+        //
+        //Description :
+        //report function for Top N populated according to the region sorted from largest population to smallest
+        //
+        //Usage :
+        // object.getTopCityRegionPopLargesttoSmallest((
+
         String sql = "select city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Code, country.Region from city, country where city.CountryCode = country.Code And country.Region = ? order by city.Population desc limit ?";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, reg);
@@ -309,6 +333,14 @@ public class App {
 
     //The top N populated cities in a country where N is provided by the user.
     public ArrayList<City> getTopCityCountryPopLargesttoSmallest(String country, int ci) throws SQLException {
+
+        //
+        //Description :
+        //report function for Top N populated according to the country sorted from largest population to smallest
+        //
+        //Usage :
+        // object.getTopCityCountryPopLargesttoSmallest(
+
         String sql = "select city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Code, country.Region from city, country where city.CountryCode = country.Code And country.Name = ? order by city.Population desc limit ?";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, country);
