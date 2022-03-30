@@ -19,7 +19,7 @@ public class App {
 
         // Report obj calls
         System.out.println("In main");
-
+        /*
         // city report
         // All the cities in the world organised by largest population to smallest.
         System.out.println("*******************************\n\n\nAll the cities in the world organised by largest population to smallest.\n");
@@ -65,21 +65,18 @@ public class App {
         // the countries in a region organised by largest population to smallest
         System.out.println("\n\n*****************************************************\nAll the countries in a region organised by largest population to smallest\n");
         ArrayList<Country> contries3 = a.getCountryPopbyRegion("Caribbean");
-        a.display_1(contries3);
+        a.display_1(contries3);  */
 
 
         // CapitalCity report
-        System.out.println("\n\n\n*****************************************************\nAll the Capital City in the world organised by largest population to smallest.\n");
-        ArrayList<CapitalCity> capitalcity = a.getCapitalCityPopLargesttoSmallest();
-        a.display_2(capitalcity);
+        System.out.println("\n[*] All the Capital City in the world organised by largest population to smallest.\n");
+        a.display_2(a.getCapitalCityPopLargesttoSmallest());
 
         System.out.println("\n\n\n*****************************************************\nAll the Capital City in the Continent by largest population to smallest.\n");
-        ArrayList<CapitalCity> capitalcity2 = a.getCapitalCityContinentPopLargesttoSmallest("Asia");
-        a.display_2(capitalcity2);
+        a.display_2(a.getCapitalCityContinentPopLargesttoSmallest("Asia"));
 
         System.out.println("\n\n\n*****************************************************\nAll the Capital City in the Region by largest population to smallest.\n");
-        ArrayList<CapitalCity> capitalcity3 = a.getCapitalCityContinentPopLargesttoSmallest("South America");
-        a.display_2(capitalcity3);
+        a.display_2(a.getCapitalCityContinentPopLargesttoSmallest("South America"));
 
 
         // Disconnect from database
