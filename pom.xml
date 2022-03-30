@@ -46,6 +46,7 @@
                     </archive>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
+                        <appendAssemblyId>false</appendAssemblyId>
                     </descriptorRefs>
                 </configuration>
                 <executions>
