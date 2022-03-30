@@ -78,9 +78,14 @@ public class App {
         a.display(city7);
 
         //The top N populated cities in a region where N is provided by the user
-        System.out.println("*******************************\n\n\nAll The Top City Region Pop Largest to Smallest.\n");
+        System.out.println("*******************************\n\n\nAll The Top City Region Population Largest to Smallest.\n");
         ArrayList<City> city8 = a.getTopCityRegionPopLargesttoSmallest("Caribbean", 10);
         a.display(city8);
+
+        //The top N populated cities in a country where N is provided by the user.
+        System.out.println("*******************************\n\n\nAll The Top City Country Population Largest to Smallest.\n");
+        ArrayList<City> city9 = a.getTopCityCountryPopLargesttoSmallest("Caribbean", 10);
+        a.display(city9);
 
 
         // Disconnect from database
@@ -295,6 +300,24 @@ public class App {
         return cities;
 
     }
+
+    //The top N populated cities in a country where N is provided by the user.
+    public ArrayList<City> getTopCityCountryPopLargesttoSmallest(String country, int ci) throws SQLException {
+        String sql = "select ID,Name,CountryCode, District, Population from city where Country = ? order by Population desc limit ?";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, country);
+        pstmt.setInt(2, ci);
+        ArrayList<City> cities = new ArrayList<City>();
+        ResultSet rset = pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while (rset.next()) {
+            City c = new City(rset.getInt(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getFloat(5));
+            cities.add(c);
+        }
+        return cities;
+
+    }
+
 
     public void display_1(ArrayList<Country> conts) {
         // Print header
