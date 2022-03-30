@@ -23,36 +23,36 @@ public class App {
         // city report
         // All the cities in the world organised by largest population to smallest.
         System.out.println("\n[*] All the cities in the world organised by largest population to smallest.[*] \n");
-        a.display( a.getCityPopLargesttoSmallest());
+        a.displayCountry( a.getCityPopLargesttoSmallest());
 
         // All the cities in the continent organised by largest population to smallest
         System.out.println("\n[*] All the cities in the continent organised by largest population to smallest.[*] \n");
-        a.display(a.getCityContinentPopLargesttoSmallest("Africa"));
+        a.displayCountry(a.getCityContinentPopLargesttoSmallest("Africa"));
 
         // All the cities in the region organised by largest population to smallest
         System.out.println("\n[*] All the cities in the region organised by largest population to smallest.[*]\n");
-        a.display(a.getCityRegionPopLargesttoSmallest("South America"));
+        a.displayCountry(a.getCityRegionPopLargesttoSmallest("South America"));
 
         // All the cities in a country organised by largest population to smallest
         System.out.println("\n[*] All the cities in a country organised by largest population to smallest. [*]\n");
-        a.display(a.getCityCountryPopLargesttoSmallest("Japan"));
+        a.displayCountry(a.getCityCountryPopLargesttoSmallest("Japan"));
 
         // All the cities in a district organised by largest population to smallest.
         System.out.println("\n[*] All the cities in a district organised by largest population to smallest. [*]\n");
-        a.display(a.getCityDistrictPopLargesttoSmallest("Noord-Brabant"));
+        a.displayCountry(a.getCityDistrictPopLargesttoSmallest("Noord-Brabant"));
 
         // country report
         // the countries in the world organised by largest population to smallest
         System.out.println("\n[*] All the countries in the world organised by largest population to smallest. [*]\n");
-        a.display_1(a.getCountryPopLargesttoSmallest());
+        a.displayCity(a.getCountryPopLargesttoSmallest());
 
         // the countries in a continent organised by largest population to smallest
         System.out.println("\n[*] All the countries in a continent organised by largest population to smallest [*]\n");
-        a.display_1(a.getCountryPopbyContinent("Asia"));
+        a.displayCity(a.getCountryPopbyContinent("Asia"));
 
         // the countries in a region organised by largest population to smallest
         System.out.println("\n[*] All the countries in a region organised by largest population to smallest [*]\n");
-        a.display_1(a.getCountryPopbyRegion("Caribbean"));
+        a.displayCity(a.getCountryPopbyRegion("Caribbean"));
 
 
         // Disconnect from database
@@ -291,7 +291,7 @@ public class App {
 
     }
 
-    public void display_1(ArrayList<Country> conts) {
+    public void displayCity(ArrayList<Country> conts) {
 
 
         //
@@ -299,8 +299,12 @@ public class App {
         //  Display function for countires
         //
         // Usage:
-        //  object.display_1(Array)
-
+        //  object.displayCity(Array)
+        if (conts == null)
+        {
+            System.out.println("[system] No countires");
+            return;
+        }
         // Print header
         System.out.println(String.format("%-20s %-25s %-25s %-25s %-25s", "Name", "Continent", "Region", "Capital", "Population"));
         // Loop over all city in the list
@@ -314,15 +318,20 @@ public class App {
         }
     }
 
-    public void display(ArrayList<City> conts) {
+    public void displayCountry(ArrayList<City> conts) {
 
         //
         // Description :
-        //  Display function for countires
+        //  Display function for Country
         //
         // Usage:
-        //  object.display_1(Array)
-        
+        //  object.displayCountry(Array)
+        // Check employees is not null
+        if (conts == null)
+        {
+            System.out.println("[system] No cities");
+            return;
+        }
         // Print header
         System.out.println(String.format("%-20s %-25s %-25s %-25s %-25s", "ID", "Name", "CountryCode", "District", "Population"));
         // Loop over all city in the list

@@ -6,9 +6,26 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest
 {
-    @Test
-    void unitTest()
+    static App app;
+
+    @BeforeAll
+    static void init()
     {
-        assertEquals(5, 5);
+        // app instance
+        app = new App();
+    }
+
+    @Test
+    void DisplayCityTest_null()
+    {
+        /// test function for display city function
+        app.displayCity(null);
+    }
+
+    @Test
+    void DisplayCountryTest_null()
+    {
+        /// test function for display country function
+        app.displayCountry(null);
     }
 }
