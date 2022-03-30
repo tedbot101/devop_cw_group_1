@@ -23,36 +23,36 @@ public class App {
         // city report
         // All the cities in the world organised by largest population to smallest.
         System.out.println("\n[*] All the cities in the world organised by largest population to smallest.[*] \n");
-        a.displayCountry( a.getCityPopLargesttoSmallest());
+        a.displayCity( a.getCityPopLargesttoSmallest());
 
         // All the cities in the continent organised by largest population to smallest
         System.out.println("\n[*] All the cities in the continent organised by largest population to smallest.[*] \n");
-        a.displayCountry(a.getCityContinentPopLargesttoSmallest("Africa"));
+        a.displayCity(a.getCityContinentPopLargesttoSmallest("Africa"));
 
         // All the cities in the region organised by largest population to smallest
         System.out.println("\n[*] All the cities in the region organised by largest population to smallest.[*]\n");
-        a.displayCountry(a.getCityRegionPopLargesttoSmallest("South America"));
+        a.displayCity(a.getCityRegionPopLargesttoSmallest("South America"));
 
         // All the cities in a country organised by largest population to smallest
         System.out.println("\n[*] All the cities in a country organised by largest population to smallest. [*]\n");
-        a.displayCountry(a.getCityCountryPopLargesttoSmallest("Japan"));
+        a.displayCity(a.getCityCountryPopLargesttoSmallest("Japan"));
 
         // All the cities in a district organised by largest population to smallest.
         System.out.println("\n[*] All the cities in a district organised by largest population to smallest. [*]\n");
-        a.displayCountry(a.getCityDistrictPopLargesttoSmallest("Noord-Brabant"));
+        a.displayCity(a.getCityDistrictPopLargesttoSmallest("Noord-Brabant"));
 
         // country report
         // the countries in the world organised by largest population to smallest
         System.out.println("\n[*] All the countries in the world organised by largest population to smallest. [*]\n");
-        a.displayCity(a.getCountryPopLargesttoSmallest());
+        a.displayCountry(a.getCountryPopLargesttoSmallest());
 
         // the countries in a continent organised by largest population to smallest
         System.out.println("\n[*] All the countries in a continent organised by largest population to smallest [*]\n");
-        a.displayCity(a.getCountryPopbyContinent("Asia"));
+        a.displayCountry(a.getCountryPopbyContinent("Asia"));
 
         // the countries in a region organised by largest population to smallest
         System.out.println("\n[*] All the countries in a region organised by largest population to smallest [*]\n");
-        a.displayCity(a.getCountryPopbyRegion("Caribbean"));
+        a.displayCountry(a.getCountryPopbyRegion("Caribbean"));
 
 
         // Disconnect from database
@@ -291,7 +291,7 @@ public class App {
 
     }
 
-    public void displayCity(ArrayList<Country> conts) {
+    public void displayCountry(ArrayList<Country> conts) {
 
 
         //
@@ -318,7 +318,7 @@ public class App {
         }
     }
 
-    public void displayCountry(ArrayList<City> conts) {
+    public void displayCity(ArrayList<City> conts) {
 
         //
         // Description :
