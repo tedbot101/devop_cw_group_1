@@ -275,7 +275,7 @@ public class App {
 
     //The top N populated cities in a continent where N is provided by the user.
     public ArrayList<City> getTopCityContinentPopLargesttoSmallest(String contn, int ci) throws SQLException {
-        String sql = "select ID,Name,CountryCode, District, Population from city where Continent = ? order by Population desc limit ?";
+        String sql = "select city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Code, country.Region from city, country where city.CountryCode = country.Code And country.Continent = ? order by city.Population desc limit ?";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         pstmt.setInt(2, ci);
@@ -292,7 +292,7 @@ public class App {
 
     //The top N populated cities in a region where N is provided by the use
     public ArrayList<City> getTopCityRegionPopLargesttoSmallest(String reg, int ci) throws SQLException {
-        String sql = "select ID,Name,CountryCode, District, Population from city where Region = ? order by Population desc limit ?";
+        String sql = "select city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Code, country.Region from city, country where city.CountryCode = country.Code And country.Region = ? order by city.Population desc limit ?";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, reg);
         pstmt.setInt(2, ci);
@@ -309,7 +309,7 @@ public class App {
 
     //The top N populated cities in a country where N is provided by the user.
     public ArrayList<City> getTopCityCountryPopLargesttoSmallest(String country, int ci) throws SQLException {
-        String sql = "select ID,Name,CountryCode, District, Population from city where Country = ? order by Population desc limit ?";
+        String sql = "select city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Code, country.Region from city, country where city.CountryCode = country.Code And country.Name = ? order by city.Population desc limit ?";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, country);
         pstmt.setInt(2, ci);
