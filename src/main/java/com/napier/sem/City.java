@@ -16,6 +16,10 @@ public class City {
         Population = population;
     }
 
+    public City() {
+
+    }
+
     public void setID(int ID) {
         this.ID = ID;
     }

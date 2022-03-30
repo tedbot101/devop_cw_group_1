@@ -13,6 +13,10 @@ public class Country {
     private String capital;
     private float population;
 
+    public Country() {
+
+    }
+
     public void setContinent(String continent) {
         this.continent = continent;
     }
