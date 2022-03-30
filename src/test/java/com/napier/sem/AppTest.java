@@ -22,11 +22,4 @@ public class AppTest
         // Insert your test code in here
         assertEquals(5, 5);
     }
-    @Test
-    void unitTest2()
-    // Test 2: Testing of N number for countries report produced
-    {
-        // Insert your test code in here
-        // assertEquals(5, 4);
-    }
 }
