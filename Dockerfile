@@ -1,4 +1,4 @@
 FROM openjdk:latest
-COPY ./target/app.jar /tmp
+COPY ./target/devop_cw_group_1-0.1.0.1-jar-with-dependencies.jar.jar /tmp
 WORKDIR /tmp
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "devop_cw_group_1-0.1.0.1-jar-with-dependencies.jar.jar"]
