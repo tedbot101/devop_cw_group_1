@@ -76,7 +76,7 @@ public class App {
         a.display_2(a.getCapitalCityContinentPopLargesttoSmallest("Asia"));
 
         System.out.println("\n\n\n*****************************************************\nAll the Capital City in the Region by largest population to smallest.\n");
-        a.display_2(a.getCapitalCityContinentPopLargesttoSmallest("South America"));
+        a.display_2(a.getCapitalCityRegionPopLargesttoSmallest("South America"));
 
 
         // Disconnect from database
@@ -245,6 +245,13 @@ public class App {
 
     //Capital City by Population
     public ArrayList<CapitalCity> getCapitalCityPopLargesttoSmallest() throws SQLException {
+       //
+        // description :
+        // report function for capital city in the world from largest to smallest population
+        //
+        // Usage:
+        // object .getCapitalCityPopLargesttoSmallest()
+
         String sql = "select city.Name, country.Name, country.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID order by city.Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
         ArrayList<CapitalCity> capitalcity = new ArrayList<CapitalCity>();
@@ -259,6 +266,12 @@ public class App {
     }
     // Capital City in a continent
     public ArrayList<CapitalCity> getCapitalCityContinentPopLargesttoSmallest(String contn) throws SQLException {
+        //
+        // description :
+        // report function for capital city in selected Continent "Asia" from largest to smallest population
+        //
+        // Usage:
+        // object .getCapitalCityContinentPopLargesttoSmallest("Asia")
         String sql = "select city.Name, country.Name, country.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID and country.Continent = ? order by city.Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
@@ -274,6 +287,12 @@ public class App {
     }
 
     public ArrayList<CapitalCity> getCapitalCityRegionPopLargesttoSmallest(String contn) throws SQLException {
+        //
+        // description :
+        // report function for capital city in selected Region "South America" from largest to smallest population
+        //
+        // Usage:
+        // object .getCapitalCityContinentPopLargesttoSmallest("South America")
         String sql = "select city.Name, country.Name, country.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID and country.Region = ? order by city.Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
