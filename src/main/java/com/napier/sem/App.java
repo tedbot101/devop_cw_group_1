@@ -348,6 +348,28 @@ public class App {
             System.out.println(city_string);
         }
     }
+    public ArrayList getCountry(String reg) throws SQLException  {
 
+        //
+        // Description :
+        //  Get country  by name
+        //
+        // Usage:
+        //  object.getCountry('China')
+        //
+
+        String sql = "select Name,Continent,Region, Capital, Population from country where Name=?";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, reg);
+        ArrayList<Country> countries = new ArrayList<>();
+        ResultSet rset = pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while (rset.next()) {
+            Country c = new Country(rset.getString(1), rset.getString(2), rset.getString(3), rset.getString(4), rset.getFloat(5));
+            countries.add(c);
+        }
+        return countries;
+
+    }
 
 }

@@ -20,4 +20,19 @@ public class AppIntegrationTest
 
     }
 
+    @Test
+    void testGetCountry()
+    {
+        // Test country record
+
+        Country ctry = app.getCountry('China');
+        //String name, String continent, String region, String capital, float population
+        assertEquals(ctry.Name, 'China');
+        assertEquals(ctry.continent, "Asia");
+        assertEquals(ctry.region, "Eastern Asia");
+        assertEquals(ctry.capital, "1891");
+        assertEquals(ctry.population, (float) 1.27755802E9);
+
+    }
+
 }
