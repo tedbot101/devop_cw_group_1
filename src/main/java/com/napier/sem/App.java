@@ -14,8 +14,12 @@ public class App {
         // Create new Application
         App a = new App();
 
-        // Connect to database
-        a.connect("db:3306", 30000);
+        if(args.length < 1){
+            // Connect to database
+            a.connect("localhost:33060", 30000);
+        }else{
+            a.connect("db:3306", 30000);
+        }
 
         // Report obj calls
         System.out.println("[system] In main ");
