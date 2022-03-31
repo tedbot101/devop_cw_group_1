@@ -82,4 +82,63 @@ public class AppIntegrationTest
 
     }
 
+    @Test
+    void testgetCityContinentPopLargesttoSmallest() throws SQLException {
+
+        // Test getCityContinentPopLargesttoSmallest record
+
+        // testing only one instance
+        City unit5 = app.getCityContinentPopLargesttoSmallest("Africa").get(0);
+        assertEquals(unit5.getID(),608);
+        assertEquals(unit5.getName(),"Cairo");
+        assertEquals(unit5.getCountryCode(),"EGY");
+        assertEquals(unit5.getDistrict(),"Kairo");
+        assertEquals(unit5.getPopulation(),6789479.0 );
+
+    }
+    @Test
+    void testgetCityRegionPopLargesttoSmallest() throws SQLException {
+
+        // Test testgetCityRegionPopLargesttoSmallest record
+
+        // testing only one instance
+        City unit5 = app.getCityRegionPopLargesttoSmallest("South America").get(0);
+        assertEquals(unit5.getID(),206);
+        assertEquals(unit5.getName(),"São Paulo");
+        assertEquals(unit5.getCountryCode(),"BRA");
+        assertEquals(unit5.getDistrict(),"São Paulo");
+        assertEquals(unit5.getPopulation(),9968485.0 );
+
+    }
+
+    @Test
+    void testgetCityCountryPopLargesttoSmallest() throws SQLException {
+
+        // Test testgetCityCountryPopLargesttoSmallest record
+
+        // testing only one instance
+        City unit6 = app.getCityCountryPopLargesttoSmallest("Japan").get(0);
+        assertEquals(unit6.getID(),1532);
+        assertEquals(unit6.getName(),"Tokyo");
+        assertEquals(unit6.getCountryCode(),"JPN");
+        assertEquals(unit6.getDistrict(),"Tokyo-to");
+        assertEquals(unit6.getPopulation(),7980230.0 );
+
+    }
+
+    @Test
+    void testgetCityDistrictPopLargesttoSmallest() throws SQLException {
+
+        // Test testgetCityDistrictPopLargesttoSmallest record
+
+        // testing only one instance
+        City unit7 = app.getCityDistrictPopLargesttoSmallest("Noord-Brabant").get(0);
+        assertEquals(unit7.getID(),9);
+        assertEquals(unit7.getName(),"Eindhoven");
+        assertEquals(unit7.getCountryCode(),"NLD");
+        assertEquals(unit7.getDistrict(),"Noord-Brabant");
+        assertEquals(unit7.getPopulation(),201843.0 );
+
+    }
+
 }
