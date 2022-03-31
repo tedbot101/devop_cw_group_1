@@ -415,7 +415,7 @@ public class App {
         // Usage:
         // object .getCapitalCityPopLargesttoSmallest()
 
-        String sql = "select city.Name, country.Name, country.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID order by city.Population desc";
+        String sql = "select city.Name, country.Name, city.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID order by city.Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
         ArrayList<CapitalCity> capitalcity = new ArrayList<CapitalCity>();
         ResultSet rset = pstmt.executeQuery();
@@ -435,7 +435,7 @@ public class App {
         //
         // Usage:
         // object .getCapitalCityContinentPopLargesttoSmallest("Asia")
-        String sql = "select city.Name, country.Name, country.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID and country.Continent = ? order by city.Population desc";
+        String sql = "select city.Name, country.Name, city.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID and country.Continent = ? order by city.Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         ArrayList<CapitalCity> capitalcity = new ArrayList<CapitalCity>();
@@ -456,7 +456,7 @@ public class App {
         //
         // Usage:
         // object .getCapitalCityContinentPopLargesttoSmallest("South America")
-        String sql = "select city.Name, country.Name, country.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID and country.Region = ? order by city.Population desc";
+        String sql = "select city.Name, country.Name, city.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID and country.Region = ? order by city.Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         ArrayList<CapitalCity> capitalcity = new ArrayList<CapitalCity>();
