@@ -60,29 +60,29 @@ public class App {
         System.out.println("\n[*] All the countries in a region organised by largest population to smallest [*]\n");
         a.displayCountry(a.getCountryPopbyRegion("Caribbean"));
 
-      
-      
+
+
         // CapitalCity report
         System.out.println("\n[*] All the Capital City in the world organised by largest population to smallest.\n");
-        a.displayCity(a.getCapitalCityPopLargesttoSmallest());
+        a.displayCapitalCity(a.getCapitalCityPopLargesttoSmallest());
 
         System.out.println("\n\n\n*****************************************************\nAll the Capital City in the Continent by largest population to smallest.\n");
-        a.displayCity(a.getCapitalCityContinentPopLargesttoSmallest("Asia"));
+        a.displayCapitalCity(a.getCapitalCityContinentPopLargesttoSmallest("Asia"));
 
         System.out.println("\n\n\n*****************************************************\nAll the Capital City in the Region by largest population to smallest.\n");
-        a.displayCity(a.getCapitalCityRegionPopLargesttoSmallest("South America"));
+        a.displayCapitalCity(a.getCapitalCityRegionPopLargesttoSmallest("South America"));
 
         //The top N populated countries in the world where N is provided by the user
         System.out.println("\n[*]The top N populated countries in the world where N is provided by the user.\n[*]");
-        a.display_1(a.getCountryTopNPopLargesttoSmallest(10));
+        a.displayCountry(a.getCountryTopNPopLargesttoSmallest(10));
 
         //The top N populated countries in a continent where N is provided by the user.
         System.out.println("\n[*]The top N populated countries in a continent where N is provided by the user.\n[*]");
-        a.display_1(a.getCountryTopNPopbyContinent("Asia",6));
+        a.displayCountry(a.getCountryTopNPopbyContinent("Asia",6));
 
         //The top N populated countries in a region where N is provided by the user.
         System.out.println("\n[*]The top N populated countries in a region where N is provided by the user.\n[*]");
-        a.display_1(a.getCountryTopNPopbyRegion("Caribbean",6));
+        a.displayCountry(a.getCountryTopNPopbyRegion("Caribbean",6));
 
         // Disconnect from database
         a.disconnect();
@@ -248,7 +248,7 @@ public class App {
         return countries;
     }
 
-        public ArrayList<Country> getCountryTopNPopbyRegion(String reg, int re) throws SQLException {
+    public ArrayList<Country> getCountryTopNPopbyRegion(String reg, int re) throws SQLException {
 
         //
         // Description :
@@ -408,7 +408,7 @@ public class App {
     }
     //Capital City by Population
     public ArrayList<CapitalCity> getCapitalCityPopLargesttoSmallest() throws SQLException {
-       //
+        //
         // description :
         // report function for capital city in the world from largest to smallest population
         //
@@ -470,20 +470,20 @@ public class App {
         return capitalcity;
     }
 
-    public void display_1(ArrayList<Country> conts) {
-
+    public void displayCapitalCity(ArrayList<CapitalCity> conts) {
         // Print header
-        System.out.println(String.format("%-20s %-25s %-25s %-25s %-25s", "Name", "Continent", "Region", "Capital", "Population"));
+        System.out.println(String.format("%-20s %-25s %-25s", "Name", "Country", "Population"));
         // Loop over all city in the list
-        for (Country country : conts) {
-            if (country == null)
+        for (CapitalCity capitalcity : conts) {
+            if (capitalcity == null)
                 continue;
             String cty_string =
-                    String.format("%-20s %-25s %-25s %-25s %-25s",
-                            country.getName(), country.getContinent(), country.getRegion(), country.getCapital(), country.getPopulation());
+                    String.format("%-20s %-25s %-25s",
+                            capitalcity.getName(),  capitalcity.getCountry(), capitalcity.getPopulation());
             System.out.println(cty_string);
         }
     }
+
 
     public void displayCity(ArrayList<City> conts) {
 
