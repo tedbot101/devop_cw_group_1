@@ -31,6 +31,7 @@ class AppTest
     }
 
     @Test
+
     void DisplayCapitalCityTest_null()
     {
         /// test if return value is null
@@ -92,6 +93,21 @@ class AppTest
 
     @Test
     void printCountries()
+    {
+        /// test for normal condition Country
+        ArrayList<Country> countries = new ArrayList<>();
+        Country ctry = new Country();
+        ctry.setName("China");
+        ctry.setContinent("Asia");
+        ctry.setRegion("Eastern Asia");
+        ctry.setCapital("1891");
+        ctry.setPopulation((float) 1.27755802E9);
+        countries.add(ctry);
+        app.displayCountry(countries);
+    }
+
+    @Test
+    void printTopCountries()
     {
         /// test for normal condition Country
         ArrayList<Country> countries = new ArrayList<>();

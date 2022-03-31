@@ -142,6 +142,7 @@ public class AppIntegrationTest
     }
 
     @Test
+
     void testgetCapitalCityPopLargesttoSmallest() throws SQLException {
 
         // Test testgetCapitalCityPopLargesttoSmallest record
@@ -179,6 +180,51 @@ public class AppIntegrationTest
 
 
 
+
+
+    void getCountryTopNPopLargesttoSmallest() throws SQLException {
+
+        // Test CountryPopLargesttoSmallest record
+
+        // testing only one instance
+        Country unit11 = app.getCountryTopNPopLargesttoSmallest(10).get(0);
+        assertEquals(unit11.getName(),"China");
+        assertEquals(unit11.getContinent(),"Asia");
+        assertEquals(unit11.getRegion(),"Eastern Asia");
+        assertEquals(unit11.getCapital(),"1891");
+        assertEquals(unit11.getPopulation(),1.277558016E9 );
+
+    }
+
+    @Test
+    void getCountryTopNPopbyContinent() throws SQLException {
+
+        // Test CountryPopLargesttoSmallest record
+
+        // testing only one instance
+        Country unit11 = app.getCountryTopNPopbyContinent("Asia",6).get(0);
+        assertEquals(unit11.getName(),"China");
+        assertEquals(unit11.getContinent(),"Asia");
+        assertEquals(unit11.getRegion(),"Eastern Asia");
+        assertEquals(unit11.getCapital(),"1891");
+        assertEquals(unit11.getPopulation(),1.277558016E9 );
+
+    }
+
+    @Test
+    void getCountryTopNPopbyRegion() throws SQLException {
+
+        // Test CountryPopLargesttoSmallest record
+
+        // testing only one instance
+        Country unit11 = app.getCountryTopNPopbyRegion("Caribbean",6).get(0);
+        assertEquals(unit11.getName(),"Cuba");
+        assertEquals(unit11.getContinent(),"North America");
+        assertEquals(unit11.getRegion(),"Caribbean");
+        assertEquals(unit11.getCapital(),"2413");
+        assertEquals(unit11.getPopulation(),1.1201E7 );
+
+    }
 
 
 }
