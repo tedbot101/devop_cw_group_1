@@ -177,7 +177,7 @@ public class AppIntegrationTest
         // Test CountryPopLargesttoSmallest record
 
         // testing only one instance
-        Country unit11 = app.getCountryTopNPopbyRegion("Asia",6).get(0);
+        Country unit11 = app.getCountryTopNPopbyRegion("Caribbean",6).get(0);
         assertEquals(unit11.getName(),"Cuba");
         assertEquals(unit11.getContinent(),"North America");
         assertEquals(unit11.getRegion(),"Caribbean");
