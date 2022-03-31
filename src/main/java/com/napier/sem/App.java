@@ -14,72 +14,63 @@ public class App {
         // Create new Application
         App a = new App();
 
-        // Connect to database
-        a.connect("db:3306", 30000);
+        if(args.length < 1){
+            // Connect to database
+            a.connect("localhost:33060", 30000);
+        }else{
+            a.connect("db:3306", 30000);
+        }
 
         // Report obj calls
-        System.out.println("In main");
-        /*
+
+        System.out.println("[system] In main ");
+
         // city report
         // All the cities in the world organised by largest population to smallest.
+        System.out.println("\n[*] All the cities in the world organised by largest population to smallest.[*] \n");
+        a.displayCity( a.getCityPopLargesttoSmallest());
 
-        /*System.out.println("*******************************\nAll the cities in the world organised by largest population to smallest.\n");
-        System.out.println("*******************************\n");
-
-        ArrayList<City> city1 = a.getCityPopLargesttoSmallest();
-        a.display(city1);
 
         // All the cities in the continent organised by largest population to smallest
-        System.out.println("*******************************\n\n\nAll the cities in the continent organised by largest population to smallest.\n");
-        System.out.println("*******************************\n\n\n");
-        ArrayList<City> city2 = a.getCityContinentPopLargesttoSmallest("Africa");
-        a.display(city2);
+        System.out.println("\n[*] All the cities in the continent organised by largest population to smallest.[*] \n");
+        a.displayCity(a.getCityContinentPopLargesttoSmallest("Africa"));
 
         // All the cities in the region organised by largest population to smallest
-        System.out.println("*******************************\n\n\nAll the cities in the region organised by largest population to smallest.\n");
-        System.out.println("*******************************\n\n\n");
-        ArrayList<City> city3 = a.getCityRegionPopLargesttoSmallest("South America");
-        a.display(city3);
+        System.out.println("\n[*] All the cities in the region organised by largest population to smallest.[*]\n");
+        a.displayCity(a.getCityRegionPopLargesttoSmallest("South America"));
 
         // All the cities in a country organised by largest population to smallest
-        System.out.println("*******************************\n\n\nAll the cities in a country organised by largest population to smallest.\n");
-        System.out.println("*******************************\n\n\n");
-        ArrayList<City> city4 = a.getCityCountryPopLargesttoSmallest("Japan");
-        a.display(city4);
+        System.out.println("\n[*] All the cities in a country organised by largest population to smallest. [*]\n");
+        a.displayCity(a.getCityCountryPopLargesttoSmallest("Japan"));
 
         // All the cities in a district organised by largest population to smallest.
-        System.out.println("*******************************\n\n\nAll the cities in a district organised by largest population to smallest.\n");
-        System.out.println("*******************************\n\n\n");
-        ArrayList<City> city5 = a.getCityDistrictPopLargesttoSmallest("Noord-Brabant");
-        a.display(city5);
+        System.out.println("\n[*] All the cities in a district organised by largest population to smallest. [*]\n");
+        a.displayCity(a.getCityDistrictPopLargesttoSmallest("Noord-Brabant"));
 
         // country report
         // the countries in the world organised by largest population to smallest
-        System.out.println("\n\n\n*****************************************************\nAll the countries in the world organised by largest population to smallest.\n");
-        ArrayList<Country> contries = a.getCountryPopLargesttoSmallest();
-        a.display_1(contries);
+        System.out.println("\n[*] All the countries in the world organised by largest population to smallest. [*]\n");
+        a.displayCountry(a.getCountryPopLargesttoSmallest());
 
         // the countries in a continent organised by largest population to smallest
-        System.out.println("\n\n*****************************************************\nAll the countries in a continent organised by largest population to smallest\n");
-        ArrayList<Country> contries2 = a.getCountryPopbyContinent("Asia");
-        a.display_1(contries2);
+        System.out.println("\n[*] All the countries in a continent organised by largest population to smallest [*]\n");
+        a.displayCountry(a.getCountryPopbyContinent("Asia"));
 
         // the countries in a region organised by largest population to smallest
-        System.out.println("\n\n*****************************************************\nAll the countries in a region organised by largest population to smallest\n");
-        ArrayList<Country> contries3 = a.getCountryPopbyRegion("Caribbean");
-        
-        a.display_1(contries3);  */
+        System.out.println("\n[*] All the countries in a region organised by largest population to smallest [*]\n");
+        a.displayCountry(a.getCountryPopbyRegion("Caribbean"));
 
-
+      
+      
         // CapitalCity report
         System.out.println("\n[*] All the Capital City in the world organised by largest population to smallest.\n");
-        a.display_2(a.getCapitalCityPopLargesttoSmallest());
+        a.displayCity(a.getCapitalCityPopLargesttoSmallest());
 
         System.out.println("\n\n\n*****************************************************\nAll the Capital City in the Continent by largest population to smallest.\n");
-        a.display_2(a.getCapitalCityContinentPopLargesttoSmallest("Asia"));
+        a.displayCity(a.getCapitalCityContinentPopLargesttoSmallest("Asia"));
 
         System.out.println("\n\n\n*****************************************************\nAll the Capital City in the Region by largest population to smallest.\n");
-        a.display_2(a.getCapitalCityRegionPopLargesttoSmallest("South America"));
+        a.displayCity(a.getCapitalCityRegionPopLargesttoSmallest("South America"));
 
         //The top N populated countries in the world where N is provided by the user
         System.out.println("\n[*]The top N populated countries in the world where N is provided by the user.\n[*]");
@@ -105,25 +96,25 @@ public class App {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            System.out.println("Could not load SQL driver");
+            System.out.println("[system] Could not load SQL driver");
             System.exit(-1);
         }
 
         int retries = 10;
         for (int i = 0; i < retries; ++i) {
-            System.out.println("Connecting to database...");
+            System.out.println("[system] Connecting to database...");
             try {
                 // Wait a bit for db to start
                 Thread.sleep(delay);
                 // Connect to database
                 //Added allowPublicKeyRetrieval=true to get Integration Tests to work. Possibly due to accessing from another class?
                 con = DriverManager.getConnection("jdbc:mysql://" + conString + "/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
-                System.out.println("Successfully connected");
+                System.out.println("[system] Successfully connected");
                 break;
             } catch (SQLException sqle) {
                 System.out.println(sqle.getMessage());
             } catch (InterruptedException ie) {
-                System.out.println("Thread interrupted? Should not happen.");
+                System.out.println("[system] Thread interrupted? Should not happen.");
             }
         }
     }
@@ -137,12 +128,21 @@ public class App {
                 // Close connection
                 con.close();
             } catch (Exception e) {
-                System.out.println("Error closing connection to database");
+                System.out.println("[system] Error closing connection to database");
             }
         }
     }
     //All the countries in the world organised by largest population to smallest.
     public ArrayList<Country> getCountryPopLargesttoSmallest() throws SQLException {
+
+        //
+        // Description :
+        // report function for countires sorted from largest population to smallest
+        //
+        // Usage:
+        //  object.getCountryPopLargesttoSmallest()
+
+
         String sql = "SELECT Name,Continent,Region, Capital, Population from country order by Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
         ArrayList<Country> countries = new ArrayList<Country>();
@@ -156,6 +156,15 @@ public class App {
     }
     //All the countries in a continent organised by largest population to smallest.
     public ArrayList<Country> getCountryPopbyContinent(String contn) throws SQLException {
+
+        //
+        // Description :
+        // report function for countires in selected continent sorted from largest population to smallest
+        //
+        // Usage:
+        //  object.getCountryPopLargesttoSmallest("Asia")
+
+
         String sql = "select Name,Continent,Region, Capital, Population from country where Continent=? order by Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
@@ -171,6 +180,15 @@ public class App {
 
     //All the countries in a region organised by largest population to smallest.
     public ArrayList<Country> getCountryPopbyRegion(String reg) throws SQLException {
+
+        //
+        // Description :
+        // report function for countires in selected region sorted from largest population to smallest
+        //
+        // Usage:
+        //  object.getCountryPopbyRegion("region")
+
+
         String sql = "select Name,Continent,Region, Capital, Population from country where Region=? order by Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, reg);
@@ -254,6 +272,15 @@ public class App {
     }
 
     public ArrayList<City> getCityPopLargesttoSmallest() throws SQLException {
+
+        //
+        // Description :
+        // report function for cities from largest population to smallest
+        //
+        // Usage:
+        //  object.getCityPopLargesttoSmallest()
+
+
         String sql = "select ID,Name,CountryCode, District, Population from city order by Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
         ArrayList<City> cities = new ArrayList<City>();
@@ -268,6 +295,15 @@ public class App {
 
     // City in the continent
     public ArrayList<City> getCityContinentPopLargesttoSmallest(String contn) throws SQLException {
+
+        //
+        // Description :
+        // report function for cities in selected continent sorted from largest population to smallest
+        //
+        // Usage:
+        //  object.getCityContinentPopLargesttoSmallest('continent')
+
+
         String sql = "select city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Code, country.Region from city, country where city.CountryCode = country.Code And country.Continent = ? order by city.Population desc ";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
@@ -283,6 +319,15 @@ public class App {
 
     // City in the region
     public ArrayList<City> getCityRegionPopLargesttoSmallest(String reg) throws SQLException {
+
+        //
+        // Description :
+        // report function for cities in selected region sorted from largest population to smallest
+        //
+        // Usage:
+        //  object.getCityRegionPopLargesttoSmallest('region')
+
+
         String sql = "select city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Code, country.Region from city, country where city.CountryCode = country.Code And country.Region = ? order by city.Population desc ";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, reg);
@@ -298,6 +343,15 @@ public class App {
 
     // Cities in a country
     public ArrayList<City> getCityCountryPopLargesttoSmallest(String coun) throws SQLException {
+
+        //
+        // Description :
+        // report function for cities in selected countries sorted from largest population to smallest
+        //
+        // Usage:
+        //  object.getCityCountryPopLargesttoSmallest("country")
+
+
         String sql = "select city.ID, city.Name, city.CountryCode, city.District, city.Population, country.Code, country.Region from city, country where city.CountryCode = country.Code And country.Name = ? order by city.Population desc ";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, coun);
@@ -313,6 +367,15 @@ public class App {
 
     // Cities in District
     public ArrayList<City> getCityDistrictPopLargesttoSmallest(String dist) throws SQLException {
+
+        //
+        // Description :
+        // report function for cities in selected disctrict sorted from largest population to smallest
+        //
+        // Usage:
+        //  object.getCityDistrictPopLargesttoSmallest("district")
+
+
         String sql = "select ID,Name,CountryCode, District, Population from city where District = ? order by Population desc";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, dist);
@@ -327,6 +390,22 @@ public class App {
 
     }
 
+
+    public void displayCountry(ArrayList<Country> conts) {
+
+
+        //
+        // Description :
+        //  Display function for countires
+        //
+        // Usage:
+        //  object.displayCity(Array)
+        if (conts == null)
+        {
+            System.out.println("[system] No countires");
+            return;
+        }
+    }
     //Capital City by Population
     public ArrayList<CapitalCity> getCapitalCityPopLargesttoSmallest() throws SQLException {
        //
@@ -392,6 +471,7 @@ public class App {
     }
 
     public void display_1(ArrayList<Country> conts) {
+
         // Print header
         System.out.println(String.format("%-20s %-25s %-25s %-25s %-25s", "Name", "Continent", "Region", "Capital", "Population"));
         // Loop over all city in the list
@@ -405,23 +485,21 @@ public class App {
         }
     }
 
-    public void display_2(ArrayList<CapitalCity> conts) {
-        // Print header
-        System.out.println(String.format("%-20s %-25s %-25s", "Name", "Country", "Population"));
-        // Loop over all city in the list
-        for (CapitalCity capitalcity : conts) {
-            if (capitalcity == null)
-                continue;
-            String cty_string =
-                    String.format("%-20s %-25s %-25s",
-                            capitalcity.getName(),  capitalcity.getCountry(), capitalcity.getPopulation());
-            System.out.println(cty_string);
+    public void displayCity(ArrayList<City> conts) {
+
+        //
+        // Description :
+        //  Display function for Country
+        //
+        // Usage:
+        //  object.displayCountry(Array)
+        // Check employees is not null
+        if (conts == null)
+        {
+            System.out.println("[system] No cities");
+            return;
         }
-    }
 
-
-
-    public void display(ArrayList<City> conts) {
         // Print header
         System.out.println(String.format("%-20s %-25s %-25s %-25s %-25s", "ID", "Name", "CountryCode", "District", "Population"));
         // Loop over all city in the list
@@ -434,5 +512,6 @@ public class App {
             System.out.println(city_string);
         }
     }
+
 
 }
