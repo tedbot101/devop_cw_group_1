@@ -90,7 +90,7 @@ public class App {
 
         //The top N populated capital cities in a continent where N is provided by the user
         System.out.println("\n[*]The top N populated capital cities in a continent where N is provided by the user.\n[*]");
-        a.displayCapitalCity(a.getTopPopCapitalCityContinentLargesttoSmallest("Asia",5));
+        a.displayCapitalCity(a.getTopPopCapitalCityContinentLargesttoSmallest("Asia",4));
         // Disconnect from database
         a.disconnect();
 
