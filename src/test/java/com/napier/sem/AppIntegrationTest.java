@@ -39,7 +39,7 @@ public class AppIntegrationTest
     @Test
     void testgetCountryPopbyContinent() throws SQLException {
 
-        // Test CountryPopLargesttoSmallest record
+        // Test CountryPopbyContinent record
 
         // testing only one instance
         Country unit2 = app.getCountryPopbyContinent("Asia").get(0);
@@ -55,7 +55,7 @@ public class AppIntegrationTest
     @Test
     void testgetCountryPopbyRegion() throws SQLException {
 
-        // Test CountryPopLargesttoSmallest record
+        // Test CountryPopbyRegion record
 
         // testing only one instance
         Country unit3 = app.getCountryPopbyRegion("Caribbean").get(0);
@@ -66,4 +66,20 @@ public class AppIntegrationTest
         assertEquals(unit3.getPopulation(),1.1201E7 );
 
     }
+
+    @Test
+    void testgetCityPopLargesttoSmallest() throws SQLException {
+
+        // Test getCityPopLargesttoSmallest record
+
+        // testing only one instance
+        City unit4 = app.getCityPopLargesttoSmallest().get(0);
+        assertEquals(unit4.getID(),1024);
+        assertEquals(unit4.getName(),"Mumbai (Bombay)");
+        assertEquals(unit4.getCountryCode(),"IND");
+        assertEquals(unit4.getDistrict(),"Maharashtra");
+        assertEquals(unit4.getPopulation(),1.05E7 );
+
+    }
+
 }
