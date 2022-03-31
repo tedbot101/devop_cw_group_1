@@ -93,6 +93,12 @@ public class App {
         a.displayCapitalCity(a.getTopPopCapitalCityContinentLargesttoSmallest("Asia",5));
         // Disconnect from database
         a.disconnect();
+
+        //The top N populated capital cities in a region where N is provided by the user
+        System.out.println("\n[*]The top N populated capital cities in a continent where N is provided by the user.\n[*]");
+        a.displayCapitalCity(a. getTopPopCapitalCityRegionLargesttoSmallest("Caribbean",5));
+        // Disconnect from database
+        a.disconnect();
     }
 
     /**
@@ -513,6 +519,30 @@ public class App {
         String sql = "select city.Name, country.Name, city.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID and country.Continent = ? order by city.Population desc limit ?";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
+        pstmt.setInt(2, ci);
+        ArrayList<CapitalCity> capitalcity = new ArrayList<CapitalCity>();
+        ResultSet rset = pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while (rset.next()) {
+
+            CapitalCity c = new CapitalCity(rset.getString(1), rset.getString(2), rset.getFloat(3));
+            capitalcity.add(c);
+        }
+        return capitalcity;
+    }
+
+    //The top N populated capital cities in a region where N is provided by the user
+    public ArrayList<CapitalCity>getTopPopCapitalCityRegionLargesttoSmallest(String reg , int ci) throws SQLException {
+        //
+        // description :
+        // report function for top populated capital city in continent from largest to smallest population
+        //
+        // Usage:
+        // object .getTopPopCapitalCityContinentLargesttoSmallest
+
+        String sql = "select city.Name, country.Name, city.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID and country.Continent = ? order by city.Population desc limit ?";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, reg);
         pstmt.setInt(2, ci);
         ArrayList<CapitalCity> capitalcity = new ArrayList<CapitalCity>();
         ResultSet rset = pstmt.executeQuery();
