@@ -142,6 +142,46 @@ public class AppIntegrationTest
     }
 
     @Test
+
+    void testgetCapitalCityPopLargesttoSmallest() throws SQLException {
+
+        // Test testgetCapitalCityPopLargesttoSmallest record
+
+        // testing only one instance
+        CapitalCity unit8 = app.getCapitalCityPopLargesttoSmallest().get(0);
+        assertEquals(unit8.getName(),"Seoul");
+        assertEquals(unit8.getCountry(),"South Korea");
+        assertEquals(unit8.getPopulation(),9981619);
+    }
+
+    @Test
+    void testgetCapitalCityContinentPopLargesttoSmallest() throws SQLException {
+
+        // Test testgetCapitalCityContinentPopLargesttoSmallest record
+
+        // testing only one instance
+        CapitalCity unit9 = app.getCapitalCityContinentPopLargesttoSmallest("Asia").get(0);
+        assertEquals(unit9.getName(),"Seoul");
+        assertEquals(unit9.getCountry(),"South Korea");
+        assertEquals(unit9.getPopulation(),9981619);
+    }
+    @Test
+    void testgetCapitalCityRegionPopLargesttoSmallest() throws SQLException {
+
+        // Test testgetCapitalCityRegionPopLargesttoSmallest record
+
+        // testing only one instance
+        CapitalCity unit9 = app.getCapitalCityRegionPopLargesttoSmallest("Eastern Asia").get(0);
+        assertEquals(unit9.getName(),"Seoul");
+        assertEquals(unit9.getCountry(),"South Korea");
+        assertEquals(unit9.getPopulation(),9981619);
+    }
+
+
+
+
+
+
     void getCountryTopNPopLargesttoSmallest() throws SQLException {
 
         // Test CountryPopLargesttoSmallest record
@@ -185,5 +225,6 @@ public class AppIntegrationTest
         assertEquals(unit11.getPopulation(),1.1201E7 );
 
     }
+
 
 }

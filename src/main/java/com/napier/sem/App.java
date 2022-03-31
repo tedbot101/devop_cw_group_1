@@ -485,6 +485,11 @@ public class App {
 
     public void displayCapitalCity(ArrayList<CapitalCity> conts) {
         // Print header
+        if (conts == null)
+        {
+            System.out.println("[system] No cities");
+            return;
+        }
         System.out.println(String.format("%-20s %-25s %-25s", "Name", "Country", "Population"));
         // Loop over all city in the list
         for (CapitalCity capitalcity : conts) {
