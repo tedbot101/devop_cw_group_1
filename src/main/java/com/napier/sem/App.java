@@ -406,6 +406,7 @@ public class App {
             return;
         }
     }
+
     //Capital City by Population
     public ArrayList<CapitalCity> getCapitalCityPopLargesttoSmallest() throws SQLException {
         //
