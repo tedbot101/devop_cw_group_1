@@ -12,6 +12,10 @@ public class CapitalCity {
         this.population = population;
     }
 
+    public CapitalCity() {
+
+    }
+
     public void setName(String name) {
         this.name = name;
     }

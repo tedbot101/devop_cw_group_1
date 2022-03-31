@@ -31,6 +31,15 @@ class AppTest
     }
 
     @Test
+    void DisplayCapitalCityTest_null()
+    {
+        /// test if return value is null
+        app.displayCapitalCity(null);
+    }
+
+
+
+    @Test
     void DisplayCityTest_Empty()
     {
         /// test if return value is empty array
@@ -44,6 +53,14 @@ class AppTest
         /// test if return value is empty array
         ArrayList<Country> countries = new ArrayList<>();
         app.displayCountry(countries);
+    }
+
+    @Test
+    void DisplayCapitalCityTest_Empty()
+    {
+        /// test if return value is empty array
+        ArrayList<CapitalCity> capitalcity = new ArrayList<>();
+        app.displayCapitalCity(capitalcity);
     }
 
     @Test
@@ -62,6 +79,15 @@ class AppTest
         ArrayList<Country> countries = new ArrayList<>();
         countries.add(null);
         app.displayCountry(countries);
+    }
+
+    @Test
+    void DisplayCapitalCityTest_ContainsNull()
+    {
+        /// test if the array contains null var
+        ArrayList<CapitalCity> capitalcity = new ArrayList<>();
+        capitalcity.add(null);
+        app.displayCapitalCity(capitalcity);
     }
 
     @Test
@@ -92,5 +118,18 @@ class AppTest
         cty.setPopulation((float) 1.05E7);
         cities.add(cty);
         app.displayCity(cities);
+    }
+
+    @Test
+    void printCapitalCity()
+    {
+        /// test for normal condition CapialCity
+        ArrayList<CapitalCity> capitalcity = new ArrayList<>();
+        CapitalCity cap = new CapitalCity();
+        cap.setName("Seoul");
+        cap.setCountry("South Korea");
+        cap.setPopulation((float) 9981619);
+        capitalcity.add(cap);
+        app.displayCapitalCity(capitalcity);
     }
 }
