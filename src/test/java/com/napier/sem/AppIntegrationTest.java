@@ -206,7 +206,7 @@ public class AppIntegrationTest
         // Test testgetCityDistrictPopLargesttoSmallest record
 
         // testing only one instance
-        City unit19 = app.getTopCityDistrictPopLargesttoSmallest("Noord-Brabant", 1).get(0);
+        City unit19 = app.getTopCityDistrictPopLargesttoSmallest("Noord-Brabant", 2).get(0);
         assertEquals(unit19.getID(),9);
         assertEquals(unit19.getName(),"Eindhoven");
         assertEquals(unit19.getCountryCode(),"NLD");
