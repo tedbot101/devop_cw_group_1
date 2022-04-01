@@ -95,7 +95,7 @@ public class App {
 
         //The top N populated capital cities in a region where N is provided by the user
         System.out.println("\n[*]The top N populated capital cities in a continent where N is provided by the user.\n[*]");
-        a.displayCapitalCity(a. getTopPopCapitalCityRegionLargesttoSmallest("Caribbean",5));
+        a.displayCapitalCity(a. getTopPopCapitalCityRegionLargesttoSmallest("Caribbean",6));
         // Disconnect from database
         a.disconnect();
     }
@@ -487,10 +487,10 @@ public class App {
     public ArrayList<CapitalCity> getTopPopCapitalCityLargesttoSmallest(int ci) throws SQLException {
         //
         // description :
-        // report function for capital city in the world from largest to smallest population
+        // report function for top populated capital city in the world from largest to smallest population
         //
         // Usage:
-        // object .getCapitalCityPopLargesttoSmallest()
+        // object .getTopPopCapitalCityLargesttoSmallest
 
         String sql = "select city.Name, country.Name, city.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID order by city.Population desc limit ?";
         PreparedStatement pstmt = con.prepareStatement(sql);
@@ -534,10 +534,10 @@ public class App {
     public ArrayList<CapitalCity>getTopPopCapitalCityRegionLargesttoSmallest(String reg , int ci) throws SQLException {
         //
         // description :
-        // report function for top populated capital city in continent from largest to smallest population
+        // report function for top populated capital city in region from largest to smallest population
         //
         // Usage:
-        // object .getTopPopCapitalCityContinentLargesttoSmallest
+        // object .getTopPopCapitalCityRegionLargesttoSmallest
 
         String sql = "select city.Name, country.Name, city.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID and country.Continent = ? order by city.Population desc limit ?";
         PreparedStatement pstmt = con.prepareStatement(sql);
