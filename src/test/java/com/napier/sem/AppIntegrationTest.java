@@ -141,6 +141,44 @@ public class AppIntegrationTest
 
     }
 
+
+    @Test
+    void testgetTopCapitalCityPopLargesttoSmallest() throws SQLException {
+
+        // Test testgetTopCapitalCityPopLargesttoSmallest record
+
+        // testing only one instance
+        CapitalCity unit12 = app.getTopPopCapitalCityLargesttoSmallest(10).get(0);
+        assertEquals(unit12.getName(),"Seoul");
+        assertEquals(unit12.getCountry(),"South Korea");
+        assertEquals(unit12.getPopulation(),9981619);
+    }
+
+    @Test
+    void testgetTopCapitalCityContinentPopLargesttoSmallest() throws SQLException {
+
+        // Test testgetTopCapitalCityContinentPopLargesttoSmallest record
+
+        // testing only one instance
+        CapitalCity unit13 = app.getTopPopCapitalCityContinentLargesttoSmallest("Asia",4).get(0);
+        assertEquals(unit13.getName(),"Seoul");
+        assertEquals(unit13.getCountry(),"South Korea");
+        assertEquals(unit13.getPopulation(),9981619);
+    }
+    @Test
+    void testgetTopCapitalCityRegionPopLargesttoSmallest() throws SQLException {
+
+        // Test testgetTopCapitalCityRegionPopLargesttoSmallest record
+
+        // testing only one instance
+        CapitalCity unit14 = app.getTopPopCapitalCityRegionLargesttoSmallest("Eastern Asia", 6).get(0);
+        assertEquals(unit14.getName(),"Seoul");
+        assertEquals(unit14.getCountry(),"South Korea");
+        assertEquals(unit14.getPopulation(),9981619);
+    }
+
+
+
     @Test
     void testgetTopCityPopLargesttoSmallest() throws SQLException {
 

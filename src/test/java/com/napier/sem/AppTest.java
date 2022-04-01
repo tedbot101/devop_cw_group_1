@@ -16,6 +16,9 @@ class AppTest
         app = new App();
     }
 
+ 
+
+
     @Test
     void DisplayCityTest_null()
     {
@@ -57,12 +60,18 @@ class AppTest
     }
 
     @Test
+
+
+
+
+
     void DisplayCapitalCityTest_Empty()
     {
         /// test if return value is empty array
         ArrayList<CapitalCity> capitalcity = new ArrayList<>();
         app.displayCapitalCity(capitalcity);
     }
+
 
     @Test
     void DisplayCityTest_ContainsNull()
@@ -83,6 +92,7 @@ class AppTest
     }
 
     @Test
+
     void DisplayCapitalCityTest_ContainsNull()
     {
         /// test if the array contains null var
@@ -137,6 +147,7 @@ class AppTest
     }
 
     @Test
+
     void printCapitalCity()
     {
         /// test for normal condition CapialCity
@@ -149,6 +160,7 @@ class AppTest
         app.displayCapitalCity(capitalcity);
 
     }
+
 
     @Test
     void printTopCities()
@@ -167,4 +179,5 @@ class AppTest
 
 
 }
+
 
