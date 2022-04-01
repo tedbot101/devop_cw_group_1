@@ -85,7 +85,7 @@ public class App {
         //The top N populated cities in a district where N is provided by the user
         System.out.println("\n[*]All The Top City District Population Largest to Smallest.\n");
         ArrayList<City> city10 = a.getTopCityDistrictPopLargesttoSmallest("Noord-Brabant", 10);
-        a.display(city10);
+        a.displayCity(city10);
 
 
         
