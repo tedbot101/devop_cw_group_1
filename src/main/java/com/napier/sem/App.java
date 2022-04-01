@@ -26,7 +26,7 @@ public class App {
         System.out.println("[system] In main ");
 
         // city report
-       /* // All the cities in the world organised by largest population to smallest.
+        // All the cities in the world organised by largest population to smallest.
         System.out.println("\n[*] All the cities in the world organised by largest population to smallest.[*] \n");
         a.displayCity( a.getCityPopLargesttoSmallest());
 
@@ -82,8 +82,9 @@ public class App {
 
         //The top N populated countries in a region where N is provided by the user.
         System.out.println("\n[*]The top N populated countries in a region where N is provided by the user.\n[*]");
-        a.displayCountry(a.getCountryTopNPopbyRegion("Caribbean",6));*/
+        a.displayCountry(a.getCountryTopNPopbyRegion("Caribbean",6));
 
+        // top N populated capital cities report
         //The top N populated capital cities in the world where N is provided by the user.
         System.out.println("\n[*] All the Top Population Capital City in the world organised by largest population to smallest.\n");
         a.displayCapitalCity(a.getTopPopCapitalCityLargesttoSmallest(10));
@@ -91,8 +92,6 @@ public class App {
         //The top N populated capital cities in a continent where N is provided by the user
         System.out.println("\n[*]The top N populated capital cities in a continent where N is provided by the user.\n[*]");
         a.displayCapitalCity(a.getTopPopCapitalCityContinentLargesttoSmallest("Asia",4));
-        // Disconnect from database
-        a.disconnect();
 
         //The top N populated capital cities in a region where N is provided by the user
         System.out.println("\n[*]The top N populated capital cities in a continent where N is provided by the user.\n[*]");
