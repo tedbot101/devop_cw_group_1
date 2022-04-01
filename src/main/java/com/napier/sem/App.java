@@ -539,7 +539,7 @@ public class App {
         // Usage:
         // object .getTopPopCapitalCityRegionLargesttoSmallest
 
-        String sql = "select city.Name, country.Name, city.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID and country.Continent = ? order by city.Population desc limit ?";
+        String sql = "select city.Name, country.Name, city.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID and country.Region = ? order by city.Population desc limit ?";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, reg);
         pstmt.setInt(2, ci);
@@ -560,6 +560,11 @@ public class App {
 
     public void displayCapitalCity(ArrayList<CapitalCity> conts) {
         // Print header
+        if (conts == null)
+        {
+            System.out.println("[system] No Capital cities");
+            return;
+        }
         System.out.println(String.format("%-20s %-25s %-25s", "Name", "Country", "Population"));
         // Loop over all city in the list
         for (CapitalCity capitalcity : conts) {
