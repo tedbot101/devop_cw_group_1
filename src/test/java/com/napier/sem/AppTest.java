@@ -40,6 +40,16 @@ class AppTest
     }
 
     @Test
+
+    void DisplayCapitalCityTest_null()
+    {
+        /// test if return value is null
+        app.displayCapitalCity(null);
+    }
+
+
+
+    @Test
     void DisplayCityTest_Empty()
     {
         /// test if return value is empty array
@@ -57,12 +67,21 @@ class AppTest
 
     @Test
 
+
     void DisplayTopCapitalCityTest_null()
     {
         /// test if return value is null
         app.displayCapitalCity(null);
     }
 
+
+
+    void DisplayCapitalCityTest_Empty()
+    {
+        /// test if return value is empty array
+        ArrayList<CapitalCity> capitalcity = new ArrayList<>();
+        app.displayCapitalCity(capitalcity);
+    }
 
 
     @Test
@@ -84,7 +103,8 @@ class AppTest
     }
 
     @Test
-    void DisplayTopCapitalCityTest_ContainsNull()
+
+    void DisplayCapitalCityTest_ContainsNull()
     {
         /// test if the array contains null var
         ArrayList<CapitalCity> capitalcity = new ArrayList<>();
@@ -92,9 +112,23 @@ class AppTest
         app.displayCapitalCity(capitalcity);
     }
 
-
     @Test
     void printCountries()
+    {
+        /// test for normal condition Country
+        ArrayList<Country> countries = new ArrayList<>();
+        Country ctry = new Country();
+        ctry.setName("China");
+        ctry.setContinent("Asia");
+        ctry.setRegion("Eastern Asia");
+        ctry.setCapital("1891");
+        ctry.setPopulation((float) 1.27755802E9);
+        countries.add(ctry);
+        app.displayCountry(countries);
+    }
+
+    @Test
+    void printTopCountries()
     {
         /// test for normal condition Country
         ArrayList<Country> countries = new ArrayList<>();
@@ -124,9 +158,10 @@ class AppTest
     }
 
     @Test
-    void printTopCapitalCity()
+
+    void printCapitalCity()
     {
-        /// test for normal condition TopCapitalCity
+        /// test for normal condition CapialCity
         ArrayList<CapitalCity> capitalcity = new ArrayList<>();
         CapitalCity cap = new CapitalCity();
         cap.setName("Seoul");
@@ -134,6 +169,26 @@ class AppTest
         cap.setPopulation((float) 9981619);
         capitalcity.add(cap);
         app.displayCapitalCity(capitalcity);
+
     }
 
+
+    @Test
+    void printTopCities()
+    {
+        /// test for normal condition City
+        ArrayList<City> cities = new ArrayList<>();
+        City cty = new City();
+        cty.setID(1024);
+        cty.setName("China");
+        cty.setCountryCode("IND");
+        cty.setDistrict("Maharashtra");
+        cty.setPopulation((float) 1.05E7);
+        cities.add(cty);
+        app.displayCity(cities);
+    }
+
+
 }
+
+
