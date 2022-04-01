@@ -64,23 +64,23 @@ public class App {
         //All the top cities in the world organised by largest population to smallest
         System.out.println("\n[*]All the top cities in the world organised by largest population to smallest.\n");
         ArrayList<City> city6 = a.getTopCityPopLargesttoSmallest(10);
-        a.display(city6);
+        a.displayCity(city6);
 
         // Top N populated cities
         //The top N populated cities in a continent where N is provided by the user
         System.out.println("\n[*]All The Top City Continent Population Largest to Smallest.\n");
         ArrayList<City> city7 = a.getTopCityContinentPopLargesttoSmallest("Asia", 10);
-        a.display(city7);
+        a.displayCity(city7);
 
         //The top N populated cities in a region where N is provided by the user
         System.out.println("\n[*]All The Top City Region Population Largest to Smallest.\n");
         ArrayList<City> city8 = a.getTopCityRegionPopLargesttoSmallest("Caribbean", 10);
-        a.display(city8);
+        a.displayCity(city8);
 
         //The top N populated cities in a country where N is provided by the user.
         System.out.println("\n[*]All The Top City Country Population Largest to Smallest.\n");
         ArrayList<City> city9 = a.getTopCityCountryPopLargesttoSmallest("Japan", 10);
-        a.display(city9);
+        a.displayCity(city9);
 
         //The top N populated cities in a district where N is provided by the user
         System.out.println("\n[*]All The Top City District Population Largest to Smallest.\n");
