@@ -63,15 +63,19 @@ public class App {
 
 
         // CapitalCity report
+        // All the Capital City in the world organised by largest population to smallest
         System.out.println("\n[*] All the Capital City in the world organised by largest population to smallest.\n");
         a.displayCapitalCity(a.getCapitalCityPopLargesttoSmallest());
 
-        System.out.println("\n\n\n*****************************************************\nAll the Capital City in the Continent by largest population to smallest.\n");
+        // All the Capital City in the Continent by largest population to smallest
+        System.out.println("\n[*] All the Capital City in the Continent by largest population to smallest.\n");
         a.displayCapitalCity(a.getCapitalCityContinentPopLargesttoSmallest("Asia"));
 
-        System.out.println("\n\n\n*****************************************************\nAll the Capital City in the Region by largest population to smallest.\n");
+        // All the Capital City in the Region by largest population to smallest.
+        System.out.println("\n[*] All the Capital City in the Region by largest population to smallest.\n");
         a.displayCapitalCity(a.getCapitalCityRegionPopLargesttoSmallest("South America"));
 
+        // Top N populated countires
         //The top N populated countries in the world where N is provided by the user
         System.out.println("\n[*]The top N populated countries in the world where N is provided by the user.\n[*]");
         a.displayCountry(a.getCountryTopNPopLargesttoSmallest(10));
@@ -391,34 +395,6 @@ public class App {
     }
 
 
-    public void displayCountry(ArrayList<Country> conts) {
-
-
-        //
-        // Description :
-        //  Display function for countires
-        //
-        // Usage:
-        //  object.displayCity(Array)
-        if (conts == null)
-        {
-            System.out.println("[system] No countires");
-            return;
-        }
-        System.out.println(String.format("%-20s %-25s %-25s %-25s %-25s", "Name", "Continent", "Region", "Capital", "Population"));
-        // Loop over all city in the list
-        for (Country country : conts) {
-            if (country == null)
-                continue;
-            String cty_string =
-                    String.format("%-20s %-25s %-25s %-25s %-25s",
-                            country.getName(), country.getContinent(), country.getRegion(), country.getCapital(), country.getPopulation());
-            System.out.println(cty_string);
-        }
-    }
-
-
-
     //Capital City by Population
     public ArrayList<CapitalCity> getCapitalCityPopLargesttoSmallest() throws SQLException {
         //
@@ -484,10 +460,17 @@ public class App {
     }
 
     public void displayCapitalCity(ArrayList<CapitalCity> conts) {
-        // Print header
+
+        //
+        // Description :
+        //  Display function for Capital Cities
+        //
+        // Usage:
+        //  object.displayCountry(Array)
+
         if (conts == null)
         {
-            System.out.println("[system] No cities");
+            System.out.println("[system] No Capital cities");
             return;
         }
         System.out.println(String.format("%-20s %-25s %-25s", "Name", "Country", "Population"));
@@ -511,7 +494,7 @@ public class App {
         //
         // Usage:
         //  object.displayCountry(Array)
-        // Check employees is not null
+
         if (conts == null)
         {
             System.out.println("[system] No cities");
@@ -528,6 +511,32 @@ public class App {
                     String.format("%-20s %-25s %-25s %-25s %-25s",
                             c.getID(), c.getName(), c.getCountryCode(), c.getDistrict(), c.getPopulation());
             System.out.println(city_string);
+        }
+    }
+
+    public void displayCountry(ArrayList<Country> conts) {
+
+        //
+        // Description :
+        //  Display function for countires
+        //
+        // Usage:
+        //  object.displayCity(Array)
+
+        if (conts == null)
+        {
+            System.out.println("[system] No countires");
+            return;
+        }
+        System.out.println(String.format("%-20s %-25s %-25s %-25s %-25s", "Name", "Continent", "Region", "Capital", "Population"));
+        // Loop over all city in the list
+        for (Country country : conts) {
+            if (country == null)
+                continue;
+            String cty_string =
+                    String.format("%-20s %-25s %-25s %-25s %-25s",
+                            country.getName(), country.getContinent(), country.getRegion(), country.getCapital(), country.getPopulation());
+            System.out.println(cty_string);
         }
     }
 
