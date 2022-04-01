@@ -16,13 +16,7 @@ class AppTest
         app = new App();
     }
 
-    @Test
-
-    void DisplayCapitalCityTest_null()
-    {
-        /// test if return value is null
-        app.displayCapitalCity(null);
-    }
+ 
 
 
     @Test
@@ -68,11 +62,6 @@ class AppTest
     @Test
 
 
-    void DisplayTopCapitalCityTest_null()
-    {
-        /// test if return value is null
-        app.displayCapitalCity(null);
-    }
 
 
 
