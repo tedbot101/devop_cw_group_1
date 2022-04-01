@@ -147,5 +147,24 @@ class AppTest
         cap.setPopulation((float) 9981619);
         capitalcity.add(cap);
         app.displayCapitalCity(capitalcity);
+
     }
+
+    @Test
+    void printTopCities()
+    {
+        /// test for normal condition City
+        ArrayList<City> cities = new ArrayList<>();
+        City cty = new City();
+        cty.setID(1024);
+        cty.setName("China");
+        cty.setCountryCode("IND");
+        cty.setDistrict("Maharashtra");
+        cty.setPopulation((float) 1.05E7);
+        cities.add(cty);
+        app.displayCity(cities);
+    }
+
+
 }
+
