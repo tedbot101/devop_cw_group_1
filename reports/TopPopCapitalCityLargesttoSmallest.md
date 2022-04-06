@@ -1,5 +1,5 @@
 | ID | Name | CountryCode | District | Population | 
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
  | Seoul | South Korea | 9981619.0 | 9981619.0 |
  | Jakarta | Indonesia | 9604900.0 | 9604900.0 |
  | Ciudad de México | Mexico | 8591309.0 | 8591309.0 |

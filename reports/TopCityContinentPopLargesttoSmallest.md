@@ -1,5 +1,5 @@
 | ID | Name | CountryCode | District | Population | 
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | 1024 | Mumbai (Bombay) | IND | Maharashtra | 1.05E7 |
 | 2331 | Seoul | KOR | Seoul | 9981619.0 |
 | 1890 | Shanghai | CHN | Shanghai | 9696300.0 |

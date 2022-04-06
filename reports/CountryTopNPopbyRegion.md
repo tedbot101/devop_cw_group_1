@@ -1,5 +1,5 @@
 | Name | Continent | Region | Capital | Population | 
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | Cuba | North America | Caribbean | 2413 | 1.1201E7 |
 | Dominican Republic | North America | Caribbean | 587 | 8495000.0 |
 | Haiti | North America | Caribbean | 929 | 8222000.0 |

@@ -1,5 +1,5 @@
 | ID | Name | CountryCode | District | Population | 
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
  | Lima | Peru | 6464693.0 | 6464693.0 |
  | Santafé de Bogotá | Colombia | 6260862.0 | 6260862.0 |
  | Santiago de Chile | Chile | 4703954.0 | 4703954.0 |

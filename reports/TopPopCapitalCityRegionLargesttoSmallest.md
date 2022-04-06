@@ -1,5 +1,5 @@
 | ID | Name | CountryCode | District | Population | 
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
  | La Habana | Cuba | 2256000.0 | 2256000.0 |
  | Santo Domingo de Guzmán | Dominican Republic | 1609966.0 | 1609966.0 |
  | Port-au-Prince | Haiti | 884472.0 | 884472.0 |

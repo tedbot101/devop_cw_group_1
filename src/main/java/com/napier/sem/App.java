@@ -824,7 +824,7 @@ public class App {
         // Print header
         //String name, String continent, String region, String capital, float population
         sb.append("| Name | Continent | Region | Capital | Population | \r\n");
-        sb.append("| --- | --- | --- | --- | --- | --- | --- |\r\n");
+        sb.append("| --- | --- | --- | --- | --- |\r\n");
         // Loop over all countries in the list
         for (Country c : country) {
             if (c == null) continue;
@@ -853,7 +853,7 @@ public class App {
         // Print header
         //| ID | Name | CountryCode | District | Population |
         sb.append("| ID | Name | CountryCode | District | Population | \r\n");
-        sb.append("| --- | --- | --- | --- | --- | --- | --- |\r\n");
+        sb.append("| --- | --- | --- | --- | --- |\r\n");
         // Loop over all countries in the list
         for (City c : city) {
             if (c == null) continue;
@@ -881,13 +881,13 @@ public class App {
         StringBuilder sb = new StringBuilder();
         // Print header
         //| ID | Name | CountryCode | District | Population |
-        sb.append("| ID | Name | CountryCode | District | Population | \r\n");
-        sb.append("| --- | --- | --- | --- | --- | --- | --- |\r\n");
+        sb.append("| Name | Country | Population | \r\n");
+        sb.append("| --- | --- | --- | \r\n");
         // Loop over all countries in the list
         for (CapitalCity c : capitalcity) {
             if (c == null) continue;
             sb.append(" | " + c.getName() + " | " + c.getCountry() + " | " +
-                    c.getPopulation() + " | " + c.getPopulation() + " |\r\n");
+                    c.getPopulation() + " | " + " |\r\n");
 
         }
         try {

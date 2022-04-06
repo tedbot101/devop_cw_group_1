@@ -1,5 +1,5 @@
 | ID | Name | CountryCode | District | Population | 
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | 206 | São Paulo | BRA | São Paulo | 9968485.0 |
 | 2890 | Lima | PER | Lima | 6464693.0 |
 | 2257 | Santafé de Bogotá | COL | Santafé de Bogotá | 6260862.0 |

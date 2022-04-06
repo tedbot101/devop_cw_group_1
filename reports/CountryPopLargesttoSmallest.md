@@ -1,5 +1,5 @@
 | Name | Continent | Region | Capital | Population | 
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | China | Asia | Eastern Asia | 1891 | 1.27755802E9 |
 | India | Asia | Southern and Central Asia | 1109 | 1.01366202E9 |
 | United States | North America | North America | 3813 | 2.78356992E8 |

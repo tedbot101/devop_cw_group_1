@@ -1,5 +1,5 @@
 | ID | Name | CountryCode | District | Population | 
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | 1024 | Mumbai (Bombay) | IND | Maharashtra | 1.05E7 |
 | 2331 | Seoul | KOR | Seoul | 9981619.0 |
 | 206 | São Paulo | BRA | São Paulo | 9968485.0 |

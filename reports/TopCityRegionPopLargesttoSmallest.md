@@ -1,5 +1,5 @@
 | ID | Name | CountryCode | District | Population | 
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | 2413 | La Habana | CUB | La Habana | 2256000.0 |
 | 587 | Santo Domingo de Guzmán | DOM | Distrito Nacional | 1609966.0 |
 | 929 | Port-au-Prince | HTI | Ouest | 884472.0 |

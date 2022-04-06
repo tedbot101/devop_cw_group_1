@@ -1,5 +1,5 @@
 | ID | Name | CountryCode | District | Population | 
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | 1532 | Tokyo | JPN | Tokyo-to | 7980230.0 |
 | 1533 | Jokohama [Yokohama] | JPN | Kanagawa | 3339594.0 |
 | 1534 | Osaka | JPN | Osaka | 2595674.0 |

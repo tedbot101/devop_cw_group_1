@@ -1,5 +1,5 @@
 | ID | Name | CountryCode | District | Population | 
-| --- | --- | --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | 608 | Cairo | EGY | Kairo | 6789479.0 |
 | 2298 | Kinshasa | COD | Kinshasa | 5064000.0 |
 | 609 | Alexandria | EGY | Aleksandria | 3328196.0 |
