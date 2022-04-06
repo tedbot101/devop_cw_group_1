@@ -153,9 +153,17 @@ public class App {
         a.outputCity(a.getTopCityPopLargesttoSmallest(10), "TopCityPopLargesttoSmallest.md");
         a.outputCity(a.getTopCityRegionPopLargesttoSmallest("Caribbean", 10), "TopCityRegionPopLargesttoSmallest.md");
         a.outputCity(a.getTopCityContinentPopLargesttoSmallest("Asia", 10), "TopCityContinentPopLargesttoSmallest.md");
-        a.outputCity(a.getTopCityCountryPopLargesttoSmallest("Japan", 10), "getTopCityCountryPopLargesttoSmallest.md");
+        a.outputCity(a.getTopCityCountryPopLargesttoSmallest("Japan", 10), "TopCityCountryPopLargesttoSmallest.md");
         a.outputCity(a.getTopCityDistrictPopLargesttoSmallest("Noord-Brabant", 10), "TopCityDistrictPopLargesttoSmallest.md");
 
+        // Capital City Report
+        a.outputCapitalCity(a.getCapitalCityPopLargesttoSmallest(), "CapitalCityPopLargesttoSmallest.md");
+        a.outputCapitalCity(a.getCapitalCityContinentPopLargesttoSmallest("Asia"), "CapitalCityContinentPopLargesttoSmallest.md");
+        a.outputCapitalCity(a.getCapitalCityRegionPopLargesttoSmallest("South America"), "CapitalCityRegionPopLargesttoSmallest.md");
+        // Top N populated Capital City Report
+        a.outputCapitalCity(a.getTopPopCapitalCityLargesttoSmallest(10), "TopPopCapitalCityLargesttoSmallest.md");
+        a.outputCapitalCity(a.getTopPopCapitalCityContinentLargesttoSmallest("Asia",4), "TopPopCapitalCityContinentLargesttoSmallest.md");
+        a.outputCapitalCity(a.getTopPopCapitalCityRegionLargesttoSmallest("Caribbean",6), "TopPopCapitalCityRegionLargesttoSmallest.md");
 
         // Disconnect from database
         a.disconnect();
@@ -835,7 +843,7 @@ public class App {
     }
 
     public void outputCity(ArrayList<City> city, String filename) {
-        // Check Country
+        // Check City
         if (city == null) {
             System.out.println("[system] No City");
             return;
@@ -852,6 +860,35 @@ public class App {
             sb.append("| " + c.getID() + " | " +
                     c.getName() + " | " + c.getCountryCode() + " | " +
                     c.getDistrict() + " | " + c.getPopulation() + " |\r\n");
+        }
+        try {
+            new File("./reports/").mkdir();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new                                 File("./reports/" + filename)));
+            writer.write(sb.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void outputCapitalCity(ArrayList<CapitalCity> capitalcity, String filename) {
+        // Check CapitalCity
+        if (capitalcity == null) {
+            System.out.println("[system] No City");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        // Print header
+        //| ID | Name | CountryCode | District | Population |
+        sb.append("| ID | Name | CountryCode | District | Population | \r\n");
+        sb.append("| --- | --- | --- | --- | --- | --- | --- |\r\n");
+        // Loop over all countries in the list
+        for (CapitalCity c : capitalcity) {
+            if (c == null) continue;
+            sb.append(" | " + c.getName() + " | " + c.getCountry() + " | " +
+                    c.getPopulation() + " | " + c.getPopulation() + " |\r\n");
+
         }
         try {
             new File("./reports/").mkdir();
