@@ -1,5 +1,9 @@
 package com.napier.sem;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -28,106 +32,112 @@ public class App {
         // city report
         // All the cities in the world organised by largest population to smallest.
 
-        System.out.println("\n[*] All the cities in the world organised by largest population to smallest.[*] \n");
-        a.displayCity( a.getCityPopLargesttoSmallest());
+//        System.out.println("\n[*] All the cities in the world organised by largest population to smallest.[*] \n");
+//        a.displayCity( a.getCityPopLargesttoSmallest());
+//
+//
+//        // All the cities in the continent organised by largest population to smallest
+//        System.out.println("\n[*] All the cities in the continent organised by largest population to smallest.[*] \n");
+//        a.displayCity(a.getCityContinentPopLargesttoSmallest("Africa"));
+//
+//        // All the cities in the region organised by largest population to smallest
+//        System.out.println("\n[*] All the cities in the region organised by largest population to smallest.[*]\n");
+//        a.displayCity(a.getCityRegionPopLargesttoSmallest("South America"));
+//
+//        // All the cities in a country organised by largest population to smallest
+//        System.out.println("\n[*] All the cities in a country organised by largest population to smallest. [*]\n");
+//        a.displayCity(a.getCityCountryPopLargesttoSmallest("Japan"));
+//
+//        // All the cities in a district organised by largest population to smallest.
+//        System.out.println("\n[*] All the cities in a district organised by largest population to smallest. [*]\n");
+//        a.displayCity(a.getCityDistrictPopLargesttoSmallest("Noord-Brabant"));
+//
+//        // country report
+//        // the countries in the world organised by largest population to smallest
+//        System.out.println("\n[*] All the countries in the world organised by largest population to smallest. [*]\n");
+//        a.displayCountry(a.getCountryPopLargesttoSmallest());
+//
+//        // the countries in a continent organised by largest population to smallest
+//        System.out.println("\n[*] All the countries in a continent organised by largest population to smallest [*]\n");
+//        a.displayCountry(a.getCountryPopbyContinent("Asia"));
+//
+//        // the countries in a region organised by largest population to smallest
+//        System.out.println("\n[*] All the countries in a region organised by largest population to smallest [*]\n");
+//        a.displayCountry(a.getCountryPopbyRegion("Caribbean"));
+//
+//        // Top N populated cities
+//        //All the top cities in the world organised by largest population to smallest
+//        System.out.println("\n[*]All the top cities in the world organised by largest population to smallest.\n");
+//        ArrayList<City> city6 = a.getTopCityPopLargesttoSmallest(10);
+//        a.displayCity(city6);
+//
+//        //The top N populated cities in a continent where N is provided by the user
+//        System.out.println("\n[*]All The Top City Continent Population Largest to Smallest.\n");
+//        ArrayList<City> city7 = a.getTopCityContinentPopLargesttoSmallest("Asia", 10);
+//        a.displayCity(city7);
+//
+//        //The top N populated cities in a region where N is provided by the user
+//        System.out.println("\n[*]All The Top City Region Population Largest to Smallest.\n");
+//        ArrayList<City> city8 = a.getTopCityRegionPopLargesttoSmallest("Caribbean", 10);
+//        a.displayCity(city8);
+//
+//        //The top N populated cities in a country where N is provided by the user.
+//        System.out.println("\n[*]All The Top City Country Population Largest to Smallest.\n");
+//        ArrayList<City> city9 = a.getTopCityCountryPopLargesttoSmallest("Japan", 10);
+//        a.displayCity(city9);
+//
+//        //The top N populated cities in a district where N is provided by the user
+//        System.out.println("\n[*]All The Top City District Population Largest to Smallest.\n");
+//        ArrayList<City> city10 = a.getTopCityDistrictPopLargesttoSmallest("Noord-Brabant", 10);
+//        a.displayCity(city10);
+//
+//
+//
+//
+//        // CapitalCity report
+//        // All the Capital City in the world organised by largest population to smallest
+//        System.out.println("\n[*] All the Capital City in the world organised by largest population to smallest.\n");
+//        a.displayCapitalCity(a.getCapitalCityPopLargesttoSmallest());
+//
+//        // All the Capital City in the Continent by largest population to smallest
+//        System.out.println("\n[*] All the Capital City in the Continent by largest population to smallest.\n");
+//        a.displayCapitalCity(a.getCapitalCityContinentPopLargesttoSmallest("Asia"));
+//
+//        // All the Capital City in the Region by largest population to smallest.
+//        System.out.println("\n[*] All the Capital City in the Region by largest population to smallest.\n");
+//        a.displayCapitalCity(a.getCapitalCityRegionPopLargesttoSmallest("South America"));
+//
+//        // Top N populated countires
+//        //The top N populated countries in the world where N is provided by the user
+//        System.out.println("\n[*]The top N populated countries in the world where N is provided by the user.\n[*]");
+//        a.displayCountry(a.getCountryTopNPopLargesttoSmallest(10));
+//
+//        //The top N populated countries in a continent where N is provided by the user.
+//        System.out.println("\n[*]The top N populated countries in a continent where N is provided by the user.\n[*]");
+//        a.displayCountry(a.getCountryTopNPopbyContinent("Asia",6));
+//
+//        //The top N populated countries in a region where N is provided by the user.
+//        System.out.println("\n[*]The top N populated countries in a region where N is provided by the user.\n[*]");
+//        a.displayCountry(a.getCountryTopNPopbyRegion("Caribbean",6));
+//
+//        // top N populated capital cities report
+//        //The top N populated capital cities in the world where N is provided by the user.
+//        System.out.println("\n[*] All the Top Population Capital City in the world organised by largest population to smallest.\n");
+//        a.displayCapitalCity(a.getTopPopCapitalCityLargesttoSmallest(10));
+//
+//        //The top N populated capital cities in a continent where N is provided by the user
+//        System.out.println("\n[*]The top N populated capital cities in a continent where N is provided by the user.\n[*]");
+//        a.displayCapitalCity(a.getTopPopCapitalCityContinentLargesttoSmallest("Asia",4));
+//
+//        //The top N populated capital cities in a region where N is provided by the user
+//        System.out.println("\n[*]The top N populated capital cities in a continent where N is provided by the user.\n[*]");
+//        a.displayCapitalCity(a. getTopPopCapitalCityRegionLargesttoSmallest("Caribbean",6));
+
+        // Report file Generator
+
+        a.outputCountry(a.getCountryPopLargesttoSmallest(), "CountryPopLargesttoSmallest.md");
 
 
-        // All the cities in the continent organised by largest population to smallest
-        System.out.println("\n[*] All the cities in the continent organised by largest population to smallest.[*] \n");
-        a.displayCity(a.getCityContinentPopLargesttoSmallest("Africa"));
-
-        // All the cities in the region organised by largest population to smallest
-        System.out.println("\n[*] All the cities in the region organised by largest population to smallest.[*]\n");
-        a.displayCity(a.getCityRegionPopLargesttoSmallest("South America"));
-
-        // All the cities in a country organised by largest population to smallest
-        System.out.println("\n[*] All the cities in a country organised by largest population to smallest. [*]\n");
-        a.displayCity(a.getCityCountryPopLargesttoSmallest("Japan"));
-
-        // All the cities in a district organised by largest population to smallest.
-        System.out.println("\n[*] All the cities in a district organised by largest population to smallest. [*]\n");
-        a.displayCity(a.getCityDistrictPopLargesttoSmallest("Noord-Brabant"));
-
-        // country report
-        // the countries in the world organised by largest population to smallest
-        System.out.println("\n[*] All the countries in the world organised by largest population to smallest. [*]\n");
-        a.displayCountry(a.getCountryPopLargesttoSmallest());
-
-        // the countries in a continent organised by largest population to smallest
-        System.out.println("\n[*] All the countries in a continent organised by largest population to smallest [*]\n");
-        a.displayCountry(a.getCountryPopbyContinent("Asia"));
-
-        // the countries in a region organised by largest population to smallest          
-        System.out.println("\n[*] All the countries in a region organised by largest population to smallest [*]\n");
-        a.displayCountry(a.getCountryPopbyRegion("Caribbean"));
-
-        //All the top cities in the world organised by largest population to smallest
-        System.out.println("\n[*]All the top cities in the world organised by largest population to smallest.\n");
-        ArrayList<City> city6 = a.getTopCityPopLargesttoSmallest(10);
-        a.displayCity(city6);
-
-        // Top N populated cities
-        //The top N populated cities in a continent where N is provided by the user
-        System.out.println("\n[*]All The Top City Continent Population Largest to Smallest.\n");
-        ArrayList<City> city7 = a.getTopCityContinentPopLargesttoSmallest("Asia", 10);
-        a.displayCity(city7);
-
-        //The top N populated cities in a region where N is provided by the user
-        System.out.println("\n[*]All The Top City Region Population Largest to Smallest.\n");
-        ArrayList<City> city8 = a.getTopCityRegionPopLargesttoSmallest("Caribbean", 10);
-        a.displayCity(city8);
-
-        //The top N populated cities in a country where N is provided by the user.
-        System.out.println("\n[*]All The Top City Country Population Largest to Smallest.\n");
-        ArrayList<City> city9 = a.getTopCityCountryPopLargesttoSmallest("Japan", 10);
-        a.displayCity(city9);
-
-        //The top N populated cities in a district where N is provided by the user
-        System.out.println("\n[*]All The Top City District Population Largest to Smallest.\n");
-        ArrayList<City> city10 = a.getTopCityDistrictPopLargesttoSmallest("Noord-Brabant", 10);
-        a.displayCity(city10);
-
-
-        
-
-        // CapitalCity report
-        // All the Capital City in the world organised by largest population to smallest
-        System.out.println("\n[*] All the Capital City in the world organised by largest population to smallest.\n");
-        a.displayCapitalCity(a.getCapitalCityPopLargesttoSmallest());
-
-        // All the Capital City in the Continent by largest population to smallest
-        System.out.println("\n[*] All the Capital City in the Continent by largest population to smallest.\n");
-        a.displayCapitalCity(a.getCapitalCityContinentPopLargesttoSmallest("Asia"));
-
-        // All the Capital City in the Region by largest population to smallest.
-        System.out.println("\n[*] All the Capital City in the Region by largest population to smallest.\n");
-        a.displayCapitalCity(a.getCapitalCityRegionPopLargesttoSmallest("South America"));
-
-        // Top N populated countires
-        //The top N populated countries in the world where N is provided by the user
-        System.out.println("\n[*]The top N populated countries in the world where N is provided by the user.\n[*]");
-        a.displayCountry(a.getCountryTopNPopLargesttoSmallest(10));
-
-        //The top N populated countries in a continent where N is provided by the user.
-        System.out.println("\n[*]The top N populated countries in a continent where N is provided by the user.\n[*]");
-        a.displayCountry(a.getCountryTopNPopbyContinent("Asia",6));
-
-        //The top N populated countries in a region where N is provided by the user.
-        System.out.println("\n[*]The top N populated countries in a region where N is provided by the user.\n[*]");
-        a.displayCountry(a.getCountryTopNPopbyRegion("Caribbean",6));
-
-        // top N populated capital cities report
-        //The top N populated capital cities in the world where N is provided by the user.
-        System.out.println("\n[*] All the Top Population Capital City in the world organised by largest population to smallest.\n");
-        a.displayCapitalCity(a.getTopPopCapitalCityLargesttoSmallest(10));
-
-        //The top N populated capital cities in a continent where N is provided by the user
-        System.out.println("\n[*]The top N populated capital cities in a continent where N is provided by the user.\n[*]");
-        a.displayCapitalCity(a.getTopPopCapitalCityContinentLargesttoSmallest("Asia",4));
-
-        //The top N populated capital cities in a region where N is provided by the user
-        System.out.println("\n[*]The top N populated capital cities in a continent where N is provided by the user.\n[*]");
-        a.displayCapitalCity(a. getTopPopCapitalCityRegionLargesttoSmallest("Caribbean",6));
         // Disconnect from database
         a.disconnect();
     }
@@ -773,6 +783,35 @@ public class App {
                     String.format("%-20s %-25s %-25s %-25s %-25s",
                             country.getName(), country.getContinent(), country.getRegion(), country.getCapital(), country.getPopulation());
             System.out.println(cty_string);
+        }
+    }
+
+    public void outputCountry(ArrayList<Country> country, String filename) {
+        // Check employees is not null
+        if (country == null) {
+            System.out.println("[system] No Country");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        // Print header
+        //String name, String continent, String region, String capital, float population
+        sb.append("| Name | Continent | Region | Capital | Population | \r\n");
+        sb.append("| --- | --- | --- | --- | --- | --- | --- |\r\n");
+        // Loop over all countries in the list
+        for (Country c : country) {
+            if (c == null) continue;
+            sb.append("| " + c.getName() + " | " +
+                    c.getContinent() + " | " + c.getRegion() + " | " +
+                    c.getCapital() + " | " + c.getPopulation() + " |\r\n");
+        }
+        try {
+            new File("./reports/").mkdir();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new                                 File("./reports/" + filename)));
+            writer.write(sb.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
