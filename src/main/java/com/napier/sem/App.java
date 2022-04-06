@@ -25,7 +25,7 @@ public class App {
 
         System.out.println("[system] In main ");
 
-        // city report
+        /*// city report
         // All the cities in the world organised by largest population to smallest.
         System.out.println("\n[*] All the cities in the world organised by largest population to smallest.[*] \n");
         a.displayCity( a.getCityPopLargesttoSmallest());
@@ -86,7 +86,12 @@ public class App {
 
         //The top N populated countries in a region where N is provided by the user.
         System.out.println("\n[*]The top N populated countries in a region where N is provided by the user.\n[*]");
-        a.displayCountry(a.getCountryTopNPopbyRegion("Caribbean",6));
+        a.displayCountry(a.getCountryTopNPopbyRegion("Caribbean",6));*/
+
+        // country report
+        // the countries in the world organised by largest population to smallest
+        System.out.println("\n[*] All the countries in the world organised by largest population to smallest. [*]\n");
+        a.displayPopulation(a.getCountryPop());
 
         // Disconnect from database
         a.disconnect();
@@ -321,6 +326,8 @@ public class App {
         return cities;
     }
 
+
+
     // City in the region
     public ArrayList<City> getCityRegionPopLargesttoSmallest(String reg) throws SQLException {
 
@@ -459,6 +466,28 @@ public class App {
         return capitalcity;
     }
 
+    public ArrayList<Population>getCountryPop() throws SQLException {
+
+        //
+        // Description :
+        // report function for countires sorted from largest population to smallest
+        //
+        // Usage:
+        //  object.getCountryPopLargesttoSmallest()
+
+
+        String sql = "SELECT country.Name, country.Population,SUM(DISTINCT city.Population), (SUM(DISTINCT city.Population)/country.Population)*100, country.Population-SUM(DISTINCT city.Population),((country.Population-SUM(DISTINCT city.Population))/country.Population)*100 FROM city, country WHERE country.Code = city.CountryCode GROUP BY country.Name, country.Population order by country.Population DESC";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        ArrayList<Population> population = new ArrayList<Population>();
+        ResultSet rset = pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while (rset.next()) {
+            Population p = new Population(rset.getString(1), rset.getInt(2), rset.getInt(3), rset.getFloat(4), rset.getInt(5), rset.getFloat(6));
+            population.add(p);
+        }
+        return population;
+    }
+
     public void displayCapitalCity(ArrayList<CapitalCity> conts) {
 
         //
@@ -484,6 +513,7 @@ public class App {
             System.out.println(cty_string);
         }
     }
+
 
 
     public void displayCity(ArrayList<City> conts) {
@@ -537,6 +567,32 @@ public class App {
                     String.format("%-20s %-25s %-25s %-25s %-25s",
                             country.getName(), country.getContinent(), country.getRegion(), country.getCapital(), country.getPopulation());
             System.out.println(cty_string);
+        }
+    }
+
+    public void displayPopulation(ArrayList<Population> conts) {
+
+        //
+        // Description :
+        //  Display function for countires
+        //
+        // Usage:
+        //  object.displayCity(Array)
+
+        if (conts == null)
+        {
+            System.out.println("[system] No population");
+            return;
+        }
+        System.out.println(String.format("%-40s %-30s %-30s %-30s", "City Name", "Country Population", "Living Population", "City Population", "Not living Population"));
+        // Loop over all city in the list
+        for (Population population : conts) {
+            if (population == null)
+                continue;
+            String pop_string =
+                    String.format("%-40s %-30s %-30s %-30s",
+                            population.getName(), population.getPopulation(), population.getCountrypopulation() + " ("+population.getLivingper()+"%)", population.getCitypopulation() + " ("+ population.getNotlivingper()+"%)");
+            System.out.println(pop_string);
         }
     }
 
