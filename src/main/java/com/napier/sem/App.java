@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class App {
 
@@ -28,6 +29,7 @@ public class App {
         // Report obj calls
 
         System.out.println("[system] In main ");
+
 
         // city report
         // All the cities in the world organised by largest population to smallest.
@@ -165,6 +167,19 @@ public class App {
         a.outputCapitalCity(a.getTopPopCapitalCityContinentLargesttoSmallest("Asia",4), "TopPopCapitalCityContinentLargesttoSmallest.md");
         a.outputCapitalCity(a.getTopPopCapitalCityRegionLargesttoSmallest("Caribbean",6), "TopPopCapitalCityRegionLargesttoSmallest.md");
 
+        //Summerize Total Population
+        System.out.println("[*] All the population in the World");
+        a.getPopWorld();
+        System.out.println("[*] The population of a Continent");
+        a.getPopContinent("Asia");
+        System.out.println(("[*] The population of a Region"));
+        a.getPopRegion("Southern and Central Asia");
+        System.out.println(("[*] The population of a Country"));
+        a.getPopCountry("Aruba");
+        System.out.println(("[*] The population of a District"));
+        a.getPopDistrict("Noord-Brabant");
+        System.out.println(("[*] The population of a City"));
+        a.getPopCity("Kabul");
         // Disconnect from database
         a.disconnect();
     }
@@ -727,9 +742,85 @@ public class App {
         return capitalcity;
     }
 
+    // Summrize Total Population Section
 
+    //Total World Population
 
+    public void getPopWorld() throws SQLException {
+        String sql = "SELECT SUM(country.Population) As Population FROM country \n";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        ResultSet rset = pstmt.executeQuery();
+        //float population
+        while (rset.next()) {
+            System.out.println(rset.getFloat(1));
+        }
+    }
 
+    //A Continent Population
+
+    public void getPopContinent(String contn) throws SQLException {
+        String sql = "SELECT SUM(country.Population) As Population FROM country where Continent=? \n";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, contn);
+        ResultSet rset = pstmt.executeQuery();
+        // float population
+        while (rset.next()) {
+            System.out.println(rset.getFloat(1));
+        }
+
+    }
+
+    //A Region (Southen and Central Asia) Population
+
+    public void getPopRegion(String contn) throws SQLException {
+        String sql = "SELECT SUM(country.Population) As Population FROM country where Region=? \n";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, contn);
+        ResultSet rset = pstmt.executeQuery();
+        //float population
+        while (rset.next()) {
+            System.out.println(rset.getFloat(1));
+        }
+
+    }
+    //A Country (Aruba) Population
+    public void getPopCountry(String contn) throws SQLException {
+        String sql = "SELECT SUM(country.Population) As Population FROM country where Name=? \n";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, contn);
+        ResultSet rset = pstmt.executeQuery();
+        // float population
+        while (rset.next()) {
+            System.out.println(rset.getFloat(1));
+        }
+
+    }
+
+    //A District (Noord-Brabant) Population
+    public void getPopDistrict(String contn) throws SQLException {
+        String sql = "SELECT SUM(city.Population) As Population FROM country, city where city.District=? \n";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, contn);
+        ResultSet rset = pstmt.executeQuery();
+        // float population
+        while (rset.next()) {
+            System.out.println(rset.getFloat(1));
+        }
+
+    }
+
+    //A City (Kabul) Population
+    public void getPopCity(String contn) throws SQLException {
+        String sql = "SELECT SUM(city.Population) As Population FROM city where city.Name=? \n";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, contn);
+        ResultSet rset = pstmt.executeQuery();
+       // float population
+        while (rset.next()) {
+            System.out.println(rset.getFloat(1));
+        }
+
+    }
 
     public void displayCapitalCity(ArrayList<CapitalCity> conts) {
 
@@ -809,6 +900,28 @@ public class App {
             String cty_string =
                     String.format("%-20s %-25s %-25s %-25s %-25s",
                             country.getName(), country.getContinent(), country.getRegion(), country.getCapital(), country.getPopulation());
+            System.out.println(cty_string);
+        }
+    }
+
+    public void displaytotalpop(ArrayList<Country> conts) {
+
+        //
+        // Description :
+        //  Display function for total population
+
+
+        if (conts == null) {
+            System.out.println("[system] No countires");
+            return;
+        }
+        System.out.println(String.format("%-20s", "Population"));
+        // Loop over all city in the list
+        for (Country country : conts) {
+            if (country == null)
+                continue;
+            String cty_string =
+                    String.format("%-20s", country.getPopulation());
             System.out.println(cty_string);
         }
     }
@@ -899,6 +1012,29 @@ public class App {
             e.printStackTrace();
         }
     }
+
+    public void outputtotalpop(ArrayList<Country> conts, String s) {
+
+        //
+        // Description :
+        //  Display function for total population
+
+
+        if (conts == null) {
+            System.out.println("[system] No countires");
+            return;
+        }
+        System.out.println(String.format("%-20s", "Population"));
+        // Loop over all city in the list
+        for (Country country : conts) {
+            if (country == null)
+                continue;
+            String cty_string =
+                    String.format("%-20s", country.getPopulation());
+            System.out.println(cty_string);
+        }
+    }
+
 
 
 }
