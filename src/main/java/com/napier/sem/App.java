@@ -163,6 +163,8 @@ public class App {
 
 
 
+
+
         // Report file Generator
         // Country report
         a.outputCountry(a.getCountryPopLargesttoSmallest(), "CountryPopLargesttoSmallest.md");
@@ -194,6 +196,9 @@ public class App {
         a.outputCapitalCity(a.getTopPopCapitalCityLargesttoSmallest(10), "TopPopCapitalCityLargesttoSmallest.md");
         a.outputCapitalCity(a.getTopPopCapitalCityContinentLargesttoSmallest("Asia",4), "TopPopCapitalCityContinentLargesttoSmallest.md");
         a.outputCapitalCity(a.getTopPopCapitalCityRegionLargesttoSmallest("Caribbean",6), "TopPopCapitalCityRegionLargesttoSmallest.md");
+
+        // Population Report
+        a.outputPopulation(population,"population.md");
 
         // Disconnect from database
         a.disconnect();
@@ -1060,7 +1065,7 @@ public class App {
         }
         return cty_string;
     }
-    public void outputPopulation(ArrayList poplist, String filename) {
+    public void outputPopulation(ArrayList<Float> poplist, String filename) {
         // Check CapitalCity
         if (poplist == null) {
             System.out.println("[system] Empty Array");
@@ -1069,16 +1074,16 @@ public class App {
 
         StringBuilder sb = new StringBuilder();
         // Print header
-        //| ID | Name | CountryCode | District | Population |
-        sb.append("| Name | Country | Population | \r\n");
-        sb.append("| --- | --- | --- | \r\n");
+        //| World | Continent | region | Country | District | City
+        sb.append("| World | Continent | region | Country | District | City | \r\n");
+        sb.append("| --- | --- | --- | --- | --- | --- | \r\n");
+        sb.append(" | " );
         // Loop over all countries in the list
-//        for (ArrayList<> p : poplist) {
-//            if (p == null) continue;
-//            sb.append(" | " + c.getName() + " | " + c.getCountry() + " | " +
-//                    c.getPopulation() + " | " + " |\r\n");
-//
-//        }
+        for (Float p : poplist) {
+            if (p == null) continue;
+            sb.append( p + " | ");
+
+        }
         try {
             new File("./reports/").mkdir();
             BufferedWriter writer = new BufferedWriter(new FileWriter(new                                 File("./reports/" + filename)));
