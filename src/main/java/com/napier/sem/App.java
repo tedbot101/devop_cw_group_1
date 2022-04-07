@@ -1,5 +1,9 @@
 package com.napier.sem;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -57,16 +61,16 @@ public class App {
         System.out.println("\n[*] All the countries in a continent organised by largest population to smallest [*]\n");
         a.displayCountry(a.getCountryPopbyContinent("Asia"));
 
-        // the countries in a region organised by largest population to smallest          
+        // the countries in a region organised by largest population to smallest
         System.out.println("\n[*] All the countries in a region organised by largest population to smallest [*]\n");
         a.displayCountry(a.getCountryPopbyRegion("Caribbean"));
 
+        // Top N populated cities
         //All the top cities in the world organised by largest population to smallest
         System.out.println("\n[*]All the top cities in the world organised by largest population to smallest.\n");
         ArrayList<City> city6 = a.getTopCityPopLargesttoSmallest(10);
         a.displayCity(city6);
 
-        // Top N populated cities
         //The top N populated cities in a continent where N is provided by the user
         System.out.println("\n[*]All The Top City Continent Population Largest to Smallest.\n");
         ArrayList<City> city7 = a.getTopCityContinentPopLargesttoSmallest("Asia", 10);
@@ -88,7 +92,7 @@ public class App {
         a.displayCity(city10);
 
 
-        
+
 
         // CapitalCity report
         // All the Capital City in the world organised by largest population to smallest
@@ -128,6 +132,39 @@ public class App {
         //The top N populated capital cities in a region where N is provided by the user
         System.out.println("\n[*]The top N populated capital cities in a continent where N is provided by the user.\n[*]");
         a.displayCapitalCity(a. getTopPopCapitalCityRegionLargesttoSmallest("Caribbean",6));
+
+        // Report file Generator
+        // Country report
+        a.outputCountry(a.getCountryPopLargesttoSmallest(), "CountryPopLargesttoSmallest.md");
+        a.outputCountry(a.getCountryPopbyContinent("Asia"), "CountryPopbyContinent.md");
+        a.outputCountry(a.getCountryPopbyRegion("Caribbean"), "CountryPopbyRegion.md");
+        // top N populated Country
+        a.outputCountry(a.getCountryTopNPopLargesttoSmallest(10), "CountryTopNPopLargesttoSmallest.md");
+        a.outputCountry(a.getCountryTopNPopbyContinent("Asia",6), "CountryTopNPopbyContinent.md");
+        a.outputCountry(a.getCountryTopNPopbyRegion("Caribbean",6), "CountryTopNPopbyRegion.md");
+
+        // City report
+        a.outputCity(a.getCityPopLargesttoSmallest(), "CityPopLargesttoSmallest.md");
+        a.outputCity(a.getCityContinentPopLargesttoSmallest("Africa"), "CityContinentPopLargesttoSmallest.md");
+        a.outputCity(a.getCityRegionPopLargesttoSmallest("South America"), "CityRegionPopLargesttoSmallest.md");
+        a.outputCity(a.getCityCountryPopLargesttoSmallest("Japan"), "CityCountryPopLargesttoSmallest.md");
+        a.outputCity(a.getCityDistrictPopLargesttoSmallest("Noord-Brabant"), "CityDistrictPopLargesttoSmallest.md");
+        // top N populated City
+        a.outputCity(a.getTopCityPopLargesttoSmallest(10), "TopCityPopLargesttoSmallest.md");
+        a.outputCity(a.getTopCityRegionPopLargesttoSmallest("Caribbean", 10), "TopCityRegionPopLargesttoSmallest.md");
+        a.outputCity(a.getTopCityContinentPopLargesttoSmallest("Asia", 10), "TopCityContinentPopLargesttoSmallest.md");
+        a.outputCity(a.getTopCityCountryPopLargesttoSmallest("Japan", 10), "TopCityCountryPopLargesttoSmallest.md");
+        a.outputCity(a.getTopCityDistrictPopLargesttoSmallest("Noord-Brabant", 10), "TopCityDistrictPopLargesttoSmallest.md");
+
+        // Capital City Report
+        a.outputCapitalCity(a.getCapitalCityPopLargesttoSmallest(), "CapitalCityPopLargesttoSmallest.md");
+        a.outputCapitalCity(a.getCapitalCityContinentPopLargesttoSmallest("Asia"), "CapitalCityContinentPopLargesttoSmallest.md");
+        a.outputCapitalCity(a.getCapitalCityRegionPopLargesttoSmallest("South America"), "CapitalCityRegionPopLargesttoSmallest.md");
+        // Top N populated Capital City Report
+        a.outputCapitalCity(a.getTopPopCapitalCityLargesttoSmallest(10), "TopPopCapitalCityLargesttoSmallest.md");
+        a.outputCapitalCity(a.getTopPopCapitalCityContinentLargesttoSmallest("Asia",4), "TopPopCapitalCityContinentLargesttoSmallest.md");
+        a.outputCapitalCity(a.getTopPopCapitalCityRegionLargesttoSmallest("Caribbean",6), "TopPopCapitalCityRegionLargesttoSmallest.md");
+
         // Disconnect from database
         a.disconnect();
     }
@@ -773,6 +810,93 @@ public class App {
                     String.format("%-20s %-25s %-25s %-25s %-25s",
                             country.getName(), country.getContinent(), country.getRegion(), country.getCapital(), country.getPopulation());
             System.out.println(cty_string);
+        }
+    }
+
+    public void outputCountry(ArrayList<Country> country, String filename) {
+        // Check Country
+        if (country == null) {
+            System.out.println("[system] No Country");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        // Print header
+        //String name, String continent, String region, String capital, float population
+        sb.append("| Name | Continent | Region | Capital | Population | \r\n");
+        sb.append("| --- | --- | --- | --- | --- |\r\n");
+        // Loop over all countries in the list
+        for (Country c : country) {
+            if (c == null) continue;
+            sb.append("| " + c.getName() + " | " +
+                    c.getContinent() + " | " + c.getRegion() + " | " +
+                    c.getCapital() + " | " + c.getPopulation() + " |\r\n");
+        }
+        try {
+            new File("./reports/").mkdir();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new                                 File("./reports/" + filename)));
+            writer.write(sb.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void outputCity(ArrayList<City> city, String filename) {
+        // Check City
+        if (city == null) {
+            System.out.println("[system] No City");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        // Print header
+        //| ID | Name | CountryCode | District | Population |
+        sb.append("| ID | Name | CountryCode | District | Population | \r\n");
+        sb.append("| --- | --- | --- | --- | --- |\r\n");
+        // Loop over all countries in the list
+        for (City c : city) {
+            if (c == null) continue;
+            sb.append("| " + c.getID() + " | " +
+                    c.getName() + " | " + c.getCountryCode() + " | " +
+                    c.getDistrict() + " | " + c.getPopulation() + " |\r\n");
+        }
+        try {
+            new File("./reports/").mkdir();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new                                 File("./reports/" + filename)));
+            writer.write(sb.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void outputCapitalCity(ArrayList<CapitalCity> capitalcity, String filename) {
+        // Check CapitalCity
+        if (capitalcity == null) {
+            System.out.println("[system] No City");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        // Print header
+        //| ID | Name | CountryCode | District | Population |
+        sb.append("| Name | Country | Population | \r\n");
+        sb.append("| --- | --- | --- | \r\n");
+        // Loop over all countries in the list
+        for (CapitalCity c : capitalcity) {
+            if (c == null) continue;
+            sb.append(" | " + c.getName() + " | " + c.getCountry() + " | " +
+                    c.getPopulation() + " | " + " |\r\n");
+
+        }
+        try {
+            new File("./reports/").mkdir();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new                                 File("./reports/" + filename)));
+            writer.write(sb.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
