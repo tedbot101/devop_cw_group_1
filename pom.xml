@@ -46,7 +46,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <finalName>DevOps_Group_1_App_web</finalName>
+                    <finalName>DevOps_Group_1_web_app</finalName>
                     <mainClass>webapp.App</mainClass>
                 </configuration>
                 <executions>
