@@ -88,10 +88,18 @@ public class App {
         System.out.println("\n[*]The top N populated countries in a region where N is provided by the user.\n[*]");
         a.displayCountry(a.getCountryTopNPopbyRegion("Caribbean",6));*/
 
-        // country report
-        // the countries in the world organised by largest population to smallest
-        System.out.println("\n[*] All the countries in the world organised by largest population to smallest. [*]\n");
+        // Population report
+        // The population of people, people living in cities, and people not living in cities in each country.
+        System.out.println("\n[*] The population of people, people living in cities, and people not living in cities in each country. [*]\n");
         a.displayPopulation(a.getCountryPop());
+
+        // The population of people, people living in cities, and people not living in cities in each continent.
+        System.out.println("\n[*] The population of people, people living in cities, and people not living in cities in each continent. [*]\n");
+        a.displayPopulation(a.getContinentPop("Africa"));
+
+        // The population of people, people living in cities, and people not living in cities in each continent.
+        System.out.println("\n[*] The population of people, people living in cities, and people not living in cities in each Region. [*]\n");
+        a.displayPopulation(a.getRegionPop("South America"));
 
         // Disconnect from database
         a.disconnect();
@@ -480,7 +488,53 @@ public class App {
         PreparedStatement pstmt = con.prepareStatement(sql);
         ArrayList<Population> population = new ArrayList<Population>();
         ResultSet rset = pstmt.executeQuery();
-        //String name, String continent, String region, String capital, float population
+        //private String name, int populatin, int livingpopulation, float living, int notlivingpopulation, float notliving;
+        while (rset.next()) {
+            Population p = new Population(rset.getString(1), rset.getInt(2), rset.getInt(3), rset.getFloat(4), rset.getInt(5), rset.getFloat(6));
+            population.add(p);
+        }
+        return population;
+    }
+
+    public ArrayList<Population>getContinentPop(String contn) throws SQLException {
+
+        //
+        // Description :
+        // report function for population of people, people living in cities, and people not living in cities in each Continent
+        //
+        // Usage:
+        //  object.getContinentPop()
+
+
+        String sql = "SELECT country.Name, country.Population,SUM(DISTINCT city.Population), (SUM(DISTINCT city.Population)/country.Population)*100, country.Population-SUM(DISTINCT city.Population),((country.Population-SUM(DISTINCT city.Population))/country.Population)*100 FROM city, country WHERE country.Code = city.CountryCode And country.Continent = ? GROUP BY country.Name, country.Population order by country.Population DESC";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, contn);
+        ArrayList<Population> population = new ArrayList<Population>();
+        ResultSet rset = pstmt.executeQuery();
+        //private String name, int populatin, int livingpopulation, float living, int notlivingpopulation, float notliving;
+        while (rset.next()) {
+            Population p = new Population(rset.getString(1), rset.getInt(2), rset.getInt(3), rset.getFloat(4), rset.getInt(5), rset.getFloat(6));
+            population.add(p);
+        }
+        return population;
+    }
+
+    public ArrayList<Population>getRegionPop(String reg) throws SQLException {
+
+        //
+        // Description :
+        // report function for population of people, people living in cities, and people not living in cities in each Continent
+        //
+        // Usage:
+        //  object.getContinentPop()
+
+
+        String sql = "SELECT country.Name, country.Population,SUM(DISTINCT city.Population), (SUM(DISTINCT city.Population)/country.Population)*100, country.Population-SUM(DISTINCT city.Population),((country.Population-SUM(DISTINCT city.Population))/country.Population)*100 FROM city, country WHERE country.Code = city.CountryCode And country.Region = ? GROUP BY country.Name, country.Population order by country.Population DESC";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, reg);
+        ArrayList<Population> population = new ArrayList<Population>();
+        ResultSet rset = pstmt.executeQuery();
+        //private String name, int populatin, int livingpopulation, float living, int notlivingpopulation, float notliving;
         while (rset.next()) {
             Population p = new Population(rset.getString(1), rset.getInt(2), rset.getInt(3), rset.getFloat(4), rset.getInt(5), rset.getFloat(6));
             population.add(p);
@@ -520,10 +574,10 @@ public class App {
 
         //
         // Description :
-        //  Display function for Country
+        //  Display function for City
         //
         // Usage:
-        //  object.displayCountry(Array)
+        //  object.displayCity(Array)
 
         if (conts == null)
         {
@@ -577,14 +631,14 @@ public class App {
         //  Display function for population
         //
         // Usage:
-        //  object.displayPopulatio (Array)
+        //  object.displayPopulation (Array)
 
         if (conts == null)
         {
             System.out.println("[system] No population");
             return;
         }
-        System.out.println(String.format("%-40s %-30s %-30s %-30s", "Country Name", "Country Population", "Living Population", "Not living Population"));
+        System.out.println(String.format("%-40s %-30s %-30s %-30s", "Country Name", "Country Population", "Living in city Population", "Not living in city Population"));
         // Loop over all city in the list
         for (Population population : conts) {
             if (population == null)
