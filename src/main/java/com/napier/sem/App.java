@@ -470,10 +470,10 @@ public class App {
 
         //
         // Description :
-        // report function for countires sorted from largest population to smallest
+        // report function for population of people, people living in cities, and people not living in cities in each country
         //
         // Usage:
-        //  object.getCountryPopLargesttoSmallest()
+        //  object.getCountryPop()
 
 
         String sql = "SELECT country.Name, country.Population,SUM(DISTINCT city.Population), (SUM(DISTINCT city.Population)/country.Population)*100, country.Population-SUM(DISTINCT city.Population),((country.Population-SUM(DISTINCT city.Population))/country.Population)*100 FROM city, country WHERE country.Code = city.CountryCode GROUP BY country.Name, country.Population order by country.Population DESC";
@@ -574,24 +574,24 @@ public class App {
 
         //
         // Description :
-        //  Display function for countires
+        //  Display function for population
         //
         // Usage:
-        //  object.displayCity(Array)
+        //  object.displayPopulatio (Array)
 
         if (conts == null)
         {
             System.out.println("[system] No population");
             return;
         }
-        System.out.println(String.format("%-40s %-30s %-30s %-30s", "City Name", "Country Population", "Living Population", "City Population", "Not living Population"));
+        System.out.println(String.format("%-40s %-30s %-30s %-30s", "Country Name", "Country Population", "Living Population", "Not living Population"));
         // Loop over all city in the list
         for (Population population : conts) {
             if (population == null)
                 continue;
             String pop_string =
                     String.format("%-40s %-30s %-30s %-30s",
-                            population.getName(), population.getPopulation(), population.getCountrypopulation() + " ("+population.getLivingper()+"%)", population.getCitypopulation() + " ("+ population.getNotlivingper()+"%)");
+                            population.getName(), population.getPopulation(), population.getLivingpopulation() + " ("+population.getLiving()+"%)", population.getNotlivingpopulation() + " ("+ population.getNotliving()+"%)");
             System.out.println(pop_string);
         }
     }
