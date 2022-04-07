@@ -181,8 +181,8 @@ public class AppIntegrationTest
 
 
 
-
-    void getCountryTopNPopLargesttoSmallest() throws SQLException {
+    @Test
+    void testgetCountryTopNPopLargesttoSmallest() throws SQLException {
 
         // Test CountryPopLargesttoSmallest record
 
@@ -197,7 +197,7 @@ public class AppIntegrationTest
     }
 
     @Test
-    void getCountryTopNPopbyContinent() throws SQLException {
+    void testgetCountryTopNPopbyContinent() throws SQLException {
 
         // Test CountryPopLargesttoSmallest record
 
@@ -212,7 +212,7 @@ public class AppIntegrationTest
     }
 
     @Test
-    void getCountryTopNPopbyRegion() throws SQLException {
+    void testgetCountryTopNPopbyRegion() throws SQLException {
 
         // Test CountryPopLargesttoSmallest record
 
@@ -223,6 +223,44 @@ public class AppIntegrationTest
         assertEquals(unit11.getRegion(),"Caribbean");
         assertEquals(unit11.getCapital(),"2413");
         assertEquals(unit11.getPopulation(),1.1201E7 );
+
+    }
+
+    @Test
+    void testgetCountryPop() throws SQLException {
+
+        Population unit12 = app.getCountryPop().get(0);
+        // testing only one instance
+        assertEquals(unit12.getName(),"China");
+        assertEquals(unit12.getPopulation(),1277558000);
+        assertEquals(unit12.getLivingpopulation(),171180941);
+        assertEquals(unit12.getNotlivingpopulation(),1106377059);
+
+
+    }
+
+    @Test
+    void testgetContinentPop() throws SQLException {
+
+
+        Population unit12 = app.getContinentPop("Africa").get(0);
+        // testing only one instance
+        assertEquals(unit12.getName(),"Nigeria");
+        assertEquals(unit12.getPopulation(),111506000);
+        assertEquals(unit12.getLivingpopulation(),17366900);
+        assertEquals(unit12.getNotlivingpopulation(),94139100);
+
+    }
+
+    @Test
+    void testgetRegionPop() throws SQLException {
+
+        Population unit12 = app.getRegionPop("South America").get(0);
+        // testing only one instance
+        assertEquals(unit12.getName(),"Brazil");
+        assertEquals(unit12.getPopulation(),170115000);
+        assertEquals(unit12.getLivingpopulation(),85751265);
+        assertEquals(unit12.getNotlivingpopulation(),84363735);
 
     }
 

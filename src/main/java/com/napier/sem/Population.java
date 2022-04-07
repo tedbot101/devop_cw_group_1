@@ -23,6 +23,10 @@ public class Population {
     private int notlivingpopulation;
     private float notliving;
 
+    public Population() {
+
+    }
+
 
     public String getName() {
         return name;
