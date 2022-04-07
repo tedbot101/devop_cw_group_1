@@ -41,6 +41,14 @@ class AppTest
         app.displayCapitalCity(null);
     }
 
+    @Test
+
+    void Displaytotalpop_null()
+    {
+        /// test if return value is null
+        app.displaytotalpop(null);
+    }
+
 
 
     @Test
@@ -60,16 +68,19 @@ class AppTest
     }
 
     @Test
-
-
-
-
-
     void DisplayCapitalCityTest_Empty()
     {
         /// test if return value is empty array
         ArrayList<CapitalCity> capitalcity = new ArrayList<>();
         app.displayCapitalCity(capitalcity);
+    }
+
+    @Test
+    void Displaytotalpop_Empty()
+    {
+        /// test if return value is empty array
+        ArrayList<Country> world = new ArrayList<Country>();
+        app.displaytotalpop(world);
     }
 
 
@@ -92,13 +103,21 @@ class AppTest
     }
 
     @Test
-
     void DisplayCapitalCityTest_ContainsNull()
     {
         /// test if the array contains null var
         ArrayList<CapitalCity> capitalcity = new ArrayList<>();
         capitalcity.add(null);
         app.displayCapitalCity(capitalcity);
+    }
+
+    @Test
+    void Displaytotalpop_ContainsNull()
+    {
+        /// test if the array contains null var
+        ArrayList<Country> world = new ArrayList<Country>();
+        world.add(null);
+        app.displaytotalpop(world);
     }
 
     @Test
@@ -176,6 +195,18 @@ class AppTest
         app.displayCity(cities);
     }
     @Test
+    void printtotalpop()
+    {
+            /// test for normal condition Country
+            ArrayList<Country> world = new ArrayList<>();
+            Country wor = new Country();
+            wor.setName("Aruba");
+            wor.setPopulation((float) 103000);
+            world.add(wor);
+            app.displaytotalpop(world);
+    }
+
+    @Test
     void testOutputCity()
     {
         /// test for normal condition City
@@ -217,6 +248,18 @@ class AppTest
         capitalcity.add(cap);
         app.outputCapitalCity(capitalcity,"testcapitalcity");
 
+    }
+
+    @Test
+    void testOutputtotalpop()
+    {
+        /// test for normal condition Country
+        ArrayList<Country> world = new ArrayList<>();
+        Country wor = new Country();
+        wor.setName("Aruba");
+        wor.setPopulation((float) 103000);
+        world.add(wor);
+        app.outputtotalpop(world, "testtotalpop");
     }
 
 
