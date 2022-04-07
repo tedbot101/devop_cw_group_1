@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class App {
 
@@ -135,6 +134,37 @@ public class App {
         System.out.println("\n[*]The top N populated capital cities in a continent where N is provided by the user.\n[*]");
         a.displayCapitalCity(a. getTopPopCapitalCityRegionLargesttoSmallest("Caribbean",6));
 
+        //Summerize Total Population
+        ArrayList<Float> population = new ArrayList<Float>();
+
+        System.out.println("[*] All the population in the World");
+        System.out.println((a.getPopWorld()));
+        population.add(a.getPopWorld());
+
+        System.out.println("[*] The population of a Continent");
+        System.out.println(a.getPopContinent("Asia"));
+        population.add(a.getPopContinent("Asia"));
+
+        System.out.println(("[*] The population of a Region"));
+        System.out.println(a.getPopRegion("Southern and Central Asia"));
+        population.add(a.getPopRegion("Southern and Central Asia"));
+
+        System.out.println(("[*] The population of a Country"));
+        System.out.println(a.getPopCountry("Aruba"));
+        population.add(a.getPopCountry("Aruba"));
+
+        System.out.println(("[*] The population of a District"));
+        System.out.println(a.getPopDistrict("Noord-Brabant"));
+        population.add(a.getPopDistrict("Noord-Brabant"));
+
+        System.out.println(("[*] The population of a City"));
+        System.out.println(a.getPopCity("Kabul"));
+        population.add(a.getPopCity("Kabul"));
+
+
+
+
+
         // Report file Generator
         // Country report
         a.outputCountry(a.getCountryPopLargesttoSmallest(), "CountryPopLargesttoSmallest.md");
@@ -167,19 +197,9 @@ public class App {
         a.outputCapitalCity(a.getTopPopCapitalCityContinentLargesttoSmallest("Asia",4), "TopPopCapitalCityContinentLargesttoSmallest.md");
         a.outputCapitalCity(a.getTopPopCapitalCityRegionLargesttoSmallest("Caribbean",6), "TopPopCapitalCityRegionLargesttoSmallest.md");
 
-        //Summerize Total Population
-        System.out.println("[*] All the population in the World");
-        a.getPopWorld();
-        System.out.println("[*] The population of a Continent");
-        a.getPopContinent("Asia");
-        System.out.println(("[*] The population of a Region"));
-        a.getPopRegion("Southern and Central Asia");
-        System.out.println(("[*] The population of a Country"));
-        a.getPopCountry("Aruba");
-        System.out.println(("[*] The population of a District"));
-        a.getPopDistrict("Noord-Brabant");
-        System.out.println(("[*] The population of a City"));
-        a.getPopCity("Kabul");
+        // Population Report
+        a.outputPopulation(population,"population.md");
+
         // Disconnect from database
         a.disconnect();
     }
@@ -746,80 +766,91 @@ public class App {
 
     //Total World Population
 
-    public void getPopWorld() throws SQLException {
+    public Float getPopWorld() throws SQLException {
         String sql = "SELECT SUM(country.Population) As Population FROM country \n";
         PreparedStatement pstmt = con.prepareStatement(sql);
         ResultSet rset = pstmt.executeQuery();
         //float population
+        Float result = null;
         while (rset.next()) {
-            System.out.println(rset.getFloat(1));
+            result = rset.getFloat(1);
         }
+        return result;
     }
 
     //A Continent Population
 
-    public void getPopContinent(String contn) throws SQLException {
+    public Float getPopContinent(String contn) throws SQLException {
         String sql = "SELECT SUM(country.Population) As Population FROM country where Continent=? \n";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         ResultSet rset = pstmt.executeQuery();
         // float population
+        Float result = null;
         while (rset.next()) {
-            System.out.println(rset.getFloat(1));
+            result = rset.getFloat(1);
         }
+        return result;
 
     }
 
     //A Region (Southen and Central Asia) Population
 
-    public void getPopRegion(String contn) throws SQLException {
+    public Float getPopRegion(String contn) throws SQLException {
         String sql = "SELECT SUM(country.Population) As Population FROM country where Region=? \n";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         ResultSet rset = pstmt.executeQuery();
         //float population
+        Float result = null;
         while (rset.next()) {
-            System.out.println(rset.getFloat(1));
+            result = rset.getFloat(1);
         }
+        return result;
 
     }
     //A Country (Aruba) Population
-    public void getPopCountry(String contn) throws SQLException {
+    public Float getPopCountry(String contn) throws SQLException {
         String sql = "SELECT SUM(country.Population) As Population FROM country where Name=? \n";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         ResultSet rset = pstmt.executeQuery();
         // float population
+        Float result = null;
         while (rset.next()) {
-            System.out.println(rset.getFloat(1));
+            result = rset.getFloat(1);
         }
+        return result;
 
     }
 
     //A District (Noord-Brabant) Population
-    public void getPopDistrict(String contn) throws SQLException {
+    public Float getPopDistrict(String contn) throws SQLException {
         String sql = "SELECT SUM(city.Population) As Population FROM country, city where city.District=? \n";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         ResultSet rset = pstmt.executeQuery();
         // float population
+        Float result = null;
         while (rset.next()) {
-            System.out.println(rset.getFloat(1));
+            result = rset.getFloat(1);
         }
+        return result;
 
     }
 
     //A City (Kabul) Population
-    public void getPopCity(String contn) throws SQLException {
+    public Float getPopCity(String contn) throws SQLException {
         String sql = "SELECT SUM(city.Population) As Population FROM city where city.Name=? \n";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
         ResultSet rset = pstmt.executeQuery();
-       // float population
+        // float population
+        Float result = null;
         while (rset.next()) {
-            System.out.println(rset.getFloat(1));
+            result = rset.getFloat(1);
         }
-
+        return result;
     }
 
     public void displayCapitalCity(ArrayList<CapitalCity> conts) {
@@ -1013,7 +1044,7 @@ public class App {
         }
     }
 
-    public void outputtotalpop(ArrayList<Country> conts, String s) {
+    public String outputtotalpop(ArrayList<Country> conts, String s) {
 
         //
         // Description :
@@ -1022,19 +1053,46 @@ public class App {
 
         if (conts == null) {
             System.out.println("[system] No countires");
-            return;
+            return "";
         }
         System.out.println(String.format("%-20s", "Population"));
         // Loop over all city in the list
+        String cty_string = null;
         for (Country country : conts) {
             if (country == null)
                 continue;
-            String cty_string =
-                    String.format("%-20s", country.getPopulation());
-            System.out.println(cty_string);
+            cty_string = String.format("%-20s", country.getPopulation());
+        }
+        return cty_string;
+    }
+    public void outputPopulation(ArrayList<Float> poplist, String filename) {
+        // Check CapitalCity
+        if (poplist == null) {
+            System.out.println("[system] Empty Array");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        // Print header
+        //| World | Continent | region | Country | District | City
+        sb.append("| World | Continent | region | Country | District | City | \r\n");
+        sb.append("| --- | --- | --- | --- | --- | --- | \r\n");
+        sb.append(" | " );
+        // Loop over all countries in the list
+        for (Float p : poplist) {
+            if (p == null) continue;
+            sb.append( p + " | ");
+
+        }
+        try {
+            new File("./reports/").mkdir();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new                                 File("./reports/" + filename)));
+            writer.write(sb.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
-
 
 
 }
