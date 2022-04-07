@@ -121,19 +121,6 @@ public class App {
         System.out.println("\n[*]The top N populated countries in a region where N is provided by the user.\n[*]");
         a.displayCountry(a.getCountryTopNPopbyRegion("Caribbean",6));
 
-        // Population report
-        // The population of people, people living in cities, and people not living in cities in each country.
-        System.out.println("\n[*] The population of people, people living in cities, and people not living in cities in each country. [*]\n");
-        a.displayPopulation(a.getCountryPop());
-
-        // The population of people, people living in cities, and people not living in cities in each continent.
-        System.out.println("\n[*] The population of people, people living in cities, and people not living in cities in each continent. [*]\n");
-        a.displayPopulation(a.getContinentPop("Africa"));
-
-        // The population of people, people living in cities, and people not living in cities in each continent.
-        System.out.println("\n[*] The population of people, people living in cities, and people not living in cities in each Region. [*]\n");
-        a.displayPopulation(a.getRegionPop("South America"));
-
         // top N populated capital cities report
         //The top N populated capital cities in the world where N is provided by the user.
         System.out.println("\n[*] All the Top Population Capital City in the world organised by largest population to smallest.\n");
@@ -175,6 +162,20 @@ public class App {
         population.add(a.getPopCity("Kabul"));
 
 
+        // Population report
+        // The population of people, people living in cities, and people not living in cities in each country.
+        System.out.println("\n[*] The population of people, people living in cities, and people not living in cities in each country. [*]\n");
+        a.displayPopulation(a.getCountryPop());
+
+        // The population of people, people living in cities, and people not living in cities in each continent.
+        System.out.println("\n[*] The population of people, people living in cities, and people not living in cities in each continent. [*]\n");
+        a.displayPopulation(a.getContinentPop("Africa"));
+
+        // The population of people, people living in cities, and people not living in cities in each continent.
+        System.out.println("\n[*] The population of people, people living in cities, and people not living in cities in each Region. [*]\n");
+        a.displayPopulation(a.getRegionPop("South America"));
+
+
 
 
 
@@ -212,6 +213,9 @@ public class App {
 
         // Population Report
         a.outputPopulation(population,"population.md");
+        a.ReportPopulation(a.getCountryPop(),"CountryPopulation.md");
+        a.ReportPopulation(a.getContinentPop("Africa"),"ContinentPopulation.md");
+        a.ReportPopulation(a.getRegionPop("South America"),"RegionPopulation.md");
 
         // Disconnect from database
         a.disconnect();
@@ -1176,6 +1180,7 @@ public class App {
         }
         return cty_string;
     }
+
     public void outputPopulation(ArrayList<Float> poplist, String filename) {
         // Check CapitalCity
         if (poplist == null) {
@@ -1193,6 +1198,42 @@ public class App {
         for (Float p : poplist) {
             if (p == null) continue;
             sb.append( p + " | ");
+
+        }
+        try {
+            new File("./reports/").mkdir();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new                                 File("./reports/" + filename)));
+            writer.write(sb.toString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    public void ReportPopulation(ArrayList<Population> populations, String filename) {
+        // Check CapitalCity
+        if (populations == null) {
+            System.out.println("[system] Empty Array");
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        // Print header
+        //| World | Continent | region | Country | District | City
+        sb.append("| Name | Population | Living Population | NotLiving Population | \r\n");
+        sb.append("| --- | --- | --- | --- | \r\n");
+
+        // Loop over all countries in the list
+        for (Population p : populations) {
+            if (p == null) continue;
+            sb.append(" | " + p.getName() +
+                    " | " + p.getPopulation() +
+                    " | " + p.getLivingpopulation() +
+                    " (" + p.getLiving() +
+                    " %)| " + p.getNotlivingpopulation() +
+                    " (" + p.getNotliving()
+                    + " %) |\r\n");
 
         }
         try {
