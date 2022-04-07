@@ -43,6 +43,24 @@
         <plugins>
 
             <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <finalName>DevOps_Group_1_App_web</finalName>
+                    <mainClass>webapp.App</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.3.0</version>
@@ -50,7 +68,7 @@
                     <finalName>DevOps_Group_1_App</finalName>
                     <archive>
                         <manifest>
-                            <mainClass>com.napier.webapp.App</mainClass>
+                            <mainClass>com.napier.sem.App</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
