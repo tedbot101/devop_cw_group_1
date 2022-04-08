@@ -175,7 +175,29 @@ public class App {
         System.out.println("\n[*] The population of people, people living in cities, and people not living in cities in each Region. [*]\n");
         a.displayPopulation(a.getRegionPop("South America"));
 
-
+        //Summerize Total Population
+        System.out.println("[*] All the population in the World");
+        a.getPopWorld();
+        System.out.println("[*] The population of a Continent");
+        a.getPopContinent("Asia");
+        System.out.println(("[*] The population of a Region"));
+        a.getPopRegion("Southern and Central Asia");
+        System.out.println(("[*] The population of a Country"));
+        a.getPopCountry("Aruba");
+        System.out.println(("[*] The population of a District"));
+        a.getPopDistrict("Noord-Brabant");
+        System.out.println(("[*] The population of a City"));
+        a.getPopCity("Kabul");
+      
+        //the number of people who speak Chinese, English, Hindi, Spanish, Arabic languages from greatest number to smallest
+        System.out.println("\n[*]The the number of people who speak Chinese, English, Hindi, Spanish, Arabic languages from greatest number to smalles.\n[*]");
+        a.getLanguagePopPerLargesttoSmallest();
+      
+        // Population Report
+        a.outputPopulation(population,"population.md");
+        a.ReportPopulation(a.getCountryPop(),"CountryPopulation.md");
+        a.ReportPopulation(a.getContinentPop("Africa"),"ContinentPopulation.md");
+        a.ReportPopulation(a.getRegionPop("South America"),"RegionPopulation.md");
 
 
 
@@ -211,11 +233,9 @@ public class App {
         a.outputCapitalCity(a.getTopPopCapitalCityContinentLargesttoSmallest("Asia",4), "TopPopCapitalCityContinentLargesttoSmallest.md");
         a.outputCapitalCity(a.getTopPopCapitalCityRegionLargesttoSmallest("Caribbean",6), "TopPopCapitalCityRegionLargesttoSmallest.md");
 
-        // Population Report
-        a.outputPopulation(population,"population.md");
-        a.ReportPopulation(a.getCountryPop(),"CountryPopulation.md");
-        a.ReportPopulation(a.getContinentPop("Africa"),"ContinentPopulation.md");
-        a.ReportPopulation(a.getRegionPop("South America"),"RegionPopulation.md");
+
+        
+
 
         // Disconnect from database
         a.disconnect();
@@ -940,6 +960,39 @@ public class App {
         return result;
     }
 
+    public void getLanguagePopPerLargesttoSmallest() throws SQLException {
+
+        //
+        // Description :
+        // report function for language
+        //
+        // Usage:
+        //  object.getLanguagePopPerLargesttoSmallest()
+        String pop = "SELECT SUM(country.Population) From country";
+        PreparedStatement pstmts = con.prepareStatement(pop);
+        ResultSet rests = pstmts.executeQuery();
+        Long w = 0l;
+        while (rests.next()){
+            w = rests.getLong(1);
+            System.out.println(w);}
+
+
+        String sql = "SELECT countrylanguage.Language, SUM(country.Population) From country, countrylanguage Where country.Code = countrylanguage.CountryCode AND countrylanguage.Language IN ('Chinese','English','Hindi','Spanish','Arabic') AND countrylanguage.IsOfficial = 'T' Group by countrylanguage.Language" ;
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        ArrayList<Language> languages = new ArrayList<Language>();
+        ResultSet rset = pstmt.executeQuery();
+        //String language, float popper
+        while (rset.next()) {
+            Language p = new Language(rset.getString(1), rset.getInt(2));
+            languages.add(p);
+        }
+        displayLanguage(languages,w);
+    }
+
+
+
+
+
     public void displayCapitalCity(ArrayList<CapitalCity> conts) {
 
         //
@@ -964,6 +1017,33 @@ public class App {
                     String.format("%-20s %-25s %-25s",
                             capitalcity.getName(),  capitalcity.getCountry(), capitalcity.getPopulation());
             System.out.println(cty_string);
+        }
+    }
+
+    public void displayLanguage(ArrayList<Language> lag, long w) {
+
+        //
+        // Description :
+        //  Display function for language
+        //
+        // Usage:
+        //  object.displayLanguage(Array)
+
+
+        if (lag == null)
+        {
+            System.out.println("[system] No Capital cities");
+            return;
+        }
+        System.out.println(String.format("%-20s %-25s %-25s", "Language", "Country Population", "World Population %"));
+        // Loop over all language
+        for (Language language : lag) {
+            if (language == null)
+                continue;
+            String lag_string =
+                    String.format("%-20s %-25s %.2f",
+                            language.getLanguage(),  language.getPopper(), 100.0f*language.getPopper()/w);
+            System.out.println(lag_string);
         }
     }
 

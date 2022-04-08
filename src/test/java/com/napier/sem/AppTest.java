@@ -27,6 +27,14 @@ class AppTest
     }
 
     @Test
+    void DisplayLanguageTest_null()
+    {
+        /// test if return value is null
+        app.displayLanguage(null, 6078000000l);
+    }
+
+
+    @Test
     void DisplayCountryTest_null()
     {
         /// test if return value is null
