@@ -1,6 +1,8 @@
 name: Workflow of Devops Group 1
-on: push
-
+on:
+  push:
+    branches:
+      - main
 jobs:
   UnitTests:
     name: Unit Tests
@@ -56,6 +58,14 @@ jobs:
         run: |
           mvn package -DskipTests
           docker-compose up --abort-on-container-exit
+          
+      - uses: "marvinpinto/action-automatic-releases@latest"
+          with:
+            repo_token: "${{ secrets.GITHUB_TOKEN }}"
+            prerelease: false
+            automatic_release_tag: "Code Review 4"
+            files: |
+              ./target/*.jar
 
       - name: Copy Output
         run: docker container cp devop_cw_group_1_app_1:./tmp/reports ./
