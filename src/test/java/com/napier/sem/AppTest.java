@@ -189,6 +189,25 @@ class AppTest
 
 
     @Test
+    void printPopulation()
+    {
+        /// test for normal condition CapialCity
+        //  population.getName(), population.getPopulation(), population.getLivingpopulation() + " ("+population.getLiving()+"%)", population.getNotlivingpopulation() + " ("+ population.getNotliving()+"%)");
+        ArrayList<Population> population = new ArrayList<>();
+        Population cap = new Population();
+        cap.setName("Seoul");
+        cap.setPopulation(1231);
+        cap.setLivingpopulation(121321);
+        cap.getLivingpopulation();
+        cap.getNotlivingpopulation();
+        cap.getNotliving();
+        population.add(cap);
+        app.displayPopulation(population);
+    }
+
+
+
+    @Test
     void printTopCities()
     {
         /// test for normal condition City

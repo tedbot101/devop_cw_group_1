@@ -1,0 +1,169 @@
+###
+GET http://localhost:8080/CountryPopLargesttoSmallest
+
+<> 2022-04-08T111448.200.json
+
+###
+GET http://localhost:8080/CountryPopbyContinent?continent=Asia
+
+<> 2022-04-08T111448-1.200.json
+
+###
+GET http://localhost:8080/CountryPopbyRegion?region=South America
+
+<> 2022-04-08T111448-2.200.json
+
+###
+GET http://localhost:8080/CountryTopNPopLargesttoSmallest?n=4
+
+<> 2022-04-08T111449.200.json
+
+###
+GET http://localhost:8080/CountryTopNPopbyContinent?continent=Asia&n=5
+
+<> 2022-04-08T111449-1.200.json
+
+###
+GET http://localhost:8080/CountryTopNPopbyRegion?region=South America&n=6
+
+<> 2022-04-08T111449-2.200.json
+
+###
+GET http://localhost:8080/CityPopLargesttoSmallest
+
+<> 2022-04-08T111449-3.200.json
+
+###
+GET http://localhost:8080/CityContinentPopLargesttoSmallest?continent="Asia"
+
+<> 2022-04-08T111449-4.200.json
+
+###
+GET http://localhost:8080/CityRegionPopLargesttoSmallest?region=South America
+
+<> 2022-04-08T111449-5.200.json
+
+###
+GET http://localhost:8080/CityCountryPopLargesttoSmallest?country=Japan
+
+<> 2022-04-08T111449-6.200.json
+
+###
+GET http://localhost:8080/CityDistrictPopLargesttoSmallest?district=Noord-Brabant
+
+<> 2022-04-08T111449-7.200.json
+
+###
+GET http://localhost:8080/TopCityPopLargesttoSmallest?n=4
+
+<> 2022-04-08T111449-8.200.json
+
+###
+GET http://localhost:8080/TopCityContinentPopLargesttoSmallest?continent=Asia&n=4
+
+<> 2022-04-08T111449-9.200.json
+
+###
+GET http://localhost:8080/TopCityRegionPopLargesttoSmallest?region=South America&n=6
+
+<> 2022-04-08T111450.200.json
+
+###
+GET http://localhost:8080/TopCityCountryPopLargesttoSmallest?country=Japan&n=4
+
+<> 2022-04-08T111450-1.200.json
+
+###
+GET http://localhost:8080/TopCityDistrictPopLargesttoSmallest?district=Noord-Brabant&n=4
+
+<> 2022-04-08T111450-2.200.json
+
+###
+GET http://localhost:8080/CapitalCityPopLargesttoSmallest
+
+<> 2022-04-08T111450-3.200.json
+
+###
+GET http://localhost:8080/CapitalCityContinentPopLargesttoSmallest?continent=Asia
+
+<> 2022-04-08T111450-4.200.json
+<> 2022-04-08T110631.200.json
+
+###
+GET http://localhost:8080/CapitalCityRegionPopLargesttoSmallest?region=South America
+
+<> 2022-04-08T111450-5.200.json
+<> 2022-04-08T110755.200.json
+
+###
+GET http://localhost:8080/CountryPop
+
+<> 2022-04-08T111450-6.200.json
+<> 2022-04-08T110807.200.json
+
+###
+GET http://localhost:8080/ContinentPop?continent=Asia
+
+<> 2022-04-08T111505.200.json
+<> 2022-04-08T111450-7.200.json
+
+###
+GET http://localhost:8080/RegionPop?region=South America
+
+<> 2022-04-08T111450-8.200.json
+<> 2022-04-08T110907.200.json
+
+###
+GET http://localhost:8080/TopPopCapitalCityLargesttoSmallest?n=4
+
+<> 2022-04-08T111450-9.200.json
+<> 2022-04-08T110932.200.json
+
+###
+GET http://localhost:8080/TopPopCapitalCityContinentLargesttoSmallest?continent=Asia&n=3
+
+<> 2022-04-08T111451.200.json
+<> 2022-04-08T111007.200.json
+
+###
+GET http://localhost:8080/TopPopCapitalCityRegionLargesttoSmallest?region=South American&n=6
+
+<> 2022-04-08T111451-1.200.json
+<> 2022-04-08T111037.200.json
+
+###
+GET http://localhost:8080/PopWorld
+
+<> 2022-04-08T111451-2.200.json
+<> 2022-04-08T111049.200.json
+
+###
+GET http://localhost:8080/PopContinent?continent=Asia
+
+<> 2022-04-08T111451-3.200.json
+<> 2022-04-08T111117.200.json
+
+###
+GET http://localhost:8080/PopRegion?region=Central Asia)
+
+<> 2022-04-08T111451-4.200.json
+<> 2022-04-08T111143.200.json
+
+###
+GET http://localhost:8080/PopCountry?country=Japan
+
+<> 2022-04-08T111451-5.200.json
+<> 2022-04-08T111222.200.json
+
+###
+GET http://localhost:8080/PopDistrict?district=Noord-Brabant
+
+<> 2022-04-08T111451-6.200.json
+<> 2022-04-08T111223.200.json
+
+###
+GET http://localhost:8080/PopCity?city=Kabul
+
+<> 2022-04-08T111451-7.200.json
+<> 2022-04-08T111247.200.json
+

@@ -39,8 +39,6 @@ jobs:
           docker stop world
           docker rm world
           docker image rm database 
-
-
   build:
     name: Build and Start Using docker-compose
     runs-on: ubuntu-20.04
@@ -58,7 +56,7 @@ jobs:
         run: |
           mvn package -DskipTests
           docker-compose up --abort-on-container-exit
-          
+
       - name: Copy Output
         run: docker container cp devop_cw_group_1_app_1:./tmp/reports ./
       - name: Deploy
@@ -66,4 +64,3 @@ jobs:
         with:
           branch: reports # The branch the action should deploy to.
           folder: reports # The folder we are copying
-
