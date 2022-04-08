@@ -60,7 +60,7 @@ jobs:
           docker-compose up --abort-on-container-exit
           
       - uses: "marvinpinto/action-automatic-releases@latest"
-          with:
+        with:
             repo_token: "${{ secrets.GITHUB_TOKEN }}"
             prerelease: false
             automatic_release_tag: "Code Review 4"
