@@ -226,7 +226,7 @@ public class App {
         }
         return countries;
     }
-
+    @RequestMapping("CityPopLargesttoSmallest")
     public ArrayList<City> getCityPopLargesttoSmallest() throws SQLException {
 
         //
@@ -250,7 +250,8 @@ public class App {
     }
 
     // City in the continent
-    public ArrayList<City> getCityContinentPopLargesttoSmallest(String contn) throws SQLException {
+    @RequestMapping("CityContinentPopLargesttoSmallest")
+    public ArrayList<City> getCityContinentPopLargesttoSmallest(@RequestParam(value = "continent") String contn) throws SQLException {
 
         //
         // Description :
@@ -276,7 +277,8 @@ public class App {
 
 
     // City in the region
-    public ArrayList<City> getCityRegionPopLargesttoSmallest(String reg) throws SQLException {
+    @RequestMapping("CityRegionPopLargesttoSmallest")
+    public ArrayList<City> getCityRegionPopLargesttoSmallest(@RequestParam(value = "region") String reg) throws SQLException {
 
         //
         // Description :
@@ -300,7 +302,8 @@ public class App {
     }
 
     // Cities in a country
-    public ArrayList<City> getCityCountryPopLargesttoSmallest(String coun) throws SQLException {
+    @RequestMapping("CityCountryPopLargesttoSmallest")
+    public ArrayList<City> getCityCountryPopLargesttoSmallest(@RequestParam(value = "country") String coun) throws SQLException {
 
         //
         // Description :
@@ -324,7 +327,8 @@ public class App {
     }
 
     // Cities in District
-    public ArrayList<City> getCityDistrictPopLargesttoSmallest(String dist) throws SQLException {
+    @RequestMapping("CityDistrictPopLargesttoSmallest")
+    public ArrayList<City> getCityDistrictPopLargesttoSmallest(@RequestParam(value="district") String dist) throws SQLException {
 
         //
         // Description :
@@ -348,7 +352,8 @@ public class App {
 
     }
     //The top N populated cities in the world where N is provided by the user.
-    public ArrayList<City> getTopCityPopLargesttoSmallest(int ci) throws SQLException {
+    @RequestMapping("TopCityPopLargesttoSmallest")
+    public ArrayList<City> getTopCityPopLargesttoSmallest(@RequestParam(value="n") int ci) throws SQLException {
 
         //
         //Description :
@@ -372,7 +377,8 @@ public class App {
     }
 
     //The top N populated cities in a continent where N is provided by the user.
-    public ArrayList<City> getTopCityContinentPopLargesttoSmallest(String contn, int ci) throws SQLException {
+    @RequestMapping("TopCityContinentPopLargesttoSmallest")
+    public ArrayList<City> getTopCityContinentPopLargesttoSmallest(@RequestParam(value="continent") String contn, @RequestParam(value="n") int ci) throws SQLException {
 
         //
         //Description :
@@ -397,7 +403,8 @@ public class App {
     }
 
     //The top N populated cities in a region where N is provided by the use
-    public ArrayList<City> getTopCityRegionPopLargesttoSmallest(String reg, int ci) throws SQLException {
+    @RequestMapping("TopCityRegionPopLargesttoSmallest")
+    public ArrayList<City> getTopCityRegionPopLargesttoSmallest(@RequestParam(value="region") String reg, @RequestParam(value="n") int ci) throws SQLException {
 
         //
         //Description :
@@ -422,7 +429,8 @@ public class App {
     }
 
     //The top N populated cities in a country where N is provided by the user.
-    public ArrayList<City> getTopCityCountryPopLargesttoSmallest(String country, int ci) throws SQLException {
+    @RequestMapping("TopCityCountryPopLargesttoSmallest")
+    public ArrayList<City> getTopCityCountryPopLargesttoSmallest(@RequestParam(value="country") String country, @RequestParam(value="n") int ci) throws SQLException {
 
         //
         //Description :
@@ -447,7 +455,8 @@ public class App {
     }
 
     //The top N populated cities in a district where N is provided by the user
-    public ArrayList<City> getTopCityDistrictPopLargesttoSmallest(String district, int ci) throws SQLException {
+    @RequestMapping("TopCityDistrictPopLargesttoSmallest")
+    public ArrayList<City> getTopCityDistrictPopLargesttoSmallest(@RequestParam(value = "district") String district, @RequestParam(value = "n") int ci) throws SQLException {
         String sql = "select ID,Name,CountryCode, District, Population from city where District = ? order by Population desc limit ?";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, district);
@@ -469,6 +478,7 @@ public class App {
 
 
     //Capital City by Population
+    @RequestMapping("CapitalCityPopLargesttoSmallest")
     public ArrayList<CapitalCity> getCapitalCityPopLargesttoSmallest() throws SQLException {
         //
         // description :
@@ -490,7 +500,8 @@ public class App {
         return capitalcity;
     }
     // Capital City in a continent
-    public ArrayList<CapitalCity> getCapitalCityContinentPopLargesttoSmallest(String contn) throws SQLException {
+    @RequestMapping("CapitalCityContinentPopLargesttoSmallest")
+    public ArrayList<CapitalCity> getCapitalCityContinentPopLargesttoSmallest(@RequestParam(value = "continent") String contn) throws SQLException {
         //
         // description :
         // report function for capital city in selected Continent "Asia" from largest to smallest population
@@ -511,7 +522,8 @@ public class App {
         return capitalcity;
     }
 
-    public ArrayList<CapitalCity> getCapitalCityRegionPopLargesttoSmallest(String contn) throws SQLException {
+    @RequestMapping("CapitalCityRegionPopLargesttoSmallest")
+    public ArrayList<CapitalCity> getCapitalCityRegionPopLargesttoSmallest(@RequestParam(value="region") String contn) throws SQLException {
         //
         // description :
         // report function for capital city in selected Region "South America" from largest to smallest population
@@ -532,6 +544,7 @@ public class App {
         return capitalcity;
     }
 
+    @RequestMapping("CountryPop")
     public ArrayList<Population>getCountryPop() throws SQLException {
 
         //
@@ -554,7 +567,8 @@ public class App {
         return population;
     }
 
-    public ArrayList<Population>getContinentPop(String contn) throws SQLException {
+    @RequestMapping("ContinentPop")
+    public ArrayList<Population>getContinentPop(@RequestParam(value="conntinent") String contn) throws SQLException {
 
         //
         // Description :
@@ -577,7 +591,8 @@ public class App {
         return population;
     }
 
-    public ArrayList<Population>getRegionPop(String reg) throws SQLException {
+    @RequestMapping("RegionPop")
+    public ArrayList<Population>getRegionPop(@RequestParam(value = "region") String reg) throws SQLException {
 
         //
         // Description :
@@ -602,7 +617,8 @@ public class App {
 
 
     //The top N populated capital cities in the world where N is provided by the user.
-    public ArrayList<CapitalCity> getTopPopCapitalCityLargesttoSmallest(int ci) throws SQLException {
+    @RequestMapping("TopPopCapitalCityLargesttoSmallest")
+    public ArrayList<CapitalCity> getTopPopCapitalCityLargesttoSmallest(@RequestParam(value = "n") int ci) throws SQLException {
         //
         // description :
         // report function for top populated capital city in the world from largest to smallest population
@@ -625,7 +641,8 @@ public class App {
     }
 
     //The top N populated capital cities in a continent where N is provided by the user
-    public ArrayList<CapitalCity>getTopPopCapitalCityContinentLargesttoSmallest(String contn , int ci) throws SQLException {
+    @RequestMapping("TopPopCapitalCityContinentLargesttoSmallest")
+    public ArrayList<CapitalCity>getTopPopCapitalCityContinentLargesttoSmallest(@RequestParam("continent") String contn , @RequestParam("n") int ci) throws SQLException {
         //
         // description :
         // report function for top populated capital city in continent from largest to smallest population
@@ -649,7 +666,8 @@ public class App {
     }
 
     //The top N populated capital cities in a region where N is provided by the user
-    public ArrayList<CapitalCity>getTopPopCapitalCityRegionLargesttoSmallest(String reg , int ci) throws SQLException {
+    @RequestMapping("TopPopCapitalCityRegionLargesttoSmallest")
+    public ArrayList<CapitalCity>getTopPopCapitalCityRegionLargesttoSmallest(@RequestParam("region") String reg , @RequestParam("n") int ci) throws SQLException {
         //
         // description :
         // report function for top populated capital city in region from largest to smallest population
@@ -675,7 +693,7 @@ public class App {
     // Summrize Total Population Section
 
     //Total World Population
-
+    @RequestMapping("PopWorld")
     public Float getPopWorld() throws SQLException {
         String sql = "SELECT SUM(country.Population) As Population FROM country \n";
         PreparedStatement pstmt = con.prepareStatement(sql);
@@ -689,8 +707,8 @@ public class App {
     }
 
     //A Continent Population
-
-    public Float getPopContinent(String contn) throws SQLException {
+    @RequestMapping("PopContinent")
+    public Float getPopContinent(@RequestParam(value = "continent") String contn) throws SQLException {
         String sql = "SELECT SUM(country.Population) As Population FROM country where Continent=? \n";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
@@ -705,8 +723,8 @@ public class App {
     }
 
     //A Region (Southen and Central Asia) Population
-
-    public Float getPopRegion(String contn) throws SQLException {
+    @RequestMapping("PopRegion")
+    public Float getPopRegion(@RequestParam(value = "region") String contn) throws SQLException {
         String sql = "SELECT SUM(country.Population) As Population FROM country where Region=? \n";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
@@ -720,7 +738,8 @@ public class App {
 
     }
     //A Country (Aruba) Population
-    public Float getPopCountry(String contn) throws SQLException {
+    @RequestMapping("PopCountry")
+    public Float getPopCountry(@RequestParam(value = "country") String contn) throws SQLException {
         String sql = "SELECT SUM(country.Population) As Population FROM country where Name=? \n";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
@@ -735,7 +754,8 @@ public class App {
     }
 
     //A District (Noord-Brabant) Population
-    public Float getPopDistrict(String contn) throws SQLException {
+    @RequestMapping("PopDistrict")
+    public Float getPopDistrict(@RequestParam(value = "district") String contn) throws SQLException {
         String sql = "SELECT SUM(city.Population) As Population FROM country, city where city.District=? \n";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
@@ -750,7 +770,8 @@ public class App {
     }
 
     //A City (Kabul) Population
-    public Float getPopCity(String contn) throws SQLException {
+    @RequestMapping("PopCity")
+    public Float getPopCity(@RequestParam(value = "city") String contn) throws SQLException {
         String sql = "SELECT SUM(city.Population) As Population FROM city where city.Name=? \n";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
