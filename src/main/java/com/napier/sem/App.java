@@ -96,7 +96,7 @@ public class App {
 
 
 
-        // CapitalCity report
+        /*// CapitalCity report
         // All the Capital City in the world organised by largest population to smallest
         System.out.println("\n[*] All the Capital City in the world organised by largest population to smallest.\n");
         a.displayCapitalCity(a.getCapitalCityPopLargesttoSmallest());
@@ -179,7 +179,12 @@ public class App {
         System.out.println(("[*] The population of a District"));
         a.getPopDistrict("Noord-Brabant");
         System.out.println(("[*] The population of a City"));
-        a.getPopCity("Kabul");
+        a.getPopCity("Kabul");*/
+        //the number of people who speak Chinese, English, Hindi, Spanish, Arabic languages from greatest number to smallest
+        System.out.println("\n[*]The the number of people who speak Chinese, English, Hindi, Spanish, Arabic languages from greatest number to smalles.\n[*]");
+        a.getLanguagePopPerLargesttoSmallest();
+        // Disconnect from database
+        a.disconnect();
         // Disconnect from database
         a.disconnect();
     }
@@ -822,6 +827,39 @@ public class App {
 
     }
 
+    public void getLanguagePopPerLargesttoSmallest() throws SQLException {
+
+        //
+        // Description :
+        // report function for language
+        //
+        // Usage:
+        //  object.getLanguagePopPerLargesttoSmallest()
+        String pop = "SELECT SUM(country.Population) From country";
+        PreparedStatement pstmts = con.prepareStatement(pop);
+        ResultSet rests = pstmts.executeQuery();
+        Long w = 0l;
+        while (rests.next()){
+            w = rests.getLong(1);
+            System.out.println(w);}
+
+
+        String sql = "SELECT countrylanguage.Language, SUM(country.Population) From country, countrylanguage Where country.Code = countrylanguage.CountryCode AND countrylanguage.Language IN ('Chinese','English','Hindi','Spanish','Arabic') AND countrylanguage.IsOfficial = 'T' Group by countrylanguage.Language" ;
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        ArrayList<Language> languages = new ArrayList<Language>();
+        ResultSet rset = pstmt.executeQuery();
+        //String language, float popper
+        while (rset.next()) {
+            Language p = new Language(rset.getString(1), rset.getInt(2));
+            languages.add(p);
+        }
+        displayLanguage(languages,w);
+    }
+
+
+
+
+
     public void displayCapitalCity(ArrayList<CapitalCity> conts) {
 
         //
@@ -846,6 +884,33 @@ public class App {
                     String.format("%-20s %-25s %-25s",
                             capitalcity.getName(),  capitalcity.getCountry(), capitalcity.getPopulation());
             System.out.println(cty_string);
+        }
+    }
+
+    public void displayLanguage(ArrayList<Language> lag, long w) {
+
+        //
+        // Description :
+        //  Display function for language
+        //
+        // Usage:
+        //  object.displayLanguage(Array)
+
+
+        if (lag == null)
+        {
+            System.out.println("[system] No Capital cities");
+            return;
+        }
+        System.out.println(String.format("%-20s %-25s %-25s", "Language", "Country Population", "World Population %"));
+        // Loop over all language
+        for (Language language : lag) {
+            if (language == null)
+                continue;
+            String lag_string =
+                    String.format("%-20s %-25s %.2f",
+                            language.getLanguage(),  language.getPopper(), 100.0f*language.getPopper()/w);
+            System.out.println(lag_string);
         }
     }
 
