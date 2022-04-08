@@ -568,7 +568,7 @@ public class App {
     }
 
     @RequestMapping("ContinentPop")
-    public ArrayList<Population>getContinentPop(@RequestParam(value="conntinent") String contn) throws SQLException {
+    public ArrayList<Population>getContinentPop(@RequestParam(value="continent") String contn) throws SQLException {
 
         //
         // Description :
