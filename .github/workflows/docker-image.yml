@@ -2,7 +2,7 @@ name: Workflow of Devops Group 1
 on:
   push:
     branches:
-      - deployment
+      - main
 jobs:
   UnitTests:
     name: Unit Tests
