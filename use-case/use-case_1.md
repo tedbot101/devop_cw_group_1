@@ -4,7 +4,7 @@
 
 ### Goal in Context
 
-Database manager wants to produce a report on Countries in the world, continent and region by largest population to smallest.
+Organization wants to produce a report on Countries in the world, continent and region by largest population to smallest.
 
 ### Scope
 
@@ -16,7 +16,7 @@ Primary task.
 
 ### Preconditions
 
-Database contains world population data.
+Database service contains world population data is up
 
 ### Success End Condition
 
@@ -28,14 +28,14 @@ No report is produced.
 
 ### Primary Actor
 
-Database Manager
+Organization
 
 ### Trigger
 
-A request for report is sent to Database Manager.
+A request for report is sent by Organization.
 
 ## MAIN SUCCESS SCENARIO
-
+The following reports with given format have been generated and made available to organization 
 1. Report of all the countries in the world organised by largest population to smallest.
 2. Report of all the countries in a continent organised by largest population to smallest.
 3. Report of all the countries in a region organised by largest population to smallest.
