@@ -1,4 +1,4 @@
-package com.napier.sem;
+package webapp;
 
 public class Population {
     public Population(String name, int population, int livingpopulation, float living, int notlivingpopulation, float notliving) {
