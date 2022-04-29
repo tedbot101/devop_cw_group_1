@@ -33,7 +33,7 @@ public class App {
         // city report
         // All the cities in the world organised by largest population to smallest.
 
-        System.out.println("\n[*] All the cities in the world organised by largest population to smallest.[*] \n");
+        /*System.out.println("\n[*] All the cities in the world organised by largest population to smallest.[*] \n");
         a.displayCity( a.getCityPopLargesttoSmallest());
 
 
@@ -62,7 +62,7 @@ public class App {
         System.out.println("\n[*] All the countries in a continent organised by largest population to smallest [*]\n");
         a.displayCountry(a.getCountryPopbyContinent("Asia"));
 
-        // the countries in a region organised by largest population to smallest
+        // the countries in a region organised by largest population to smallest          
         System.out.println("\n[*] All the countries in a region organised by largest population to smallest [*]\n");
         a.displayCountry(a.getCountryPopbyRegion("Caribbean"));
 
@@ -72,6 +72,8 @@ public class App {
         ArrayList<City> city6 = a.getTopCityPopLargesttoSmallest(10);
         a.displayCity(city6);
 
+
+        // Top N populated cities
         //The top N populated cities in a continent where N is provided by the user
         System.out.println("\n[*]All The Top City Continent Population Largest to Smallest.\n");
         ArrayList<City> city7 = a.getTopCityContinentPopLargesttoSmallest("Asia", 10);
@@ -91,8 +93,6 @@ public class App {
         System.out.println("\n[*]All The Top City District Population Largest to Smallest.\n");
         ArrayList<City> city10 = a.getTopCityDistrictPopLargesttoSmallest("Noord-Brabant", 10);
         a.displayCity(city10);
-
-
 
 
         // CapitalCity report
@@ -121,6 +121,7 @@ public class App {
         System.out.println("\n[*]The top N populated countries in a region where N is provided by the user.\n[*]");
         a.displayCountry(a.getCountryTopNPopbyRegion("Caribbean",6));
 
+
         // top N populated capital cities report
         //The top N populated capital cities in the world where N is provided by the user.
         System.out.println("\n[*] All the Top Population Capital City in the world organised by largest population to smallest.\n");
@@ -132,48 +133,12 @@ public class App {
 
         //The top N populated capital cities in a region where N is provided by the user
         System.out.println("\n[*]The top N populated capital cities in a continent where N is provided by the user.\n[*]");
-        a.displayCapitalCity(a. getTopPopCapitalCityRegionLargesttoSmallest("Caribbean",6));
-
-        //Summerize Total Population
-        ArrayList<Float> population = new ArrayList<Float>();
-
-        System.out.println("[*] All the population in the World");
-        System.out.println((a.getPopWorld()));
-        population.add(a.getPopWorld());
-
-        System.out.println("[*] The population of a Continent");
-        System.out.println(a.getPopContinent("Asia"));
-        population.add(a.getPopContinent("Asia"));
-
-        System.out.println(("[*] The population of a Region"));
-        System.out.println(a.getPopRegion("Southern and Central Asia"));
-        population.add(a.getPopRegion("Southern and Central Asia"));
-
-        System.out.println(("[*] The population of a Country"));
-        System.out.println(a.getPopCountry("Aruba"));
-        population.add(a.getPopCountry("Aruba"));
-
-        System.out.println(("[*] The population of a District"));
-        System.out.println(a.getPopDistrict("Noord-Brabant"));
-        population.add(a.getPopDistrict("Noord-Brabant"));
-
-        System.out.println(("[*] The population of a City"));
-        System.out.println(a.getPopCity("Kabul"));
-        population.add(a.getPopCity("Kabul"));
+        a.displayCapitalCity(a. getTopPopCapitalCityRegionLargesttoSmallest("Caribbean",6));*/
 
 
-        // Population report
-        // The population of people, people living in cities, and people not living in cities in each country.
-        System.out.println("\n[*] The population of people, people living in cities, and people not living in cities in each country. [*]\n");
-        a.displayPopulation(a.getCountryPop());
-
-        // The population of people, people living in cities, and people not living in cities in each continent.
-        System.out.println("\n[*] The population of people, people living in cities, and people not living in cities in each continent. [*]\n");
-        a.displayPopulation(a.getContinentPop("Africa"));
-
-        // The population of people, people living in cities, and people not living in cities in each continent.
-        System.out.println("\n[*] The population of people, people living in cities, and people not living in cities in each Region. [*]\n");
-        a.displayPopulation(a.getRegionPop("South America"));
+        //The top N populated capital cities in a region where N is provided by the user
+        System.out.println("\n[*]The top N populated capital cities in a continent where N is provided by the user.\n[*]");
+        a.getLanguagePopPerLargesttoSmallest();
 
         //Summerize Total Population
         System.out.println("[*] All the population in the World");
@@ -470,8 +435,6 @@ public class App {
         return cities;
     }
 
-
-
     // City in the region
     public ArrayList<City> getCityRegionPopLargesttoSmallest(String reg) throws SQLException {
 
@@ -729,72 +692,132 @@ public class App {
         return capitalcity;
     }
 
-    public ArrayList<Population>getCountryPop() throws SQLException {
 
+    //The top N populated capital cities in the world where N is provided by the user.
+    public ArrayList<CapitalCity> getTopPopCapitalCityLargesttoSmallest(int ci) throws SQLException {
         //
-        // Description :
-        // report function for population of people, people living in cities, and people not living in cities in each country
+        // description :
+        // report function for top populated capital city in the world from largest to smallest population
         //
         // Usage:
-        //  object.getCountryPop()
+        // object .getTopPopCapitalCityLargesttoSmallest
 
-
-        String sql = "SELECT country.Name, country.Population,SUM(DISTINCT city.Population), (SUM(DISTINCT city.Population)/country.Population)*100, country.Population-SUM(DISTINCT city.Population),((country.Population-SUM(DISTINCT city.Population))/country.Population)*100 FROM city, country WHERE country.Code = city.CountryCode GROUP BY country.Name, country.Population order by country.Population DESC";
+        String sql = "select city.Name, country.Name, city.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID order by city.Population desc limit ?";
         PreparedStatement pstmt = con.prepareStatement(sql);
-        ArrayList<Population> population = new ArrayList<Population>();
+        pstmt.setInt(1, ci);
+        ArrayList<CapitalCity> capitalcity = new ArrayList<CapitalCity>();
         ResultSet rset = pstmt.executeQuery();
-        //private String name, int populatin, int livingpopulation, float living, int notlivingpopulation, float notliving;
+        //String name, String continent, String region, String capital, float population
         while (rset.next()) {
-            Population p = new Population(rset.getString(1), rset.getInt(2), rset.getInt(3), rset.getFloat(4), rset.getInt(5), rset.getFloat(6));
-            population.add(p);
+
+            CapitalCity c = new CapitalCity(rset.getString(1), rset.getString(2), rset.getFloat(3));
+            capitalcity.add(c);
         }
-        return population;
+        return capitalcity;
     }
 
-    public ArrayList<Population>getContinentPop(String contn) throws SQLException {
-
+    //The top N populated capital cities in a continent where N is provided by the user
+    public ArrayList<CapitalCity>getTopPopCapitalCityContinentLargesttoSmallest(String contn , int ci) throws SQLException {
         //
-        // Description :
-        // report function for population of people, people living in cities, and people not living in cities in each Continent
+        // description :
+        // report function for top populated capital city in continent from largest to smallest population
         //
         // Usage:
-        //  object.getContinentPop()
+        // object .getTopPopCapitalCityContinentLargesttoSmallest
 
-
-        String sql = "SELECT country.Name, country.Population,SUM(DISTINCT city.Population), (SUM(DISTINCT city.Population)/country.Population)*100, country.Population-SUM(DISTINCT city.Population),((country.Population-SUM(DISTINCT city.Population))/country.Population)*100 FROM city, country WHERE country.Code = city.CountryCode And country.Continent = ? GROUP BY country.Name, country.Population order by country.Population DESC";
+        String sql = "select city.Name, country.Name, city.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID and country.Continent = ? order by city.Population desc limit ?";
         PreparedStatement pstmt = con.prepareStatement(sql);
         pstmt.setString(1, contn);
-        ArrayList<Population> population = new ArrayList<Population>();
+        pstmt.setInt(2, ci);
+        ArrayList<CapitalCity> capitalcity = new ArrayList<CapitalCity>();
         ResultSet rset = pstmt.executeQuery();
-        //private String name, int populatin, int livingpopulation, float living, int notlivingpopulation, float notliving;
+        //String name, String continent, String region, String capital, float population
         while (rset.next()) {
-            Population p = new Population(rset.getString(1), rset.getInt(2), rset.getInt(3), rset.getFloat(4), rset.getInt(5), rset.getFloat(6));
-            population.add(p);
+
+            CapitalCity c = new CapitalCity(rset.getString(1), rset.getString(2), rset.getFloat(3));
+            capitalcity.add(c);
         }
-        return population;
+        return capitalcity;
     }
 
-    public ArrayList<Population>getRegionPop(String reg) throws SQLException {
+    //The top N populated capital cities in a region where N is provided by the user
+    public ArrayList<CapitalCity>getTopPopCapitalCityRegionLargesttoSmallest(String reg , int ci) throws SQLException {
+        //
+        // description :
+        // report function for top populated capital city in region from largest to smallest population
+        //
+        // Usage:
+        // object .getTopPopCapitalCityRegionLargesttoSmallest
+
+        String sql = "select city.Name, country.Name, city.Population from city, country where city.CountryCode = country.Code And country.Capital = city.ID and country.Region = ? order by city.Population desc limit ?";
+        PreparedStatement pstmt = con.prepareStatement(sql);
+        pstmt.setString(1, reg);
+        pstmt.setInt(2, ci);
+        ArrayList<CapitalCity> capitalcity = new ArrayList<CapitalCity>();
+        ResultSet rset = pstmt.executeQuery();
+        //String name, String continent, String region, String capital, float population
+        while (rset.next()) {
+
+            CapitalCity c = new CapitalCity(rset.getString(1), rset.getString(2), rset.getFloat(3));
+            capitalcity.add(c);
+        }
+        return capitalcity;
+    }
+
+    public void getLanguagePopPerLargesttoSmallest() throws SQLException {
 
         //
         // Description :
-        // report function for population of people, people living in cities, and people not living in cities in each Continent
+        // report function for countires sorted from largest population to smallest
         //
         // Usage:
-        //  object.getContinentPop()
+        //  object.getCountryPopLargesttoSmallest()
+        String pop = "SELECT SUM(country.Population) From country";
+        PreparedStatement pstmts = con.prepareStatement(pop);
+        ResultSet rests = pstmts.executeQuery();
+        Long w = 0l;
+        while (rests.next()){
+            w = rests.getLong(1);
+            System.out.println(w);}
 
 
-        String sql = "SELECT country.Name, country.Population,SUM(DISTINCT city.Population), (SUM(DISTINCT city.Population)/country.Population)*100, country.Population-SUM(DISTINCT city.Population),((country.Population-SUM(DISTINCT city.Population))/country.Population)*100 FROM city, country WHERE country.Code = city.CountryCode And country.Region = ? GROUP BY country.Name, country.Population order by country.Population DESC";
+        String sql = "SELECT countrylanguage.Language, SUM(country.Population) From country, countrylanguage Where country.Code = countrylanguage.CountryCode AND countrylanguage.Language IN ('Chinese','English','Hindi','Spanish','Arabic') AND countrylanguage.IsOfficial = 'T' Group by countrylanguage.Language" ;
         PreparedStatement pstmt = con.prepareStatement(sql);
-        pstmt.setString(1, reg);
-        ArrayList<Population> population = new ArrayList<Population>();
+        ArrayList<Language> languages = new ArrayList<Language>();
         ResultSet rset = pstmt.executeQuery();
-        //private String name, int populatin, int livingpopulation, float living, int notlivingpopulation, float notliving;
+        //String name, String continent, String region, String capital, float population
         while (rset.next()) {
-            Population p = new Population(rset.getString(1), rset.getInt(2), rset.getInt(3), rset.getFloat(4), rset.getInt(5), rset.getFloat(6));
-            population.add(p);
+            Language p = new Language(rset.getString(1), rset.getInt(2));
+            languages.add(p);
         }
-        return population;
+        displayLanguage(languages,w);
+    }
+
+    public void displayLanguage(ArrayList<Language> lag, long w) {
+
+        //
+        // Description :
+        //  Display function for Capital Cities
+        //
+        // Usage:
+        //  object.displayCountry(Array)
+
+
+        if (lag == null)
+        {
+            System.out.println("[system] No Capital cities");
+            return;
+        }
+        System.out.println(String.format("%-20s %-25s %-25s", "Language", "Country Population", "World Population %"));
+        // Loop over all city in the list
+        for (Language language : lag) {
+            if (language == null)
+                continue;
+            String lag_string =
+                    String.format("%-20s %-25s %.2f",
+                            language.getLanguage(),  language.getPopper(), 100.0f*language.getPopper()/w);
+            System.out.println(lag_string);
+        }
     }
 
 
@@ -1048,15 +1071,14 @@ public class App {
     }
 
 
-
     public void displayCity(ArrayList<City> conts) {
 
         //
         // Description :
-        //  Display function for City
+        //  Display function for Country
         //
         // Usage:
-        //  object.displayCity(Array)
+        //  object.displayCountry(Array)
 
         if (conts == null)
         {
@@ -1326,6 +1348,7 @@ public class App {
 
         }
     }
+
 
 
 }
