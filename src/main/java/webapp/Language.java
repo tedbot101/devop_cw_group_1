@@ -1,4 +1,4 @@
-package com.napier.sem;
+package webapp;
 
 public class Language {
     private String language;

@@ -188,11 +188,11 @@ public class App {
         a.getPopDistrict("Noord-Brabant");
         System.out.println(("[*] The population of a City"));
         a.getPopCity("Kabul");
-      
+
         //the number of people who speak Chinese, English, Hindi, Spanish, Arabic languages from greatest number to smallest
         System.out.println("\n[*]The the number of people who speak Chinese, English, Hindi, Spanish, Arabic languages from greatest number to smalles.\n[*]");
         a.getLanguagePopPerLargesttoSmallest();
-      
+
         // Population Report
         a.outputPopulation(population,"population.md");
         a.ReportPopulation(a.getCountryPop(),"CountryPopulation.md");
@@ -234,7 +234,6 @@ public class App {
         a.outputCapitalCity(a.getTopPopCapitalCityRegionLargesttoSmallest("Caribbean",6), "TopPopCapitalCityRegionLargesttoSmallest.md");
 
 
-        
 
 
         // Disconnect from database
@@ -964,10 +963,10 @@ public class App {
 
         //
         // Description :
-        // report function for language
+        // report function for countires sorted from largest population to smallest
         //
         // Usage:
-        //  object.getLanguagePopPerLargesttoSmallest()
+        //  object.getCountryPopLargesttoSmallest()
         String pop = "SELECT SUM(country.Population) From country";
         PreparedStatement pstmts = con.prepareStatement(pop);
         ResultSet rests = pstmts.executeQuery();
@@ -981,13 +980,14 @@ public class App {
         PreparedStatement pstmt = con.prepareStatement(sql);
         ArrayList<Language> languages = new ArrayList<Language>();
         ResultSet rset = pstmt.executeQuery();
-        //String language, float popper
+        //String name, String continent, String region, String capital, float population
         while (rset.next()) {
             Language p = new Language(rset.getString(1), rset.getInt(2));
             languages.add(p);
         }
         displayLanguage(languages,w);
     }
+
 
 
 
@@ -1024,10 +1024,10 @@ public class App {
 
         //
         // Description :
-        //  Display function for language
+        //  Display function for Capital Cities
         //
         // Usage:
-        //  object.displayLanguage(Array)
+        //  object.displayCountry(Array)
 
 
         if (lag == null)
@@ -1036,7 +1036,7 @@ public class App {
             return;
         }
         System.out.println(String.format("%-20s %-25s %-25s", "Language", "Country Population", "World Population %"));
-        // Loop over all language
+        // Loop over all city in the list
         for (Language language : lag) {
             if (language == null)
                 continue;

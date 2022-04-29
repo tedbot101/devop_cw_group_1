@@ -4,7 +4,7 @@
 
 ### Goal in Context
 
-Database manager wants to produce a report of top N populated cities in the world, continent, region, country and district organized by largest population to smallest.
+Organization wants to produce a report of top N populated cities in the world, continent, region, country and district organized by largest population to smallest.
 
 ### Scope
 
@@ -16,7 +16,7 @@ Primary task.
 
 ### Preconditions
 
-Database contains world population data.
+Database service contains world population data is up
 
 ### Success End Condition
 
@@ -28,15 +28,14 @@ No report is produced.
 
 ### Primary Actor
 
-Database Manager
+Organization
 
 ### Trigger
 
-A request for report is sent to Database Manager.
+A request for report is sent by Organization.
 
 ## MAIN SUCCESS SCENARIO
-
-
+The following reports with given format have been generated and made available to organization
 1. The top N populated cities in the world where N is provided by the user.
 2. The top N populated cities in a continent where N is provided by the user.
 3. The top N populated cities in a region where N is provided by the user.

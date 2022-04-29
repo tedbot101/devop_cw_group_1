@@ -26,6 +26,7 @@ class AppTest
         app.displayCity(null);
     }
 
+
     @Test
     void DisplayLanguageTest_null()
     {

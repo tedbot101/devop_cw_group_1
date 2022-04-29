@@ -5,7 +5,7 @@
 
 ### Goal in Context
 
-Database manager wants to produce a report of top N populated capital city in the world, continent and region
+Organization wants to produce a report of top N populated capital city in the world, continent and region
 ### Scope
 
 Organization
@@ -16,7 +16,7 @@ Primary task.
 
 ### Preconditions
 
-Database contains world population data.
+Database service contains world population data is up
 
 ### Success End Condition
 
@@ -28,15 +28,14 @@ No report is produced.
 
 ### Primary Actor
 
-Database Manager
+Organization
 
 ### Trigger
 
-A request for report is sent to Database Manager.
+A request for report is sent to Organization.
 
 ## MAIN SUCCESS SCENARIO
-
-
+The following reports with given format have been generated and made available to organization
 1. The top N populated capital cities in the world where N is provided by the user.
 2. The top N populated capital cities in a continent where N is provided by the user.
 3. The top N populated capital cities in a region where N is provided by the user.
