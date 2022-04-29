@@ -2,7 +2,16 @@ package com.napier.sem;
 
 public class Language {
     private String language;
-    private float popper;
+
+    public Language(String language, int popper) {
+        this.language = language;
+        this.popper = popper;
+
+    }
+
+
+
+    private int popper;
     private Long worldpop;
 
     public Long getWorldpop() {
@@ -13,17 +22,15 @@ public class Language {
         this.worldpop = worldpop;
     }
 
-    public float getPopper() {
+    public int getPopper() {
         return popper;
     }
 
-    public void setPopper(float popper) {
+    public void setPopper(int popper) {
         this.popper = popper;
     }
 
-    public Language(String language, float popper) {
-        this.language = language;
-    }
+
 
     public String getLanguage() {
         return language;

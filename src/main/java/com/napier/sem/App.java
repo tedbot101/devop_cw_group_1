@@ -33,7 +33,7 @@ public class App {
         // city report
         // All the cities in the world organised by largest population to smallest.
 
-        System.out.println("\n[*] All the cities in the world organised by largest population to smallest.[*] \n");
+       /* System.out.println("\n[*] All the cities in the world organised by largest population to smallest.[*] \n");
         a.displayCity( a.getCityPopLargesttoSmallest());
 
 
@@ -187,14 +187,14 @@ public class App {
         System.out.println(("[*] The population of a District"));
         a.getPopDistrict("Noord-Brabant");
         System.out.println(("[*] The population of a City"));
-        a.getPopCity("Kabul");
+        a.getPopCity("Kabul");*/
       
         //the number of people who speak Chinese, English, Hindi, Spanish, Arabic languages from greatest number to smallest
         System.out.println("\n[*]The the number of people who speak Chinese, English, Hindi, Spanish, Arabic languages from greatest number to smalles.\n[*]");
         a.getLanguagePopPerLargesttoSmallest();
       
         // Population Report
-        a.outputPopulation(population,"population.md");
+        /*a.outputPopulation(population,"population.md");
         a.ReportPopulation(a.getCountryPop(),"CountryPopulation.md");
         a.ReportPopulation(a.getContinentPop("Africa"),"ContinentPopulation.md");
         a.ReportPopulation(a.getRegionPop("South America"),"RegionPopulation.md");
@@ -232,7 +232,7 @@ public class App {
         a.outputCapitalCity(a.getTopPopCapitalCityLargesttoSmallest(10), "TopPopCapitalCityLargesttoSmallest.md");
         a.outputCapitalCity(a.getTopPopCapitalCityContinentLargesttoSmallest("Asia",4), "TopPopCapitalCityContinentLargesttoSmallest.md");
         a.outputCapitalCity(a.getTopPopCapitalCityRegionLargesttoSmallest("Caribbean",6), "TopPopCapitalCityRegionLargesttoSmallest.md");
-
+*/
 
         
 
@@ -964,10 +964,10 @@ public class App {
 
         //
         // Description :
-        // report function for language
+        // report function for countires sorted from largest population to smallest
         //
         // Usage:
-        //  object.getLanguagePopPerLargesttoSmallest()
+        //  object.getCountryPopLargesttoSmallest()
         String pop = "SELECT SUM(country.Population) From country";
         PreparedStatement pstmts = con.prepareStatement(pop);
         ResultSet rests = pstmts.executeQuery();
@@ -981,13 +981,14 @@ public class App {
         PreparedStatement pstmt = con.prepareStatement(sql);
         ArrayList<Language> languages = new ArrayList<Language>();
         ResultSet rset = pstmt.executeQuery();
-        //String language, float popper
+        //String name, String continent, String region, String capital, float population
         while (rset.next()) {
             Language p = new Language(rset.getString(1), rset.getInt(2));
             languages.add(p);
         }
         displayLanguage(languages,w);
     }
+
 
 
 
@@ -1024,10 +1025,10 @@ public class App {
 
         //
         // Description :
-        //  Display function for language
+        //  Display function for Capital Cities
         //
         // Usage:
-        //  object.displayLanguage(Array)
+        //  object.displayCountry(Array)
 
 
         if (lag == null)
@@ -1036,7 +1037,7 @@ public class App {
             return;
         }
         System.out.println(String.format("%-20s %-25s %-25s", "Language", "Country Population", "World Population %"));
-        // Loop over all language
+        // Loop over all city in the list
         for (Language language : lag) {
             if (language == null)
                 continue;
