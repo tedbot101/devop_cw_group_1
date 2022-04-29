@@ -5,7 +5,7 @@
 
 ### Goal in Context
 
-Database manager wants access the population of the world
+Organization wants access the population of the world
 ### Scope
 
 Organization
@@ -16,7 +16,7 @@ Primary task.
 
 ### Preconditions
 
-Database contains world population data.
+Database service contains world population data is up
 
 ### Success End Condition
 
@@ -27,13 +27,14 @@ No report is produced.
 
 ### Primary Actor
 
-Database Manager
+Organization
 
 ### Trigger
 
-A request for report is sent to Database Manager.
+A request for report is sent by Organization.
 
 ## MAIN SUCCESS SCENARIO
+The following reports with given format have been generated and made available to organization
 
 A report containing the population of the world.
 

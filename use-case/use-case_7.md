@@ -5,7 +5,7 @@
 
 ### Goal in Context
 
-Database manager wants to produce a report of the population of people living in the cities and not living in cities in each continent, region and country
+Organization wants to produce a report of the population of people living in the cities and not living in cities in each continent, region and country
 ### Scope
 
 Organization
@@ -16,7 +16,7 @@ Primary task.
 
 ### Preconditions
 
-Database contains world population data.
+Database service contains world population data is up
 
 ### Success End Condition
 
@@ -27,14 +27,14 @@ No report is produced.
 
 ### Primary Actor
 
-Database Manager
+Organization
 
 ### Trigger
 
-A request for report is sent to Database Manager.
+A request for report is sent by Organization.
 
 ## MAIN SUCCESS SCENARIO
-
+The following reports with given format have been generated and made available to organization
 1. The population of people, people living in cities, and people not living in cities in each continent.
 2. The population of people, people living in cities, and people not living in cities in each region.
 3. The population of people, people living in cities, and people not living in cities in each country.
