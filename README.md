@@ -1,6 +1,6 @@
 # DevOps Coursework (Group 1)
 [![LICENSE](https://img.shields.io/github/license/tedbot101/sem.svg?style=flat-square)](https://github.com/tedbot101/sem/blob/master/LICENSE)
-![workflow](https://github.com//tree/main/.github/workflows/docker-image.yml/badge.svg)
+[![workflow](https://img.shields.io/github/license/tedbot101/sem.svg?style=flat-square)](https://github.com//tree/main/.github/workflows/docker-image.yml)
 <br>
 
 
