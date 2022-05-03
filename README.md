@@ -1,5 +1,5 @@
 # DevOps Coursework (Group 1)
-[![LICENSE](https://img.shields.io/github/license/tedbot101/sem.svg?style=flat-square)](https://github.com/tedbot101/sem/blob/master/LICENSE) <br>
+[![LICENSE](https://img.shields.io/github/license/tedbot101/sem.svg?style=flat-square)](https://github.com/tedbot101/sem/blob/master/LICENSE) [![workflow](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com//blob/main/.github/workflows/docker-image.yml)<br>
 
 Members: <br>
 Thant Aung Khant - 40501823,<br>
