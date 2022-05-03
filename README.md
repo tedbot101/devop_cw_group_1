@@ -18,3 +18,48 @@ Lyan Moe Kyaw - 40478615 (Product Owner)<br>
 4. Work as a team at the same time. Every team member must be available to work together upon the set time.
 
 5. Prefer small things that you complete to big, long lasting tasks. Be it a github issue, small and done better than big and started.
+
+# Requirements
+
+|Item                                                                                     |Met                     |
+|-----------------------------------------------------------------------------------------|------------------------|
+|All the countries in the world organised by largest population to smallest               |yes                     |
+|All the countries in a continent organised by largest population to smallest             |yes                     |
+|All the countries in a region organised by largest population to smallest                |yes                     |
+|The top N populated countries in the world where N is provided by the user               |yes                     |
+|The top N populated countries in a continent where N is provided by the user             |yes                     |
+|The top N populated countries in a region where N is provided by the user                |yes                     |
+|All the cities in the world organised by largest population to smallest                  |yes                     |
+|All the cities in a continent organised by largest population to smallest                |yes                     |
+|All the cities in a region organised by largest population to smallest                   |yes                     |
+|All the cities in a country organised by largest population to smallest                  |yes                     |
+|All the cities in a district organised by largest population to smallest                 |yes                     |
+|The top N populated cities in the world where N is provided by the user                  |yes                     |
+|The top N populated cities in a continent where N is provided by the user                |yes                     |
+|The top N populated cities in a region where N is provided by the user                   |yes                     |
+|The top N populated cities in a country where N is provided by the user                  |yes                     |
+|The top N populated cities in a district where N is provided by the user                 |yes                     |
+|All the capital cities in the world organised by largest population to smallest          |yes                     |
+|All the capital cities in a continent organised by largest population to smallest        |yes                     |
+|All the capital cities in a region organised by largest to smallest                      |yes                     |
+|The top N populated capital cities in the world where N is provided by the user          |yes                     |
+|The top N populated capital cities in a continent where N is provided by the user        |yes                     |
+|The top N populated capital cities in a region where N is provided by the user           |yes                     |
+|The population of people living in cities and people not living in cities in each continent|yes                     |
+|The population of people living in cities and people not living in cities in each region |yes                     |
+|The population of people living in cities and people not living in cities in each country|yes                     |
+|The population of the world                                                              |yes                     |
+|The population of a continent                                                            |yes                     |
+|The population of a region                                                               |yes                     |
+|The population of a country                                                              |yes                     |
+|The population of a district                                                             |yes                     |
+|The population of a city                                                                 |yes                     |
+|Chinese language population                                                              |yes                     |
+|English language population                                                              |yes                     |
+|Hindi language population                                                                |yes                     |
+|Spanish language population                                                              |yes                     |
+|Arabic language population                                                               |yes                     |
+|The name of the continent/region/country                                                 |yes                     |
+|The total population of the continent/region/country                                     |yes                     |
+|The total population of the continent/region/country living in cities (including a %)    |yes                     |
+|The total population of the continent/region/country not living in cities (including a %)|yes                     |
